@@ -1,9 +1,15 @@
+:- dynamic handleMenuChoice/1, displayMenuTitle/0, readNumber/1, displayGameTitle/0.
+
+game :-
+    displayGameTitle, 
+    displayMenuTitle,
+    menu.
+
 menu :- 
     repeat,
-    displayGameTitle,
+    %displayMenuTitle,
+    %displayBoardOptions,
     readNumber(Option),
     handleMenuChoice(Option).
 
-handleMenuChoice(0).
-handleMenuChoice(_) :- write('Invalid Option!'), nl, !, fail.
 

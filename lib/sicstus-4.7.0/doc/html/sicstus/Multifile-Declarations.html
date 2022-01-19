@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Multifile Declarations (SICStus Prolog)</title>
+
+<meta name="description" content="Multifile Declarations (SICStus Prolog)">
+<meta name="keywords" content="Multifile Declarations (SICStus Prolog)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Predicate-Index.html#Predicate-Index" rel="index" title="Predicate Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="ref_002dlod_002ddcl.html#ref_002dlod_002ddcl" rel="up" title="ref-lod-dcl">
+<link href="Dynamic-Declarations.html#Dynamic-Declarations" rel="next" title="Dynamic Declarations">
+<link href="ref_002dlod_002ddcl.html#ref_002dlod_002ddcl" rel="prev" title="ref-lod-dcl">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+<link href="texinfo.css" rel="stylesheet" type="text/css">
+</head>
+
+<body lang="en">
+<a name="Multifile-Declarations"></a>
+<hr>
+<a name="Multifile-Declarations-1"></a>
+<h4 class="subsubsection">4.3.4.1 Multifile Declarations</h4>
+<a name="index-multifile-declaration"></a>
+<a name="index-declaration_002c-multifile"></a>
+
+<a name="index-multifile_002f1-_0028declaration_0029-1"></a>
+<a name="index-multifile_002f1-_0028declaration_0029"></a>
+
+
+<p>A declaration
+</p>
+<div class="example">
+<pre class="example">:- multifile <var>:PredSpec</var>, &hellip;, <var>:PredSpec</var>.  <!-- /@w --> <i>ISO</i>
+</pre></div>
+
+<p>where each <var>PredSpec</var> is a predicate specification, causes the
+specified predicates to become <em>multifile</em>.  This means that
+if more clauses are subsequently loaded from other files for
+the same predicate, then the new clauses will not replace
+the old ones, but will be added at the end instead.  
+</p>
+<a name="index-hook-predicate"></a>
+<a name="index-predicate_002c-hook"></a>
+<p>An example where multifile declarations are particularly
+useful is in defining <em>hook predicates</em>.  A hook predicate is
+a user-defined predicate that somehow alters or customizes the
+behavior of SICStus Prolog.  A number of such hook predicates are
+described in this manual.  See also <a href="ref_002dsem_002dtyp_002dhok.html#ref_002dsem_002dtyp_002dhok">ref-sem-typ-hok</a>.
+</p>
+<p>Multifile declarations <em>must precede</em> any other
+declarations for the same predicate(s)!
+</p>
+<p>If a file containing clauses for a multifile predicate is reloaded, then the
+old clauses from the same file are removed. The new clauses are added at
+the end.  <strong>Please note</strong>: if the file being reloaded is a
+module file, however, then all predicates belonging to the module are
+abolished, including any multifile predicate.
+</p>
+<p>If a multifile predicate is loaded from a file with no
+multifile declaration for it, then the predicate is
+redefined as if it were an ordinary predicate (i.e. the user is
+asked for confirmation).
+</p>
+<p>If a multifile predicate is declared dynamic in one file, then it must also
+be done so in the other files from which it is loaded.  
+See <a href="mpg_002dref_002dmultifile.html#mpg_002dref_002dmultifile">mpg-ref-multifile</a>.
+</p>
+
+
+
+<div class="logo">
+<a href="https://sicstus.sics.se/">
+<table><tr><td>&nbsp;</td></tr></table>
+</a>
+</div>
+<div class="node">
+<ul class="node">
+<li><a href="index.html#Top">User's Manual</a>
+<hr>
+<li><a href="index.html#TOC">Table of Contents</a>
+<li><a href="Dynamic-Declarations.html#Dynamic-Declarations" accesskey="n" rel="next">Next</a>
+<li><a href="ref_002dlod_002ddcl.html#ref_002dlod_002ddcl" accesskey="u" rel="up">Up</a>
+</ul>
+</div>
+<hr>
+<a HREF="mailto:sicstus-support@ri.se?subject=Documentation%20feedback%20on%20html/sicstus/Multifile-Declarations.html&amp;body=Feedback%20on%20documentation%20node%20html/sicstus/Multifile-Declarations.html%20in%20User's%20Manual.">Send feedback on this subject.</a>
+</body>
+</html>

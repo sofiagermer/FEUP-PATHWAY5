@@ -1,0 +1,19 @@
+{
+  "id": "org.sicstus.sicstus",
+  "name": "SICStus",
+  "description": "Sicstus FlatZinc executable",
+  "version": "@SICSTUS_VERSION_STRING@",
+  "mznlib": "-Gsicstus",
+  "executable": "spfz",
+  "tags": ["cp","int"],
+  "stdFlags": ["-a","-f","-n","-p","-r","-s","-t"],
+  "supportsMzn": false,
+  "supportsFzn": true,
+  "needsSolns2Out": true,
+  "needsMznExecutable": false,
+  "needsStdlibDir": false,
+  "isGUIApplication": false,
+    "extraFlags": [
+      ["-search", "Optimization engine variant (bab, restart)", "string", "bab"]
+    ]
+}

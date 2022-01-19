@@ -1,0 +1,6 @@
+consult('board.pl').
+consult('input.pl').
+consult('menu.pl').
+
+
+consult('pathways.pl').

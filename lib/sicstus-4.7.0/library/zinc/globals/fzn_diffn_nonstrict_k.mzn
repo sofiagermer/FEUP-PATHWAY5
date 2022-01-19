@@ -1,0 +1,28 @@
+predicate fzn_diffn_nonstrict_k(array[int,int] of var int: box_posn,
+                                array[int,int] of var int: box_size) =
+    let { set of int: DIMS= index_set_2of2(box_posn) } in
+    if card(DIMS)=1 then
+       let {int: j = min(DIMS)} in 
+         fzn_disjunctive([box_posn[b,j] | b in index_set_1of2(box_posn)],
+	                 [box_size[b,j] | b in index_set_1of2(box_posn)])
+     elseif card(DIMS)=2 then
+       let {int: j = min(DIMS)} in 
+         fzn_diffn_nonstrict([box_posn[b,j  ] | b in index_set_1of2(box_posn)],
+			     [box_posn[b,j+1] | b in index_set_1of2(box_posn)],
+			     [box_size[b,j  ] | b in index_set_1of2(box_posn)],
+			     [box_size[b,j+1] | b in index_set_1of2(box_posn)])
+     else
+	 forall(b1, b2 in index_set_1of2(box_posn) where b1 < b2)
+	       (fzn_diffn_nonstrict_nonoverlap_k([ box_posn[b1,j] | j in DIMS ],   
+						 [ box_size[b1,j] | j in DIMS ], 
+						 [ box_posn[b2,j] | j in DIMS ],   
+						 [ box_size[b2,j] | j in DIMS ] ) 
+	       )
+     endif;
+
+predicate fzn_diffn_nonstrict_nonoverlap_k(array[int] of var int: x1, 
+					   array[int] of var int: w1, 
+					   array[int] of var int: x2, 
+					   array[int] of var int: w2) = 
+    exists(j in index_set(x1))
+        (w1[j] = 0 \/ w2[j] = 0 \/ x1[j] + w1[j] <= x2[j] \/ x2[j] + w2[j] <= x1[j]);

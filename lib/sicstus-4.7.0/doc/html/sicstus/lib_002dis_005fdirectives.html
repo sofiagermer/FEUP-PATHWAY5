@@ -1,0 +1,473 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>lib-is_directives (SICStus Prolog)</title>
+
+<meta name="description" content="lib-is_directives (SICStus Prolog)">
+<meta name="keywords" content="lib-is_directives (SICStus Prolog)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Predicate-Index.html#Predicate-Index" rel="index" title="Predicate Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="The-Prolog-Library.html#The-Prolog-Library" rel="up" title="The Prolog Library">
+<link href="lib_002djasper.html#lib_002djasper" rel="next" title="lib-jasper">
+<link href="lib_002dheaps.html#lib_002dheaps" rel="prev" title="lib-heaps">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+<link href="texinfo.css" rel="stylesheet" type="text/css">
+</head>
+
+<body lang="en">
+<a name="lib_002dis_005fdirectives"></a>
+<hr>
+<a name="Declaring-determinacy-attributes_002d_002d_002dlibrary_0028is_005fdirectives_0029"></a>
+<h3 class="section">10.19 Declaring determinacy attributes&mdash;<code>library(is_directives)</code></h3>
+<p>This library module gives access to the information declared by
+<code>is/2</code> directives.
+The <code>is/2</code> declarations can be used for declaring arbitrary
+predicate attributes, but the main application is for declaring
+determinacy information, and this is what is described here.
+</p><a name="Introduction-11"></a>
+<h4 class="subsection">10.19.1 Introduction</h4>
+
+<p>Determinacy, i.e. whether a call to a predicate can produce more
+than one solution on backtracking, is an important property for
+understanding the predicate and the code that uses it. For this reason
+it is desirable to describe the behavior in the documentation that
+accompanies a predicate.
+</p>
+<p>The determinacy properties of a predicate can also be used by
+various tools, and for this reason it is possible to declare the
+determinacy of a predicate in a way that can be automatically
+processed by such tools. One example is the determinacy analyzer
+in the SPIDER IDE (see <a href="SPIDER.html#SPIDER">SPIDER</a>), which uses the declared
+determinacy of a called predicate to improve the precision of the
+analysis of the caller in the common case that the caller does not
+have any determinacy declaration of its own.
+</p>
+<p>The SICStus libraries contain determinacy declarations for most
+exported predicates. These can serve as useful examples.
+</p>
+<p>Determinacy declarations are <em>hints</em>, i.e. they are meant to
+convey the <em>expected</em> behavior. Due to the dynamic nature of
+Prolog, almost any call can fail, throw an exception, or succeed more
+than once for reasons not directly related to the called
+predicate. Examples where these things can happen are timeouts
+(<code>library(timeout)</code>) and functionality that can cause goals to
+run when a variable is bound, e.g. <code>freeze/2</code>. For this reason,
+anything that uses determinacy declarations must be prepared to handle
+any run-time behavior, not just the behavior specified by the
+declarations.
+</p>
+<a name="Available-Determinacy-Annotations"></a>
+<h4 class="subsection">10.19.2 Available Determinacy Annotations</h4>
+
+<p>The following determinacy attributes are available:
+</p>
+<dl compact="compact">
+<dt><code>det</code></dt>
+<dd><p>A call will always succeed exactly once. I.e. the number of solutions
+is expected to be one. This is probably the most common behavior.
+</p>
+</dd>
+<dt><code>semidet</code></dt>
+<dd><p>A call will fail, or succeed exactly once. I.e. the number of
+solutions is expected to be zero or one. This can be used for for
+describing tests, e.g. <code>X&gt;Y</code>.
+</p>
+</dd>
+<dt><code>multi</code></dt>
+<dd><p>A call will succeed more than once. I.e. the number of solutions is
+expected to be one or more. This is uncommon, but could be used to
+describe the builtin <code>repeat/0</code>.
+</p>
+</dd>
+<dt><code>nondet</code></dt>
+<dd><p>A call may fail or succeed any number of times. I.e. the number of
+solutions is expected to be zero or more. This is the most general
+determinacy information and is what must be assumed unless no other
+information is available.
+</p>
+</dd>
+<dt><code>failing</code></dt>
+<dd><p>A call will fail. I.e. the number of solutions is expected to be
+zero. This is uncommon, but could be used to describe the builtin
+<code>false/0</code>.
+</p>
+</dd>
+<dt><code>throwing</code></dt>
+<dd><p>A call is expected to throw an exception. This is similar to
+<code>failing</code> in that the number of solutions is expected to be zero
+but differs in situations where failure is treated specially, like
+if-then-else. This is uncommon, but could be used to describe the
+builtin <code>throw/1</code> and some of the error reporting predicates in
+<code>library(types)</code>.
+</p>
+</dd>
+</dl>
+
+<a name="Syntax-of-Determinacy-Declarations"></a>
+<h4 class="subsection">10.19.3 Syntax of Determinacy Declarations</h4>
+
+<p>Determinacy is declared using directives that use <code>is/2</code>. Note
+that in this usage, <code>is/2</code> has nothing to do with the arithmetic
+predicate of the same name.
+</p>
+<p>The format of a determinacy directive is:
+</p>
+<div class="example">
+<pre class="example">:- <var>SPEC</var> is <var>ANNOTATION</var>.
+</pre></div>
+
+<p>where <var>ANNOTATION</var> is one of the atoms used for
+determinacy annotation. The <var>SPEC</var> describes the predicate and can
+be either a predicate specification (like those used by the
+<code>abolish/1</code> predicate) or a skeletal goal (like those used
+by the <code>meta_predicate/1</code> directive).
+</p>
+<p>Example:
+</p>
+<div class="example">
+<pre class="example">% foo/2 is expected to always succeed, once, for any argument.
+:- foo/2 is det.
+
+foo(X, Y) :-
+        Y = hello(X).
+
+% bar/2, when called with a non-variable first argument,
+% is expected to succeed at most once.
+:- bar(+, ?) is semidet.
+
+% bar/2, when called with a variable first argument,
+% is expected to succeed any number of times.
+:- bar(-, ?) is nondet.
+
+bar('a', lowercase).
+bar('A', uppercase).
+&hellip;
+bar('z', lowercase).
+bar('Z', uppercase).
+</pre></div>
+
+<p>The <var>SPEC</var> tells which predicate is being annotated and, if it is
+a skeletal goal, it can restrict the declaration to only apply
+for the specified instantiation of the arguments. It can have one of
+the following forms:
+</p>
+<dl compact="compact">
+<dt><code><var>Module</var>:<var>Name</var>/<var>Arity</var></code></dt>
+<dt><code><var>Name</var>/<var>Arity</var></code></dt>
+<dd><p><var>Module</var> and <var>Name</var> should be atoms, <var>Arity</var> should be a non-negative
+integer. This predicate specification denotes the predicate <var>Name</var> with arity
+<var>Arity</var> in module <var>Module</var>, where <var>Module</var> defaults to the source
+module.
+</p>
+</dd>
+<dt><code><var>Module</var>:<var>Name</var>(ARG1, ARG2, &hellip;, ARGN)</code></dt>
+<dt><code><var>Name</var>(ARG1, ARG2, &hellip;, ARGN)</code></dt>
+<dd>
+<p>This skeletal goal denotes the predicate <var>Name</var> with arity <var>N</var> in the
+module <var>Module</var>, where <var>Module</var> defaults to the source module. The
+argument positions is typically used to indicate an instantiation
+pattern.
+</p>
+</dd>
+</dl>
+
+<a name="Specifying-Instantiation-Patterns"></a>
+<h4 class="subsubsection">10.19.3.1 Specifying Instantiation Patterns</h4>
+
+<p>Many predicates have different determinacy depending on how their
+arguments are instantiated. This can be indicated using the skeleton goal
+form of specification, with each argument of the skeleton goal being one of
+the following:
+</p>
+<dl compact="compact">
+<dt><code>+</code></dt>
+<dd><p>Indicates that the argument is instantiated, i.e. it is not a
+variable when the predicate is called.
+</p></dd>
+<dt><code>-</code></dt>
+<dd><p>Indicates that the argument is uninstantiated, i.e. it is a variable
+when the predicate is called.
+</p></dd>
+<dt><code>?</code></dt>
+<dt><code>*</code></dt>
+<dd><p>Indicates that the argument can be anything, i.e. the declared
+determinism is not affected by the instantiation of this argument
+</p></dd>
+</dl>
+<p>if the argument is a compound term with one argument
+(like <code>+ hello</code>, or <code>- Bar</code>), only the functor is used when
+interpreting the argument. This makes it possible to use variables as
+descriptive names for the arguments, e.g.
+</p>
+<div class="example">
+<pre class="example">:- parent_of(+Parent, -Child) is nondet.
+</pre></div>
+
+<p>Not only variables can be used as descriptions in this way, any term
+is accepted.
+</p>
+<p>When declaring determinism, the skeleton argument only specifies
+whether an argument is a variable or not. This is different from
+whether the argument should be considered input or output
+(<code>var(X)</code> has only an input argument, but will often be called
+with a variable as input argument).
+</p>
+
+
+<a name="Declaring-Meta-Predicate-Determinacy"></a>
+<h4 class="subsubsection">10.19.3.2 Declaring Meta Predicate Determinacy</h4>
+
+<p>The declarations above is sufficient for most predicates. However,
+they do not suffice for predicates whose determinism depends on an
+argument goal, like <code>lists:maplist/2</code>.
+</p>
+<p>For such predicates, i.e. meta predicates that take a single
+closure (goal) argument, it is possible to specify different
+determinacy for each of the possible determinacies of the closure
+argument, as in the following example:
+</p>
+<div class="example">
+<pre class="example">% The last argument of dolist/3 is a closure with two
+% suppressed arguments that will be supplied using call/3.
+:- meta_predicate dolist(*, *, 2).
+
+% This is the expected mode, a determinate producer. In this
+% case dolist/3 will also succeed exactly once.
+:- dolist(+, -, det) is det.
+
+% If the closure can fail, then dolist/2 can also fail.
+:- dolist(+, -, semidet) is semidet.
+
+% If the closure succeeds more than once, then so will dolist/2.
+:- dolist(+, -, multi) is multi.
+
+% If the closure always fails (a strange usage, indeed) then dolist/3
+% can nevertheless succeed, when the input is an empty list.
+:- dolist(+, -, failing) is semidet.
+
+% In general, dolist/3 will be nondeterminate if the closure is
+% nondeterminate.
+% This declaration may seem redundant, but it may not be for some tools.
+:- dolist(+, -, nondet) is nondet.
+
+% dolist/3 calls the argument closure, which expects two extra
+% arguments, on each pair of corresponding list elements
+dolist([], [], _G_2).           % The closure is ignored here
+dolist([X|Xs], [Y|Ys], G_2) :-
+        call(G_2, X, Y),
+        dolist(Xs, Ys, G_2).
+
+:- square/2 is det. % always expected to succeed (once)
+square(X, XX) :-
+        XX is X*X.
+
+%  Example use:
+%  | ?- square_list([1,2,3], Squares).
+%  Squares = [1,4,9] ?
+%
+% It can be inferred that this is expected to succeed exactly once.
+square_list(Numbers, Squares) :-
+        % Calls square(X,Y) on each X in Numbers and Y in Squares.
+        % Since square/2 is 'det', the call do dolist/3 will
+        % be considered 'det' as well.
+        dolist(Numbers, Squares, square).
+</pre></div>
+
+<a name="Using-Determinacy-Declarations"></a>
+<h4 class="subsection">10.19.4 Using Determinacy Declarations</h4>
+
+<p>Since determinacy declarations by necessity are only <em>hints</em>, it
+is often better to focus on the expected behavior rather than the exact
+behavior when declaring determinism for a predicate.
+</p>
+<p>Also, only very simple instantiation patterns can be specified, so it
+may be useful to pretend they indicate more than they actually do.
+</p>
+<p>As an example, consider how to declare the determinacy of the builtin
+<code>length(List, Length)</code>:
+</p><ol>
+<li> It will succeed at most once if the second argument is instantiated
+(It will succeed once if the first argument can be unified with a list
+of the specified length, otherwise it will fail), regardless of the
+instantiation of the first argument. This corresponds to the attribute
+<code>semidet</code>.
+
+</li><li> It will succeed exactly once if the first argument is a proper
+list and the second argument is a variable. This corresponds to the
+attribute <code>det</code>.
+
+</li><li> It will succeed more than once if the first argument is a partial
+list (i.e. is a variable or has a variable tail). This corresponds
+to the attribute <code>multi</code>.
+
+</li><li> Finally, it will throw an exception for some invalid inputs, but this
+is not specified with determinacy declarations (<code>&hellip; is
+throwing</code> is only meant for predicates expected to <em>always</em> throw
+an exception).
+</li></ol>
+
+<p>However, it is not possible to specify &ldquo;proper list&rdquo;, &ldquo;partial
+list&ldquo; and non-list as instantiation patterns. On the other hand, it
+would be unfortunate to not be able to say anything about the
+determinacy of <code>length/2</code>.
+</p>
+<p>In such cases it may make sense to pretend that &lsquo;<samp>+</samp>&rsquo;, the
+non-variable argument instantiation, means &ldquo;a properly/fully
+instantiated input&rdquo;, i.e. a &ldquo;proper list&rdquo; in the case of
+<code>length/2</code>. Similarly, it may make sense to pretend that
+&lsquo;<samp>?</samp>&rsquo;, any instantiation, means &ldquo;a partially instantiated input&rdquo;,
+i.e. a &ldquo;partial list&rdquo; in the case of <code>length/2</code>.
+</p>
+<p>So, for the builtin <code>length/2</code> it would make sense to specify the
+following determinacy declarations:
+</p><div class="example">
+<pre class="example">:- length(*, +) is semidet.     % this is precise
+:- length(+, -) is det.         % pretend '+' means proper list
+:- length(?, -) is multi.       % pretend '?' means partial list
+</pre></div>
+<p>It is up to the documentation accompanying the predicate,
+and any tools that use these declarations, to handle this appropriately.
+</p>
+<a name="Accessing-Determinacy-Declarations-at-Runtime"></a>
+<h4 class="subsection">10.19.5 Accessing Determinacy Declarations at Runtime</h4>
+
+<p>The determinacy declarations are saved when code is compiled or
+consulted and can be accessed when the code has been loaded. This
+could be used by documentation generators, smart debuggers, and many
+other purposes, not
+all of which documented.  New uses may be added without notice,
+so you should ignore any recorded <code>is/2</code> directive that you
+do not understand.
+</p>
+<p>The loaded <code>is/2</code> directives can be accessed using the following,
+non-determinate, predicate:
+</p><div class="example">
+<pre class="example">current_is_directive(Skel, M, Annotation, Spec, Directive, Context).
+</pre></div>
+
+<dl compact="compact">
+<dt><var>Skel</var></dt>
+<dd><p>This is a compound term with the same name as the predicate and one
+anonymous variable in each argument position.
+</p>
+</dd>
+<dt><var>M</var></dt>
+<dd><p>This is the module of the predicate specification. Typically the same as the source module.
+</p>
+</dd>
+<dt><var>Annotation</var></dt>
+<dd><p>This is the second argument of the <code>is/2</code> directive.
+</p>
+</dd>
+<dt><var>Spec</var></dt>
+<dd><p>This is the first argument of the <code>is/2</code> directive, with module prefixes peeled off.
+</p>
+
+</dd>
+<dt><var>Directive</var></dt>
+<dd><p>This is the entire <code>is/2</code> directive (without the surrounding <code>:- <small class="enddots">...</small></code>).
+</p></dd>
+<dt><var>Context</var></dt>
+<dd><p>this is the source module.
+</p></dd>
+</dl>
+
+<p>Consider the following code:
+</p><div class="example">
+<pre class="example">:- module(example, [p1/3]).
+
+:- p1/3 is det.
+:- user:bar(+, +) is semidet.
+
+</pre></div>
+
+<p>This corresponds to the following two clauses of <code>current_is_directive/6</code>:
+</p><div class="example">
+<pre class="example">current_is_directive(p1(_,_,_),
+                     example,
+                     det,
+                     p1/3,
+                     (p1/3 is det),
+                     example).
+current_is_directive(bar(_,_),
+                     user,
+                     semidet,
+                     bar(+,+),
+                     (user:bar(+,+) is semidet),
+                     example).
+</pre></div>
+
+
+<p>Exported predicates:
+</p>
+<dl compact="compact">
+<dt><code>current_is_directive(<var>Skel</var>, <var>M</var>, <var>Annotation</var>, <var>Spec</var>, <var>Directive</var>, <var>Context</var>).</code></dt>
+<dd><p>Low-level access to the information recorded by <code>is/2</code>
+directives. See the library documentation for details.
+</p>
+</dd>
+<dt><code>current_is_directive(<var>:MSkel</var>, <var>Annotation</var>, <var>Spec</var>).</code></dt>
+<dd><p>Like <code>current_is_directive(<var>Skel</var>, <var>M</var>,
+<var>Annotation</var>, <var>Spec</var>, _, _)</code> where <var>M</var> and <var>Skel</var>
+are the parts of the meta argument <var>MSkel</var>.
+</p>
+</dd>
+</dl>
+
+<hr>
+
+
+
+<div class="logo">
+<a href="https://sicstus.sics.se/">
+<table><tr><td>&nbsp;</td></tr></table>
+</a>
+</div>
+<div class="node">
+<ul class="node">
+<li><a href="index.html#Top">User's Manual</a>
+<hr>
+<li><a href="index.html#TOC">Table of Contents</a>
+<li><a href="lib_002djasper.html#lib_002djasper" accesskey="n" rel="next">Next</a>
+<li><a href="lib_002dheaps.html#lib_002dheaps" accesskey="p" rel="prev">Previous</a>
+<li><a href="The-Prolog-Library.html#The-Prolog-Library" accesskey="u" rel="up">Up</a>
+</ul>
+</div>
+<hr>
+<a HREF="mailto:sicstus-support@ri.se?subject=Documentation%20feedback%20on%20html/sicstus/lib_002dis_005fdirectives.html&amp;body=Feedback%20on%20documentation%20node%20html/sicstus/lib_002dis_005fdirectives.html%20in%20User's%20Manual.">Send feedback on this subject.</a>
+</body>
+</html>

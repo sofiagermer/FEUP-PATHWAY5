@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>LMDB Conventions (SICStus Prolog)</title>
+
+<meta name="description" content="LMDB Conventions (SICStus Prolog)">
+<meta name="keywords" content="LMDB Conventions (SICStus Prolog)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Predicate-Index.html#Predicate-Index" rel="index" title="Predicate Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="LMDB-Predicates.html#LMDB-Predicates" rel="up" title="LMDB Predicates">
+<link href="LMDB-Memory-Leaks.html#LMDB-Memory-Leaks" rel="next" title="LMDB Memory Leaks">
+<link href="LMDB-Predicates.html#LMDB-Predicates" rel="prev" title="LMDB Predicates">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+<link href="texinfo.css" rel="stylesheet" type="text/css">
+</head>
+
+<body lang="en">
+<a name="LMDB-Conventions"></a>
+<hr>
+<a name="Conventions-2"></a>
+<h4 class="subsubsection">10.25.5.1 Conventions</h4>
+
+<p>The following conventions are used in the predicate descriptions below.
+</p><ul>
+<li> The predicates that create and open databases can be given a list of options.
+An <var>Option</var> is one of:
+<dl compact="compact">
+<dt><code>mapsize(<var>S</var>)</code></dt>
+<dd><a name="index-mapsize_002f1-_0028lmdb-option_0029"></a>
+<p>The mapsize, or size limit, of the database being created, in MiB.
+The default is 10MiB.
+</p>
+</dd>
+<dt><code>permission(<var>S</var>)</code></dt>
+<dd><a name="index-permission_002f1-_0028lmdb-option_0029"></a>
+<p>The UNIX permission for files of the database being created.  Ignored for Windows.
+The default is octal 664.
+</p>
+</dd>
+<dt><code>mode(<var>S</var>)</code></dt>
+<dd><a name="index-mode_002f1-_0028lmdb-option_0029"></a>
+<p>The access mode for the database being opened. One of the atoms <code>read</code> and <code>write</code>.
+If <code>read</code> (the default), no updates are allowed.
+</p></dd>
+</dl>
+
+</li><li> <var>DBRef</var> is a reference to an open database.
+It is returned when the database is opened.  The reference becomes
+invalid after the database has been closed.
+The reference corresponds to the LMDB environment notion.
+An environment
+physically consists of a directory containing the files needed to enable
+sharing databases between processes.
+
+</li><li> <var>TermRef</var> is a reference to a term in a given database.
+The reference is returned when a term is stored.  The reference
+stays valid even after the database has been closed and hence can
+be stored permanently as part of another term.  However, if such
+references are stored in the database, automatic compression of
+the database (using <code>lmdb_compress/[2,3]</code>) is not possible, in
+that case the user has to write their own compressing predicate.
+
+</li><li> <var>SpecList</var> is a description of the indexing scheme;
+see <a href="The-DB_002dSpec.html#The-DB_002dSpec">The DB-Spec</a>.
+
+</li><li> <var>Term</var> is any Prolog term.
+
+</li><li> <var>Iterator</var> is a non-backtrackable mutable object.  It can be
+used to iterate through a set of terms stored in a database.
+The iterators are unidirectional.
+</li></ul>
+
+<hr>
+
+
+
+<div class="logo">
+<a href="https://sicstus.sics.se/">
+<table><tr><td>&nbsp;</td></tr></table>
+</a>
+</div>
+<div class="node">
+<ul class="node">
+<li><a href="index.html#Top">User's Manual</a>
+<hr>
+<li><a href="index.html#TOC">Table of Contents</a>
+<li><a href="LMDB-Memory-Leaks.html#LMDB-Memory-Leaks" accesskey="n" rel="next">Next</a>
+<li><a href="LMDB-Predicates.html#LMDB-Predicates" accesskey="u" rel="up">Up</a>
+</ul>
+</div>
+<hr>
+<a HREF="mailto:sicstus-support@ri.se?subject=Documentation%20feedback%20on%20html/sicstus/LMDB-Conventions.html&amp;body=Feedback%20on%20documentation%20node%20html/sicstus/LMDB-Conventions.html%20in%20User's%20Manual.">Send feedback on this subject.</a>
+</body>
+</html>

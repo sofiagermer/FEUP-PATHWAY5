@@ -1,0 +1,84 @@
+      Examples-directory for the SICStus-Java interface 'Jasper'
+      ==========================================================
+
+This directory contains a few examples to demonstrate how Java can be
+used together with Prolog.
+
+Simple
+======
+
+This example shows how to call some simple Java methods from Prolog.
+(The transcript is for SICStus 4.4.1 on macOS, but it is similar for other versions and platforms.)
+
+   bash$ sicstus
+   SICStus 4.4.1 (x86_64-darwin-17.2.0): Sat Mar 17 12:57:47 CET 2018
+   Licensed to SICS
+   | ?- use_module(library('jasper/examples/simple')),main.
+   % loading /usr/local/sicstus4.4.1/bin/sp-4.4.1/sicstus-4.4.1/library/jasper/examples/simple.po...
+   % ...
+
+   Testing string manipulations...
+   ------------------------------------
+
+   Created string: String-object 1
+   Created string: String-object 2
+   Modifying string 1 using foreign/2-declared methods via meta call...
+   String is now: Looking? Found someone, you have, 
+   Modifying string 2 using meta calls...
+   String is now: you have, I would say, hmmm? 
+   Concatenating the two strings...
+   Final string is: Looking? Found someone, you have, you have, I would say, hmmm? 
+
+   Testing train program...
+   ------------------------------------
+
+   Calling Java to do callback to Prolog...
+   Expected [Stockholm,Katrineholm,Hallsberg,Kumla,Orebro]
+   Result = [Stockholm,Katrineholm,Hallsberg,Kumla,Örebro]
+
+   Testing misc stuff...
+   ------------------------------------
+
+   (metacall) square(395) = 156025
+   yes
+   | ?- 
+
+Train
+=====
+
+This example is a Java-encapsulation of the train-example found in the
+manual, with a few minor modification (it only shows the first
+solution). It uses the same class, Simple.
+
+This example shows how to call some simple Java methods from Prolog.
+(The transcript is for SICStus 4.4.1 on macOS, but it is similar for other versions and platforms.)
+
+   bash$ cd /usr/local/sicstus4.4.1/lib/sicstus-4.4.1/library/jasper/examples
+   bash$ java -cp '/usr/local/sicstus4.4.1/lib/sicstus-4.4.1/bin/jasper.jar:.' Simple
+   .(Stockholm,.(Katrineholm,.(Hallsberg,.(Kumla,.(Örebro,[])))))
+
+See the Release Notes. for more info on how to invoke Java for use
+with Jasper/SICStus.
+
+NQueens
+=======
+
+This example is a little more demonstrative in showing how Java and
+Prolog can be combined. The example is basically a very simple
+visualizer for the N-queens problem, solved by using the
+constraint-solver module library(clpfd).
+
+(The transcript is for SICStus 4.4.1 on macOS, but it is similar for other versions and platforms.)
+
+   bash$ java -cp '/usr/local/sicstus4.4.1/lib/sicstus-4.4.1/bin/jasper.jar:.' Simple
+   .(Stockholm,.(Katrineholm,.(Hallsberg,.(Kumla,.(Örebro,[])))))
+   bash$ java -cp '/usr/local/sicstus4.4.1/lib/sicstus-4.4.1/bin/jasper.jar:.' Queens 8
+   Queens.startGame(): creating a new Prolog
+
+This will pop up a window showing a solution to the N-queens
+problem. The file-menu contains the following choices:
+
+	Restart		- Restarts the solver to display the first
+			  solution again.
+	Next solution	- Show the next solution
+	Quit		- Quit the demo.

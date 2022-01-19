@@ -1,0 +1,302 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>LMDB The Predicates (SICStus Prolog)</title>
+
+<meta name="description" content="LMDB The Predicates (SICStus Prolog)">
+<meta name="keywords" content="LMDB The Predicates (SICStus Prolog)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Predicate-Index.html#Predicate-Index" rel="index" title="Predicate Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="LMDB-Predicates.html#LMDB-Predicates" rel="up" title="LMDB Predicates">
+<link href="LMDB-Example-Session.html#LMDB-Example-Session" rel="next" title="LMDB Example Session">
+<link href="LMDB-Memory-Leaks.html#LMDB-Memory-Leaks" rel="prev" title="LMDB Memory Leaks">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+<link href="texinfo.css" rel="stylesheet" type="text/css">
+</head>
+
+<body lang="en">
+<a name="LMDB-The-Predicates"></a>
+<hr>
+<a name="The-Predicates-2"></a>
+<h4 class="subsubsection">10.25.5.3 The Predicates</h4>
+<dl compact="compact">
+<dt><code>lmdb_create(<var>+Path</var>, <var>+SpecList</var>)</code></dt>
+<dt><code>lmdb_create(<var>+Path</var>, <var>+SpecList</var>, <var>+Options</var>)</code></dt>
+<dd>
+<a name="index-lmdb_005fcreate_002f_005b2_002c3_005d-_0028lmdb_0029-1"></a>
+<a name="index-lmdb_005fcreate_002f_005b2_002c3_005d-_0028lmdb_0029"></a>
+
+<p>Creates a brand new LMDB database with the given spec list.
+<var>Path</var> should be a file system path where a new directory can be created.
+If some file or directory already exists there, an exception is raised.
+</p></dd>
+<dt><code>lmdb_open(<var>+Path</var>, <var>-DBRef</var>)</code></dt>
+<dt><code>lmdb_open(<var>+Path</var>, <var>-DBRef</var>, <var>+Options</var>)</code></dt>
+<dd>
+<a name="index-lmdb_005fopen_002f_005b2_002c3_005d-_0028lmdb_0029-1"></a>
+<a name="index-lmdb_005fopen_002f_005b2_002c3_005d-_0028lmdb_0029"></a>
+
+<p>Opens an existing database and unifies <var>DBRef</var> with its reference.
+<var>Path</var> should be a file system path to the directory that holds the database.
+</p>
+<p><strong>Please note:</strong> Only one <var>DBRef</var> may be connected to the same <var>Path</var> at
+the same time in the same process. I.e., you must not call <code>lmdb_open/2</code> twice with
+the same <var>Path</var> without closing the <var>DBRef</var> before the second call.
+</p></dd>
+<dt><code>lmdb_with_db(<var>+Path</var>, <var>:Goal</var>)</code></dt>
+<dt><code>lmdb_with_db(<var>+Path</var>, <var>:Goal</var>, <var>+Options</var>)</code></dt>
+<dd>
+<a name="index-lmdb_005fwith_005fdb_002f_005b2_002c3_005d-_0028lmdb_0029-1"></a>
+<a name="index-lmdb_005fwith_005fdb_002f_005b2_002c3_005d-_0028lmdb_0029"></a>
+
+<p>Opens an existing database, calls <var>Goal</var> with its reference, as if by <code>call(Goal, DBRef)</code>, and ensures that
+the database is closed afterwards.
+<var>Goal</var> may backtrack and succeed multiple times.
+<var>Path</var> should be a file system path to the directory that holds the database.
+</p>
+<p><strong>Please note:</strong> see <code>lmdb_open/2</code> for restrictions on
+opening the same <var>Path</var> more than once at the same time.
+</p></dd>
+<dt><code>lmdb_close(<var>+DBRef</var>)</code></dt>
+<dd>
+<a name="index-lmdb_005fclose_002f1-_0028lmdb_0029-1"></a>
+<a name="index-lmdb_005fclose_002f1-_0028lmdb_0029"></a>
+
+<p>Closes the database referenced by <var>DBRef</var>.
+</p></dd>
+<dt><code>lmdb_store(<var>+DBRef</var>, <var>+Term</var>, <var>-TermRef</var>)</code></dt>
+<dd>
+<a name="index-lmdb_005fstore_002f3-_0028lmdb_0029-1"></a>
+<a name="index-lmdb_005fstore_002f3-_0028lmdb_0029"></a>
+
+<p>Stores <var>Term</var> in the database <var>DBRef</var>.  <var>TermRef</var> is
+unified with a corresponding term reference.  The
+functor of <var>Term</var> must match the functor of a spec in
+the db-spec associated with <var>DBRef</var>.
+</p></dd>
+<dt><code>lmdb_fetch(<var>+DBRef</var>, <var>?Term</var>, <var>?TermRef</var>)</code></dt>
+<dd>
+<a name="index-lmdb_005ffetch_002f3-_0028lmdb_0029-1"></a>
+<a name="index-lmdb_005ffetch_002f3-_0028lmdb_0029"></a>
+
+<p>Unifies <var>Term</var> with a term from the database
+<var>DBRef</var>.  At the same time, <var>TermRef</var> is unified with a
+corresponding term reference.  Backtracking over the
+predicate unifies with all terms matching <var>Term</var>.
+</p>
+<p>If <var>TermRef</var> is not instantiated, both the functor
+and the instantiatedness of <var>Term</var> must match a spec in the
+db-spec associated with <var>DBRef</var>.
+</p>
+<p>If <var>TermRef</var> is instantiated, the referenced term is
+read and unified with <var>Term</var>.
+</p>
+<p>If you simply want to find all matching terms, it is more
+efficient to use <code>lmdb_findall/5</code> or <code>lmdb_enumerate/3</code>.
+</p></dd>
+<dt><code>lmdb_erase(<var>+DBRef</var>, <var>+TermRef</var>)</code></dt>
+<dd>
+<a name="index-lmdb_005ferase_002f2-_0028lmdb_0029-1"></a>
+<a name="index-lmdb_005ferase_002f2-_0028lmdb_0029"></a>
+
+<p>Deletes the term from the database <var>DBRef</var> that is
+referenced by <var>TermRef</var>.
+</p></dd>
+<dt><code>lmdb_enumerate(<var>+DBRef</var>, <var>?Term</var>, <var>-TermRef</var>)</code></dt>
+<dd>
+<a name="index-lmdb_005fenumerate_002f3-_0028lmdb_0029-1"></a>
+<a name="index-lmdb_005fenumerate_002f3-_0028lmdb_0029"></a>
+
+
+<p>Unifies <var>Term</var> with a term from the database
+<var>DBRef</var>.  At the same time, <var>TermRef</var> is unified with a
+corresponding term reference.  Backtracking over the
+predicate unifies with all terms matching <var>Term</var>.
+</p>
+<p>Implemented by linear search&mdash;the db-spec associated with <var>DBRef</var>
+is ignored.
+</p></dd>
+<dt><code>lmdb_findall(<var>+DBRef</var>, <var>+Template</var>, <var>+Term</var>, <var>:Goal</var>, <var>-Bag</var>)</code></dt>
+<dd>
+<a name="index-lmdb_005ffindall_002f3-_0028lmdb_0029-1"></a>
+<a name="index-lmdb_005ffindall_002f3-_0028lmdb_0029"></a>
+
+<p>Unifies <var>Bag</var> with the list of instances of
+<var>Template</var> in all proofs of <var>Goal</var> found when <var>Term</var> is
+unified with a matching term from the database
+<var>DBRef</var>.  Both the functor and the instantiatedness of
+<var>Term</var> must match a spec in the db-spec associated with <var>DBRef</var>.
+Conceptually, this predicate is equivalent to
+<code>findall(<var>Template</var>, (lmdb_fetch(<var>DBRef</var>, <var>Term</var>, _), <var>Goal</var>), <var>Bag</var>)</code>.
+</p></dd>
+<dt><code>lmdb_compress(<var>+DBRefFrom</var>, <var>+DBRefTo</var>)</code></dt>
+<dd>
+<a name="index-lmdb_005fcompress_002f2-_0028lmdb_0029-1"></a>
+<a name="index-lmdb_005fcompress_002f2-_0028lmdb_0029"></a>
+
+<p>Copies the database given by <var>DBRefFrom</var> to a new database
+given by <var>DBRefTo</var>.
+The new database will be a compressed
+version of the first one in the sense that it will not have &ldquo;holes&rdquo;
+resulting from deletion of terms.  Deleted term references
+will also be reused, which implies that references that refer to
+terms in the old database will be invalid in the new one.
+</p>
+<p>The terms of <var>DBRefFrom</var> will be appended to any existing terms of <var>DBRefTo</var>.  Of course, <var>DBRefTo</var> must have
+an indexing specification that enables the terms in <var>DBRefFrom</var> to be inserted into it.
+</p></dd>
+<dt><code>lmdb_sync(<var>+DBRef</var>)</code></dt>
+<dd>
+<a name="index-lmdb_005fsync_002f1-_0028lmdb_0029-1"></a>
+<a name="index-lmdb_005fsync_002f1-_0028lmdb_0029"></a>
+
+<p>Flushes any cached information from the database referenced by <var>DBRef</var> to stable storage.
+</p></dd>
+<dt><code>lmdb_make_iterator(<var>+DBRef</var>, <var>+Term</var>, <var>-Iterator</var>)</code></dt>
+<dd>
+<a name="index-lmdb_005fmake_005fiterator_002f3-_0028lmdb_0029-1"></a>
+<a name="index-lmdb_005fmake_005fiterator_002f3-_0028lmdb_0029"></a>
+
+<p>Creates a new iterator and unifies it with <var>Iterator</var>.
+The iterator iterates through the terms that would be found by
+<code>lmdb_fetch(<var>DBRef</var>, <var>Term</var>, _)</code>.
+</p>
+<p>Every iterator created by <code>lmdb_make_iterator/3</code> must be
+destroyed with <code>lmdb_iterator_done/1</code>.
+</p></dd>
+<dt><code>lmdb_with_iterator(<var>+DBRef</var>, <var>+Term</var>, <var>:Goal</var>)</code></dt>
+<dd>
+<a name="index-lmdb_005fwith_005fiterator_002f3-_0028lmdb_0029-1"></a>
+<a name="index-lmdb_005fwith_005fiterator_002f3-_0028lmdb_0029"></a>
+
+<p>Creates a new iterator, calls <var>Goal</var> with it, as if by <code>call(Goal, Iterator)</code>, and ensures that
+the iterator is destroyed afterwards.
+<var>Goal</var> may backtrack and succeed multiple times.
+See the documentation of <var>lmdb_make_iterator/3</var>.
+</p></dd>
+<dt><code>lmdb_iterator_next(<var>+Iterator</var>, <var>-Term</var>, <var>-TermRef</var>)</code></dt>
+<dd>
+<a name="index-lmdb_005fiterator_005fnext_002f3-_0028lmdb_0029-1"></a>
+<a name="index-lmdb_005fiterator_005fnext_002f3-_0028lmdb_0029"></a>
+
+<p><var>Iterator</var> advances to the next term, and <var>Term</var> and
+<var>TermRef</var> are unified with the term and its reference
+pointed to by <var>Iterator</var>.  If there is no next term, the
+predicate fails.
+</p></dd>
+<dt><code>lmdb_iterator_done(<var>+Iterator</var>)</code></dt>
+<dd>
+<a name="index-lmdb_005fiterator_005fdone_002f1-_0028lmdb_0029-1"></a>
+<a name="index-lmdb_005fiterator_005fdone_002f1-_0028lmdb_0029"></a>
+
+<p>Deallocates <var>Iterator</var>, which must not be in use anymore.
+</p></dd>
+<dt><code>lmdb_property(<var>+DBRef</var>, <var>-Property</var>)</code></dt>
+<dd>
+<a name="index-lmdb_005fproperty_002f2-_0028lmdb_0029-1"></a>
+<a name="index-lmdb_005fproperty_002f2-_0028lmdb_0029"></a>
+
+<p>Unifies <var>Property</var> with one of the properties of the database given by <var>DBRef</var>, which are:
+</p>
+<dl compact="compact">
+<dt><code>path(<var>P</var>)</code></dt>
+<dd><a name="index-path_002f1-_0028lmdb-property_0029"></a>
+<p>The file system path of the database.
+</p>
+</dd>
+<dt><code>speclist(<var>L</var>)</code></dt>
+<dd><a name="index-speclist_002f1-_0028lmdb-property_0029"></a>
+<p>The <var>SpecList</var> with which the database was created.
+</p>
+</dd>
+<dt><code>mapsize(<var>S</var>)</code></dt>
+<dd><a name="index-mapsize_002f1-_0028lmdb-property_0029"></a>
+<p>The mapsize, or size limit, of the database.
+</p>
+</dd>
+<dt><code>mode(<var>S</var>)</code></dt>
+<dd><a name="index-mode_002f1-_0028lmdb-option_0029-1"></a>
+<p>The access mode with which the database was opened. One of the atoms <code>read</code> and <code>write</code>.
+</p></dd>
+</dl>
+
+<p>Enumerates all four properties on backtracking.
+</p></dd>
+<dt><code>lmdb_export(<var>+DBRef</var>, <var>+ExportFile</var>)</code></dt>
+<dd>
+<a name="index-lmdb_005fexport_002f2-_0028lmdb_0029-1"></a>
+<a name="index-lmdb_005fexport_002f2-_0028lmdb_0029"></a>
+
+<p>Exports the database given by <var>DBRef</var> to the text file
+<var>ExportFile</var>. <var>ExportFile</var> can be imported by
+<code>lmdb_import/2</code>.
+</p></dd>
+<dt><code>lmdb_import(<var>+DBRef</var>, <var>+ImportFile</var>)</code></dt>
+<dd>
+<a name="index-lmdb_005fimport_002f2-_0028lmdb_0029-1"></a>
+<a name="index-lmdb_005fimport_002f2-_0028lmdb_0029"></a>
+
+<p>Imports the text file <var>ImportFile</var> into the database given by
+<var>DBRef</var>.
+</p>
+<p>The <samp>ImportFile</samp> should have been written by <code>lmdb_export/2</code>
+or by the corresponding functionality in <code>library(bdb)</code>.
+</p></dd>
+</dl>
+
+<hr>
+
+
+
+<div class="logo">
+<a href="https://sicstus.sics.se/">
+<table><tr><td>&nbsp;</td></tr></table>
+</a>
+</div>
+<div class="node">
+<ul class="node">
+<li><a href="index.html#Top">User's Manual</a>
+<hr>
+<li><a href="index.html#TOC">Table of Contents</a>
+<li><a href="LMDB-Memory-Leaks.html#LMDB-Memory-Leaks" accesskey="p" rel="prev">Previous</a>
+<li><a href="LMDB-Predicates.html#LMDB-Predicates" accesskey="u" rel="up">Up</a>
+</ul>
+</div>
+<hr>
+<a HREF="mailto:sicstus-support@ri.se?subject=Documentation%20feedback%20on%20html/sicstus/LMDB-The-Predicates.html&amp;body=Feedback%20on%20documentation%20node%20html/sicstus/LMDB-The-Predicates.html%20in%20User's%20Manual.">Send feedback on this subject.</a>
+</body>
+</html>

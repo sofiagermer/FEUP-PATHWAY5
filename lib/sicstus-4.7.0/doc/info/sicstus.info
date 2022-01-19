@@ -1,0 +1,1264 @@
+This is sicstus.info, produced by makeinfo version 6.5 from
+sicstus.texi.
+
+INFO-DIR-SECTION SICStus Prolog
+START-INFO-DIR-ENTRY
+* SICStus Prolog Manual: (sicstus).			SICStus Prolog User's Manual.
+END-INFO-DIR-ENTRY
+
+Generated July 7, 2021.
+
+
+Indirect:
+sicstus.info-1: 241
+sicstus.info-2: 300763
+sicstus.info-3: 600716
+sicstus.info-4: 905873
+sicstus.info-5: 1206841
+sicstus.info-6: 1511445
+sicstus.info-7: 1809738
+sicstus.info-8: 2101525
+sicstus.info-9: 2403157
+sicstus.info-10: 2724198
+
+Tag Table:
+(Indirect)
+Node: Top241
+Node: Intro1804
+Node: Acknowledgments3729
+Node: Notation5295
+Node: Keyboard Characters5660
+Node: Mode Spec6410
+Node: Development and Runtime Systems7454
+Node: Function Prototypes7966
+Node: ISO Compliance8303
+Node: Glossary8791
+Node: Run Intro43969
+Node: Start45163
+Node: Reading In47102
+Node: Inserting Clauses48715
+Node: Queries and Directives49401
+Node: Queries49942
+Node: Directives53294
+Node: Syntax Errors54962
+Ref: Syntax Errors-Footnote-156273
+Ref: Syntax Errors-Footnote-256456
+Node: Undefined Predicates56692
+Node: Execution58170
+Node: Exiting59605
+Node: Nested59945
+Node: Saving60854
+Node: SPIDER64333
+Node: Emacs Interface66805
+Node: Installation68592
+Node: Quick-Start69099
+Node: Customizing Emacs70357
+Node: Enabling Emacs Support for SICStus70994
+Node: Enabling Emacs Support for SICStus Documentation73146
+Node: Basic Configuration74422
+Node: Usage75290
+Node: Mode Line82041
+Node: Configuration82906
+Node: Tips89948
+Node: Font-locking90332
+Node: Auto-fill Mode90826
+Node: Speed91339
+Node: Changing Colors92891
+Node: Prolog Intro94913
+Node: ref-syn96404
+Node: ref-syn-ove96966
+Node: ref-syn-trm97127
+Node: ref-syn-trm-ove97569
+Node: ref-syn-trm-int98198
+Node: ref-syn-trm-flo99267
+Node: ref-syn-trm-ato99860
+Node: ref-syn-trm-var101631
+Node: ref-syn-trm-fte102302
+Node: ref-syn-cpt102508
+Node: ref-syn-cpt-lis104646
+Node: ref-syn-cpt-sli106056
+Node: ref-syn-ces107621
+Node: ref-syn-ops108459
+Node: ref-syn-ops-ove108904
+Node: ref-syn-ops-ops113632
+Node: ref-syn-ops-res114330
+Node: ref-syn-ops-bop116709
+Node: ref-syn-com118082
+Node: ref-syn-syn118575
+Node: ref-syn-syn-ove119136
+Node: ref-syn-syn-not120685
+Node: ref-syn-syn-sen122134
+Node: ref-syn-syn-trm124947
+Node: ref-syn-syn-tok127526
+Ref: ref-syn-syn-tok-Footnote-1136382
+Ref: ref-syn-syn-tok-Footnote-2136523
+Node: ref-syn-syn-esc136674
+Node: ref-syn-syn-nte137806
+Node: ref-syn-sum139253
+Node: ref-sem139617
+Node: ref-sem-pro140351
+Node: ref-sem-typ144208
+Node: ref-sem-typ-hok144857
+Node: ref-sem-ctr146000
+Node: ref-sem-ctr-cut147817
+Node: ref-sem-ctr-dis152420
+Node: ref-sem-ctr-ite153707
+Node: ref-sem-ctr-naf155422
+Node: ref-sem-ctr-dol155800
+Node: ref-sem-ctr-oth167080
+Node: ref-sem-sec167728
+Node: ref-sem-cal175026
+Node: ref-sem-exc175977
+Node: ref-sem-occ176648
+Node: ref-sem-con178546
+Node: ref-lod180361
+Node: ref-lod-ove180955
+Node: ref-lod-lod182720
+Node: ref-lod-rpx189366
+Node: ref-lod-dcl190581
+Node: Multifile Declarations192249
+Node: Dynamic Declarations193868
+Node: Volatile Declarations194680
+Node: Discontiguous Declarations195603
+Node: Block Declarations196198
+Node: Meta-Predicate Declarations197984
+Node: Module Declarations198714
+Node: Public Declarations199290
+Node: Mode Declarations199893
+Node: Is2 Declarations200357
+Node: Include Declarations200825
+Node: Initializations202155
+Node: ref-lod-exp202928
+Node: ref-lod-cnd206168
+Node: ref-lod-lis210798
+Node: ref-sls213541
+Node: ref-sls-ove213977
+Node: ref-sls-sst215211
+Node: ref-sls-ssl217106
+Node: ref-sls-lis219337
+Node: ref-fdi220231
+Node: ref-fdi-fsp220573
+Node: ref-fdi-fsp-def224296
+Node: ref-fdi-fsp-ffs227696
+Node: ref-fdi-fsp-pre228512
+Node: ref-fdi-syn230584
+Node: ref-fdi-pre236987
+Node: ref-iou237538
+Node: ref-iou-bas238301
+Node: ref-iou-str238789
+Ref: ref-iou-str-Footnote-1239961
+Node: ref-iou-str-not240069
+Node: ref-iou-str-sca240561
+Node: ref-iou-tin241319
+Node: ref-iou-tin-trm241707
+Node: ref-iou-tin-cpr243460
+Node: ref-iou-tou244005
+Node: ref-iou-tou-wrt244888
+Node: ref-iou-tou-cha245438
+Node: ref-iou-tou-dis247228
+Node: ref-iou-tou-dsp249417
+Node: ref-iou-tou-por250009
+Node: ref-iou-tou-pcl251582
+Node: ref-iou-cin252379
+Node: ref-iou-cin-ove252843
+Node: ref-iou-cin-cha253175
+Node: ref-iou-cin-pee253783
+Node: ref-iou-cin-ski254507
+Node: ref-iou-cin-elf255543
+Node: ref-iou-cou256134
+Node: ref-iou-cou-cha256650
+Node: ref-iou-cou-nln257310
+Node: ref-iou-cou-fou257574
+Node: ref-iou-sfh258673
+Node: ref-iou-sfh-sob260014
+Node: ref-iou-sfh-est261644
+Node: ref-iou-sfh-sem262683
+Node: ref-iou-sfh-opn263039
+Node: ref-iou-sfh-enc266705
+Node: ref-iou-sfh-cis268842
+Node: ref-iou-sfh-cos270173
+Node: ref-iou-sfh-bos271527
+Node: ref-iou-sfh-cst272443
+Node: ref-iou-sfh-flu273296
+Node: ref-iou-sos273812
+Node: ref-iou-sos-spt274975
+Node: ref-iou-raf275591
+Node: ref-iou-sum276544
+Node: ref-ari281827
+Node: ref-ari-ove282336
+Node: ref-ari-eae283348
+Node: ref-ari-exc283790
+Node: ref-ari-acm284671
+Node: ref-ari-aex286251
+Node: ref-ari-sum294962
+Node: ref-lte295995
+Node: ref-lte-met296776
+Node: ref-lte-met-typ297303
+Node: ref-lte-met-usu298402
+Node: ref-lte-act299584
+Node: ref-lte-acl300763
+Node: ref-lte-c2t301712
+Node: ref-lte-atm303353
+Node: ref-lte-anv304092
+Node: ref-lte-cpt304581
+Node: ref-lte-cte306911
+Node: ref-lte-cte-bas307233
+Node: ref-lte-cte-sot307728
+Node: ref-lte-cte-sor309749
+Node: ref-lte-mut310116
+Node: ref-lte-sum312028
+Node: ref-lps316500
+Node: ref-lps-ove317038
+Node: ref-lps-app317565
+Node: ref-lps-apf319128
+Node: ref-lps-flg319645
+Node: ref-lps-lco336637
+Node: ref-lps-sum337932
+Node: ref-mgc339288
+Node: ref-mgc-ove340059
+Node: ref-mgc-ove-rsp344236
+Node: ref-mgc-ove-sta345573
+Node: ref-mgc-gcp355216
+Node: ref-mgc-egc359075
+Node: ref-mgc-mgc360024
+Node: ref-mgc-gch360814
+Node: ref-mgc-gcd364440
+Node: ref-mgc-ago365547
+Node: ref-mgc-ago-agc368409
+Node: ref-mgc-ago-pat371148
+Node: ref-mgc-ago-prm375127
+Node: ref-mgc-ago-are376201
+Node: ref-mgc-sum378079
+Node: ref-mod378516
+Node: ref-mod-ove379796
+Node: ref-mod-bas381416
+Node: ref-mod-def383300
+Node: ref-mod-n2m384909
+Node: ref-mod-lod385886
+Node: ref-mod-vis388760
+Node: ref-mod-som390277
+Node: ref-mod-tyi393259
+Node: ref-mod-dmo395049
+Node: ref-mod-mpc395973
+Node: ref-mod-mpc-cmo398113
+Node: ref-mod-cim398471
+Node: ref-mod-ncl399295
+Node: ref-mod-ilm401536
+Node: ref-mod-ilm-def402255
+Node: ref-mod-ilm-vis402870
+Node: ref-mod-idp404201
+Node: ref-mod-mne405306
+Node: ref-mod-met406241
+Node: ref-mod-sem410680
+Node: ref-mod-sum413963
+Node: ref-mdb414867
+Node: ref-mdb-bas415680
+Node: ref-mdb-dsp418402
+Node: ref-mdb-dre422478
+Node: ref-mdb-acd423093
+Node: ref-mdb-rcd424354
+Node: ref-mdb-rcd-efu425441
+Node: ref-mdb-acl428211
+Node: ref-mdb-exa428659
+Node: ref-mdb-exa-asz429667
+Node: ref-mdb-exa-rtr430968
+Node: ref-mdb-exa-abo431845
+Node: ref-mdb-idb432412
+Node: ref-mdb-bbd434288
+Ref: ref-mdb-bbd-Footnote-1437418
+Node: ref-mdb-sum437722
+Node: ref-all439464
+Node: ref-all-bas439912
+Node: ref-all-cse441226
+Node: ref-all-cse-equ443017
+Node: ref-all-cba444078
+Node: ref-all-cba-cal444549
+Node: ref-all-sum445243
+Node: ref-gru445789
+Node: ref-gru-dcg446438
+Node: ref-gru-gru450737
+Node: ref-gru-exa451592
+Node: ref-gru-tra452845
+Node: ref-gru-sum460110
+Node: ref-ere460732
+Node: ref-ere-ove461343
+Ref: ref-ere-ove-Footnote-1462894
+Node: ref-ere-rex463194
+Node: ref-ere-hex463811
+Node: ref-ere-hex-pgo465089
+Node: ref-ere-hex-hup467556
+Node: ref-ere-err469447
+Node: ref-ere-err-ins476794
+Node: ref-ere-err-uns477671
+Node: ref-ere-err-typ478339
+Node: ref-ere-err-dom479965
+Node: ref-ere-err-eva481771
+Node: ref-ere-err-rep482241
+Node: ref-ere-err-exi482997
+Node: ref-ere-err-per484643
+Node: ref-ere-err-con486184
+Node: ref-ere-err-cns486967
+Node: ref-ere-err-syn487734
+Node: ref-ere-err-res489960
+Node: ref-ere-err-sys490977
+Node: ref-ere-exa491516
+Node: ref-ere-leg493578
+Node: ref-ere-int494888
+Node: ref-ere-sum495767
+Node: ref-msg497020
+Node: Message Processing497560
+Node: Message Phases499250
+Node: Message Generation Phase502972
+Node: Message Printing Phase504789
+Node: Message Handling Predicates505866
+Node: Query Processing507394
+Node: Query Classes508583
+Node: Query Phases511732
+Node: Query Hooks517594
+Node: Default Input Methods520045
+Node: Default Map Methods521009
+Node: Default Query Classes522559
+Node: Query Handling Predicates523407
+Node: Message Summary525837
+Node: ref-oth528801
+Node: System Properties and Environment Variables529071
+Node: Debug Intro541733
+Node: Procedure Box544246
+Node: Basic Debug550370
+Node: Plain Spypoint554403
+Node: Debug Format556522
+Node: Debug Commands560310
+Node: Advanced Debugging578204
+Node: Creating Breakpoints579803
+Node: Processing Breakpoints582558
+Node: Breakpoint Tests584203
+Node: Specific and Generic Breakpoints600716
+Node: Breakpoint Actions604507
+Node: Advice points617980
+Node: Built-in Predicates for Breakpoint Handling624803
+Node: Accessing Past Debugger States629713
+Node: Storing User Information in the Backtrace636271
+Node: Hooks Related to Breakpoints641794
+Node: Programming Breakpoints646678
+Node: Breakpoint Predicates654805
+Node: Breakpoint Processing661206
+Node: Breakpoint Conditions667638
+Node: Goal Tests669720
+Node: Source Tests673038
+Node: Port Tests674597
+Node: Break Tests677893
+Node: Other Tests678932
+Node: Action Conditions680190
+Node: Past States681017
+Node: Condition Macros681899
+Node: Action Variables683141
+Node: Consult688044
+Node: Exceptions Debug688626
+Node: Debug Summary690029
+Node: Mixing C and Prolog693114
+Node: CPL Notes696804
+Node: Calling C from Prolog699430
+Node: Foreign Resources701268
+Node: Conversion Declarations703948
+Node: Conversions between Prolog Arguments and C Types706839
+Node: Interface Predicates711915
+Node: The Foreign Resource Linker713974
+Node: Customizing splfr715184
+Node: Manual splfr715706
+Node: Windows-specific splfr issues716529
+Node: Init and Deinit Functions717002
+Node: Creating the Linked Foreign Resource719285
+Node: Foreign Code Examples720833
+Node: Calling C++ from Prolog723166
+Node: Support Functions723929
+Node: Creating and Manipulating SP_term_refs724746
+Node: Atoms in C726524
+Node: Creating Prolog Terms728404
+Node: Accessing Prolog Terms729770
+Node: Testing Prolog Terms730889
+Node: Unifying and Comparing Terms731721
+Node: Operating System Services732029
+Node: OS Memory Management732318
+Node: OS File System733164
+Node: OS Threads733721
+Node: Calling Prolog from C734819
+Node: Finding One Solution of a Call736139
+Node: Finding Multiple Solutions of a Call736886
+Node: Backtracking Loops741080
+Node: Calling Prolog Asynchronously742488
+Node: Signal Handling744238
+Node: Exception Handling in C745676
+Node: Reading a goal from a string747306
+Node: SICStus Streams748470
+Node: Prolog Streams749296
+Node: Defining a New Stream751591
+Node: Low Level I/O Functions755870
+Node: Hookable Standard Streams757387
+Node: Writing User-stream Hooks758107
+Node: Writing User-stream Post-hooks759266
+Node: Stand-Alone Executables760064
+Node: Runtime Systems760862
+Node: Runtime Systems on Target Machines762748
+Node: Runtime Systems on UNIX Target Machines764706
+Node: Runtime Systems on Windows Target Machines767854
+Ref: Runtime Systems on Windows Target Machines-Footnote-1770829
+Node: The Application Builder770937
+Node: Customizing spld771879
+Node: All-in-one Executables773733
+Node: Setting up the C compiler on Windows781745
+Node: Extended Runtime Systems783296
+Node: spld Examples783937
+Node: User-defined Main Programs787941
+Node: Initializing the Prolog Engine788724
+Node: Loading Prolog Code790030
+Node: Generic Runtime Systems790475
+Node: Mixing C and Prolog Examples791732
+Node: Train Example792144
+Node: Building for a Target Machine796210
+Node: Exceptions from C804152
+Node: Stream Example806733
+Node: Debugging Runtime Systems807474
+Node: Locating the License Information809330
+Node: Customizing the Debugged Runtime System811393
+Node: Examples of Debugging Runtime Systems813626
+Node: Interfacing .NET and Java815557
+Node: Multiple SICStus Runtimes817583
+Node: Multiple SICStus Runtimes in Java818596
+Node: Multiple SICStus Runtimes in C819310
+Node: MT Single820569
+Node: MT Multiple821882
+Node: Foreign Resources and Multiple SICStus Runtimes825729
+Node: MT Foreign Single826734
+Node: MT Foreign Multiple828666
+Node: MT Foreign Multiple Full829848
+Node: Threads833532
+Node: Writing Efficient Programs834191
+Node: Eff Overview834934
+Node: Execution Profiling837225
+Node: Coverage Analysis839807
+Node: The Cut841967
+Node: Cut Overview842314
+Node: Making Predicates Determinate843253
+Node: Placement of Cuts846499
+Node: Terminating a Backtracking Loop847398
+Node: Indexing849213
+Node: Indexing Overview849487
+Node: Data Tables850522
+Node: Determinacy Detection852418
+Node: Last Clause Determinacy Detection854914
+Node: The Determinacy Checker856892
+Node: Using the Determinacy Checker858393
+Node: Declaring Nondeterminacy859456
+Node: Checker Output861367
+Node: Det Example864015
+Node: Det Options865321
+Node: What is Detected867536
+Node: Last Call Optimization871125
+Node: Accumulating Parameters872529
+Node: Accumulating Lists874218
+Node: Building and Dismantling Terms876267
+Node: Conditionals and Disjunction881635
+Node: Programming Examples883933
+Node: Simple List884597
+Node: Family Example885397
+Node: Association Lists886154
+Node: Derivative887084
+Node: Use Of Meta887709
+Node: Interpreter888594
+Node: Translate889734
+Node: The Cross-Referencer891292
+Node: Xref Introduction891560
+Node: Xref Practice and Experience892869
+Node: The Prolog Library894643
+Node: lib-aggregate905873
+Node: lib-assoc912730
+Node: lib-atts919074
+Node: lib-avl933512
+Node: lib-bags941455
+Node: lib-bdb950707
+Node: BDB Basics951611
+Node: Current Limitations952734
+Node: Berkeley DB953697
+Node: The DB-Spec Informal Description954405
+Node: Predicates956162
+Node: Conventions956460
+Node: The Environment958128
+Node: Memory Leaks958908
+Node: The Predicates959589
+Node: An Example Session967988
+Node: The DB-Spec968953
+Node: Exporting and importing a database970709
+Node: lib-between971561
+Node: lib-chr973419
+Node: CHR Introduction974227
+Node: CHR Syntax and Semantics975727
+Node: CHR Syntax975952
+Node: CHR Semantics978085
+Node: CHR in Prolog Programs982328
+Node: CHR Embedding in Prolog Programs982609
+Node: CHR Constraint Declaration982995
+Node: CHR Compilation986743
+Node: CHR Debugging987412
+Node: CHR Ports987941
+Node: CHR Tracing989113
+Node: CHR Debugging Predicates990309
+Node: CHR Examples992308
+Node: CHR Guidelines994037
+Node: lib-clpb995438
+Node: CLPB Introduction995775
+Node: CLPB Interface998100
+Node: CLPB Examples999270
+Node: CLPB Example 1999589
+Node: CLPB Example 21000544
+Node: CLPB Example 31001504
+Node: CLPB Example 41002684
+Node: lib-clpfd1004451
+Node: CLPFD Intro1005288
+Node: Referencing CLPFD1007855
+Node: Acknowledgments CLPFD1008303
+Node: CLPFD Caveats1009169
+Node: CLPFD Interface1011236
+Node: Posting Constraints1017089
+Node: Forgetting Constraints1018260
+Node: Constraint Satisfaction Problems1018993
+Node: Reified Constraints1021440
+Node: Available Constraints1022719
+Node: Arithmetic Constraints1023748
+Node: Membership Constraints1028532
+Node: Propositional Constraints1029492
+Node: Arithmetic-Logical Constraints1031128
+Node: Extensional Constraints1046523
+Node: Graph Constraints1058094
+Node: Scheduling Constraints1059393
+Node: Placement Constraints1066368
+Node: Sequence Constraints1088160
+Node: User-Defined Constraints1106187
+Node: Enumeration Predicates1107068
+Node: Statistics Predicates1123291
+Node: Answer Constraints1124726
+Node: CLPFD Debugging1125996
+Node: Defining Global Constraints1126796
+Node: The Global Constraint Programming Interface1127252
+Node: Reflection Predicates1133575
+Node: FD Set Operations1136628
+Node: Global Constraint Example1140357
+Node: Defining Primitive Constraints1143596
+Node: Definitions1144921
+Node: Pitfalls of Interval Reasoning1146350
+Node: Indexicals1147320
+Node: Range Expressions1148176
+Node: Term Expressions1150584
+Node: Monotonicity of Ranges1151879
+Node: FD Predicates1152999
+Node: Execution of Propagating Indexicals1159381
+Node: Execution of Checking Indexicals1161351
+Node: Compiled Indexicals1163293
+Node: CLPFD Coexisting1164791
+Node: CLPFD Example Programs1165741
+Node: Send More Money1166274
+Node: N Queens1166911
+Node: Cumulative Scheduling1170191
+Node: Syntax Summary1171881
+Node: Syntax of Indexicals1172196
+Node: Syntax of Arithmetic Expressions1176519
+Node: Operator Declarations1177935
+Node: lib-clpqr1178529
+Node: CLPQR Introduction1179358
+Node: CLPQR Referencing1180296
+Node: CLPQR Acknowledging1180726
+Node: CLPQR Interface1181386
+Node: CLPQR Notational Conventions1182461
+Node: CLPQR Solver Predicates1183391
+Node: CLPQR Unification1192257
+Node: CLPQR Feedback1193798
+Node: CLPQR Linearity1194521
+Node: CLPQR How Nonlinear Residues Are Made to Disappear1196918
+Node: CLPQR Isolation Axioms1197582
+Node: CLPQR Numerical Precision1199000
+Node: CLPQR Projection1206841
+Node: CLPQR Variable Ordering1208970
+Node: CLPQR Turning Answers into Terms1210741
+Node: CLPQR Projecting Inequalities1211330
+Node: CLPQR Why Disequations1216554
+Node: CLPQR Monash Examples1218871
+Node: CLPQR MIP1219748
+Node: CLPQR Implementation Architecture1223041
+Node: CLPQR Fragments and Bits1223536
+Node: CLPQR Bugs1225044
+Node: lib-codesio1225584
+Node: lib-csv1228259
+Node: lib-comclient1233397
+Node: Preliminaries1234163
+Node: Terminology1234524
+Node: COM Client Predicates1237356
+Node: COM Client Examples1242397
+Node: lib-fdbg1244477
+Node: FDBG Introduction1244837
+Node: FDBG Concepts1245340
+Node: FDBG Events1245964
+Node: FDBG Labeling Levels1246719
+Node: FDBG Visualizers1248138
+Node: FDBG Names of Terms1249368
+Node: FDBG Selectors1250620
+Node: FDBG Name Auto-Generation1251174
+Node: FDBG Legend1252550
+Node: FDBG The fdbg_output Stream1253866
+Node: FDBG Basics1254243
+Node: FDBG Options1255092
+Node: FDBG Naming Terms1257590
+Node: FDBG Built-In Visualizers1258447
+Node: FDBG Debugger Commands1262395
+Node: FDBG Annotation1263789
+Node: FDBG An Example Session1265771
+Node: FDBG Advanced Usage1271107
+Node: FDBG Customizing Output1272059
+Node: FDBG Writing Visualizers1274097
+Node: FDBG Writing Legend Printers1277807
+Node: FDBG Showing Selected Constraints (simple version)1279953
+Node: FDBG Showing Selected Constraints (advanced version)1282342
+Node: FDBG Debugging Global Constraints1287992
+Node: lib-file_systems1296394
+Node: lib-gauge1309472
+Node: lib-heaps1312084
+Node: lib-is_directives1316508
+Node: lib-jasper1330229
+Node: Jasper Overview1330788
+Node: Getting Started1333066
+Node: Calling Prolog from Java1333573
+Node: Single Threaded Example1334617
+Node: Multi Threaded Example1338086
+Node: Another Multi Threaded Example (Prolog Top Level)1341799
+Node: Jasper Package Class Reference1347652
+Node: Java Exception Handling1353940
+Node: SPTerm and Memory1354953
+Node: Lifetime of SPTerms and Prolog Memory1355727
+Node: Preventing SPTerm Memory Leaks1358308
+Node: Java Threads1360234
+Node: The Jasper Library1362119
+Node: Jasper Method Call Example1363725
+Node: Jasper Library Predicates1367058
+Node: Conversion between Prolog Arguments and Java Types1375237
+Node: Global vs. Local References1382469
+Node: Handling Java Exceptions1384703
+Node: Deprecated Jasper API1388163
+Node: Deprecated Argument Conversions1389067
+Node: Deprecated Jasper Predicates1390603
+Node: lib-json1391816
+Node: lib-jsonrpc1398360
+Node: lib-linda1404948
+Node: lib-linda-server1407207
+Node: lib-linda-client1409869
+Node: lib-lists1414088
+Node: lib-lmdb1449387
+Node: LMDB Basics1450436
+Node: LMDB Current Limitations1451409
+Node: Lightning Memory-Mapped Database Manager1451877
+Node: LMDB DB-Spec Intro1452596
+Node: LMDB Predicates1454295
+Node: LMDB Conventions1454568
+Node: LMDB Memory Leaks1456482
+Node: LMDB The Predicates1457101
+Node: LMDB Example Session1462947
+Node: LMDB DB-Spec Details1464468
+Node: LMDB Export-Import1466112
+Node: lib-logarr1466673
+Node: lib-mutarray1467981
+Node: lib-mutdict1470683
+Node: lib-objects1474112
+Node: obj-bas1474951
+Node: obj-bas-uobj1475810
+Node: obj-bas-def1480504
+Node: obj-bas-ucl1482617
+Node: obj-bas-la1484238
+Node: obj-scl1484971
+Node: obj-scl-scp1485830
+Node: obj-scl-slt1486802
+Node: obj-scl-meth1493790
+Node: obj-inh1511445
+Node: obj-inh-sih1512006
+Node: obj-inh-mih1518059
+Node: obj-inh-ask1525245
+Node: obj-tcl1530922
+Node: obj-tcl-stcl1532125
+Node: obj-tcl-rtrm1533609
+Node: obj-tcl-tce1535341
+Node: obj-tech1538779
+Node: obj-tech-syn1539249
+Node: obj-tech-lim1541679
+Node: obj-exp1543525
+Node: obj-exp-send1545203
+Node: obj-exp-put1546425
+Node: obj-exp-get1547815
+Node: obj-exp-class1549186
+Node: obj-exp-class_ancestor1553825
+Node: obj-exp-class_method1554221
+Node: obj-exp-class_superclass1555137
+Node: obj-exp-class_of1555543
+Node: obj-exp-create1556018
+Node: obj-exp-current_class1557771
+Node: obj-exp-debug_message1558109
+Node: obj-exp-define_method1558794
+Node: obj-exp-descendant_of1559837
+Node: obj-exp-destroy1560401
+Node: obj-exp-direct_message1561080
+Node: obj-exp-end_class1562049
+Node: obj-exp-fetch_slot1562964
+Node: obj-exp-inherit1563776
+Node: obj-exp-instance_method1565221
+Node: obj-exp-message1566425
+Node: obj-exp-nodebug_message1567080
+Node: obj-exp-pointer_object1567491
+Node: obj-exp-store_slot1568197
+Node: obj-exp-undefine_method1569121
+Node: obj-exp-uninherit1570161
+Node: obj-glo1571379
+Node: lib-odbc1579044
+Node: ODBC Overview1579627
+Node: ODBC Examples1581027
+Node: ODBC Example 11581357
+Node: ODBC Example 21582185
+Node: ODBC Example 31583897
+Node: ODBC Example 41584931
+Node: ODBC Datatypes1585940
+Node: ODBC Reading1586177
+Node: ODBC Writing1587599
+Node: ODBC Exceptions1589180
+Node: ODBC Predicates1591253
+Node: lib-ordsets1601216
+Node: lib-pillow1606592
+Node: lib-plunit1608056
+Node: PlUnit Introduction1608462
+Node: PlUnit A Unit Test Box1609579
+Node: PlUnit Determinate Tests1617876
+Node: PlUnit Nondeterminate Tests1619021
+Node: PlUnit Tests Expected to Fail1619596
+Node: PlUnit Tests Expected to Raise Exceptions1620064
+Node: PlUnit Running the Test-Suite1621009
+Node: PlUnit Tests and Production Systems1623656
+Node: lib-process1624895
+Ref: Quoting and Security1634012
+Ref: unsafe_system1634519
+Ref: unsafe_popen1634519
+Node: lib-prologbeans1646724
+Node: PB Intro1647264
+Ref: prologbeans-java1647388
+Node: PB Features1648551
+Node: PB First Example1649707
+Node: PB Prolog Server Interface1655127
+Node: PB Java Client Interface1662563
+Node: PB Java Examples1664261
+Node: PB Ex Embedding1664817
+Node: PB Ex Servers1665927
+Node: PB Ex Tomcat1669887
+Node: PB .NET Client Interface1672308
+Node: PB .NET Examples1673247
+Node: PB C# Examples1673702
+Node: PB VB Example1675495
+Node: lib-queues1676250
+Node: lib-random1682987
+Node: lib-rem1687322
+Node: lib-samsort1688335
+Node: lib-sets1690129
+Node: lib-sockets1697978
+Node: lib-statistics1706836
+Node: lib-structs1712233
+Node: str-fty1715198
+Node: str-fty-dty1718734
+Node: str-cft1719797
+Node: str-cdf1720138
+Node: str-afd1721011
+Node: str-cas1722806
+Node: str-nul1723732
+Node: str-ifc1724241
+Node: str-etr1725895
+Node: str-tip1728216
+Node: str-exa1729616
+Node: lib-system1732720
+Node: lib-tcltk1734948
+Node: Introduction (Tcl)1735369
+Node: What Is Tcl/Tk?1736247
+Node: What Is Tcl/Tk Good For?1736971
+Node: What Is Tcl/Tks Relationship to SICStus Prolog?1739130
+Node: A Quick Example of Tcl/Tk in Action1739622
+Node: Outline of This Tutorial1744522
+Node: Tcl1746700
+Node: Syntax (Tcl)1747345
+Node: Variables (Tcl)1753914
+Node: Commands1755331
+Node: What We Have Left Out (Tcl)1782395
+Node: Tk1783251
+Node: Widgets1784115
+Node: Types of Widget1785205
+Node: Widgets Hierarchies1786905
+Node: Widget Creation1790221
+Node: Geometry Managers1809738
+Node: Event Handling1827214
+Node: Miscellaneous1832396
+Node: What We Have Left Out (Tk)1834004
+Node: Queens Display1834588
+Node: The Tcl/Tk Prolog Library1841400
+Node: How it Works - An Overview1842229
+Node: Basic Functions1845301
+Node: Evaluation Functions1848378
+Node: Event Functions1858152
+Node: Servicing Tk Events1865289
+Node: Passing Control to Tk1869575
+Node: Housekeeping1870003
+Node: Summary1871472
+Node: Putting It All Together1875002
+Node: Tcl The Master1877535
+Node: Prolog The Master1886943
+Node: Prolog And Tcl Interact through Prolog Event Queue1890121
+Node: The Whole 8-Queens Example1895269
+Node: Quick Reference1902705
+Node: Command Format Summary1903330
+Node: Predicates for Prolog to Interact with Tcl Interpreters1905371
+Node: Predicates for Prolog to Interact with Tcl Interpreters with Tk Extensions1906530
+Node: Commands for Tcl Interpreters to Interact with The Prolog System1909720
+Node: Resources1910209
+Node: Web Sites1910639
+Node: TclTk Manual Pages1910882
+Node: lib-terms1911165
+Node: lib-timeout1924105
+Node: lib-trees1925706
+Node: lib-types1928143
+Node: lib-ugraphs1932512
+Node: lib-varnumbers1939365
+Node: lib-wgraphs1941524
+Node: lib-xml1947768
+Node: lib-zinc1951737
+Node: Zinc Prerequisites1952725
+Node: FlatZinc1953562
+Node: FlatZinc Exported Predicates1956184
+Node: MiniZinc1970810
+Node: MiniZinc Exported Predicates1971269
+Node: Zinc Errors1984221
+Node: Zinc Limitations1987073
+Node: Prolog Reference Pages1989716
+Node: mpg-ref1990096
+Node: mpg-ref-ove1990583
+Node: mpg-ref-mod1991880
+Node: mpg-ref-cat1993737
+Node: mpg-ref-aty1996951
+Node: mpg-ref-aty-sim1997996
+Node: mpg-ref-aty-ety1998394
+Node: mpg-ref-exc2000511
+Node: mpg-ref-oth2001417
+Node: mpg-top2001898
+Node: mpg-top-all2003476
+Node: mpg-top-ari2004014
+Node: mpg-top-cio2005055
+Node: mpg-top-con2006877
+Node: mpg-top-dat2008670
+Node: mpg-top-deb2010404
+Node: mpg-top-est2013486
+Node: mpg-top-fnm2014759
+Node: mpg-top-fsh2015265
+Node: mpg-top-fin2017268
+Node: mpg-top-gru2017818
+Node: mpg-top-hok2018446
+Node: mpg-top-lis2021518
+Node: mpg-top-lod2022126
+Node: mpg-top-mem2024824
+Node: mpg-top-msg2025253
+Node: mpg-top-mod2028227
+Node: mpg-top-sta2029131
+Node: mpg-top-eqs2030503
+Node: mpg-top-tcm2031350
+Node: mpg-top-tha2032039
+Node: mpg-top-tio2034725
+Node: mpg-top-typ2036360
+Node: mpg-bpr2037260
+Node: mpg-ref-abolish2047189
+Node: mpg-ref-abort2051089
+Node: mpg-ref-absolute_file_name2052219
+Ref: mpg-ref-absolute_file_name-Footnote-12069012
+Node: mpg-ref-acyclic_term2069125
+Node: mpg-ref-add_breakpoint2069813
+Node: mpg-ref-and2070647
+Node: mpg-ref-append2071416
+Node: mpg-ref-arg2073901
+Node: mpg-ref-ask_query2074699
+Node: mpg-ref-assert2078056
+Node: mpg-ref-asserta2080426
+Node: mpg-ref-assertz2082781
+Node: mpg-ref-at_end_of_line2085375
+Node: mpg-ref-at_end_of_stream2086407
+Node: mpg-ref-atom2088521
+Node: mpg-ref-atom_chars2089039
+Node: mpg-ref-atom_codes2090392
+Node: mpg-ref-atom_concat2091822
+Node: mpg-ref-atom_length2092936
+Node: mpg-ref-atomic2093555
+Node: mpg-ref-bagof2094103
+Node: mpg-ref-bb_delete2094914
+Node: mpg-ref-bb_get2095495
+Node: mpg-ref-bb_put2096040
+Node: mpg-ref-bb_update2096740
+Node: mpg-ref-block2097561
+Node: mpg-ref-break2099777
+Node: mpg-ref-breakpoint_expansion2101526
+Node: mpg-ref-byte_count2102211
+Node: mpg-ref-call2103166
+Node: mpg-ref-call_cleanup2104215
+Node: mpg-ref-call_residue_vars2106323
+Node: mpg-ref-callable2107279
+Node: mpg-ref-catch2107847
+Node: mpg-ref-char_code2108782
+Node: mpg-ref-char_conversion2109585
+Node: mpg-ref-character_count2110917
+Node: mpg-ref-clause2112184
+Node: mpg-ref-close2115644
+Node: mpg-ref-compare2118081
+Node: mpg-ref-compile2119592
+Node: mpg-ref-compound2120267
+Node: mpg-ref-consult2120802
+Node: mpg-ref-copy_term2121479
+Node: mpg-ref-coverage_data2124399
+Node: mpg-ref-create_mutable2125707
+Node: mpg-ref-current_atom2126199
+Node: mpg-ref-current_breakpoint2126974
+Node: mpg-ref-current_char_conversion2128138
+Node: mpg-ref-current_input2128723
+Node: mpg-ref-current_key2129347
+Node: mpg-ref-current_module2130220
+Node: mpg-ref-current_op2131996
+Node: mpg-ref-current_output2132997
+Node: mpg-ref-current_predicate2133622
+Node: mpg-ref-current_prolog_flag2135618
+Node: mpg-ref-current_stream2136278
+Node: mpg-ref-cut2137406
+Node: mpg-ref-db_reference2137922
+Node: mpg-ref-debug2138565
+Node: mpg-ref-debugger_command_hook2139225
+Node: mpg-ref-debugging2139886
+Node: mpg-ref-dif2142043
+Node: mpg-ref-disable_breakpoints2142633
+Node: mpg-ref-discontiguous2143217
+Node: mpg-ref-display2144363
+Node: mpg-ref-do2145245
+Node: mpg-ref-dynamic2148183
+Node: mpg-ref-enable_breakpoints2149386
+Node: mpg-ref-ensure_loaded2149969
+Node: mpg-ref-equal_to2150875
+Node: mpg-ref-erase2151529
+Node: mpg-ref-error_exception2152508
+Node: mpg-ref-execution_state2153022
+Node: mpg-ref-exists2153891
+Node: mpg-ref-expand_term2154863
+Node: mpg-ref-fail2156351
+Node: mpg-ref-false2156617
+Node: mpg-ref-file_search_path2156910
+Node: mpg-ref-findall2160136
+Node: mpg-ref-float2162650
+Node: mpg-ref-flush_output2163091
+Node: mpg-ref-foreign2163967
+Node: mpg-ref-foreign_resource2165940
+Node: mpg-ref-format2167575
+Ref: mpg-ref-format-Footnote-12179920
+Node: mpg-ref-freeze2180103
+Node: mpg-ref-frozen2180705
+Node: mpg-ref-functor2181372
+Node: mpg-ref-garbage_collect2183151
+Node: mpg-ref-garbage_collect_atoms2184202
+Node: mpg-ref-generate_message2184870
+Node: mpg-ref-generate_message_hook2188021
+Node: mpg-ref-get_byte2190444
+Node: mpg-ref-get_char2191169
+Node: mpg-ref-get_code2191874
+Node: mpg-ref-get_mutable2192548
+Node: mpg-ref-goal_expansion2193089
+Node: mpg-ref-goal_source_info2197304
+Node: mpg-ref-greater_than2198949
+Node: mpg-ref-ground2199633
+Node: mpg-ref-halt2200411
+Node: mpg-ref-if2201307
+Node: mpg-ref-if_then2202449
+Node: mpg-ref-include2203708
+Node: mpg-ref-initialization2205226
+Node: mpg-ref-instance2206990
+Node: mpg-ref-integer2208228
+Node: mpg-ref-is2208673
+Node: mpg-ref-keysort2210048
+Node: mpg-ref-leash2211600
+Node: mpg-ref-length2213406
+Node: mpg-ref-less_than2215022
+Node: mpg-ref-library_directory2215797
+Node: mpg-ref-line_count2217233
+Node: mpg-ref-line_position2218432
+Node: mpg-ref-listing2219517
+Node: mpg-ref-load_files2220759
+Node: mpg-ref-load_foreign_resource2225872
+Node: mpg-ref-member2229372
+Node: mpg-ref-memberchk2230381
+Node: mpg-ref-message_hook2231207
+Node: mpg-ref-meta_predicate2232709
+Node: mpg-ref-mode2235814
+Node: mpg-ref-module2236358
+Node: mpg-ref-multifile2238494
+Node: mpg-ref-mutable2240961
+Node: mpg-ref-name2241349
+Node: mpg-ref-nl2243321
+Node: mpg-ref-nodebug2243853
+Node: mpg-ref-nonmember2244158
+Node: mpg-ref-nonvar2244986
+Node: mpg-ref-nospy2245539
+Node: mpg-ref-nospyall2246153
+Node: mpg-ref-not_equal_to2246519
+Node: mpg-ref-not_greater_than2247183
+Node: mpg-ref-not_less_than2248166
+Node: mpg-ref-not_provable2248854
+Node: mpg-ref-not_unifiable2250094
+Node: mpg-ref-notrace2250539
+Node: mpg-ref-nozip2250851
+Node: mpg-ref-number2251150
+Node: mpg-ref-number_chars2251595
+Node: mpg-ref-number_codes2253043
+Node: mpg-ref-numbervars2255033
+Node: mpg-ref-on_exception2256507
+Node: mpg-ref-once2257523
+Node: mpg-ref-op2258044
+Node: mpg-ref-open2259828
+Node: mpg-ref-open_null_stream2271114
+Node: mpg-ref-or2271970
+Node: mpg-ref-otherwise2273786
+Node: mpg-ref-peek_byte2274145
+Node: mpg-ref-peek_char2275124
+Node: mpg-ref-peek_code2276290
+Node: mpg-ref-phrase2277458
+Node: mpg-ref-portray2280060
+Node: mpg-ref-portray_clause2281696
+Node: mpg-ref-portray_message2283764
+Node: mpg-ref-predicate_property2284587
+Node: mpg-ref-print2288202
+Node: mpg-ref-print_coverage2288944
+Node: mpg-ref-print_message2291261
+Node: mpg-ref-print_message_lines2294219
+Node: mpg-ref-print_profile2295884
+Node: mpg-ref-profile_data2298318
+Node: mpg-ref-profile_reset2300020
+Node: mpg-ref-prolog_flag2300392
+Node: mpg-ref-prolog_load_context2302725
+Node: mpg-ref-prompt2303538
+Node: mpg-ref-public2305266
+Node: mpg-ref-put_byte2305814
+Node: mpg-ref-put_char2306591
+Node: mpg-ref-put_code2307311
+Node: mpg-ref-query_abbreviation2308126
+Node: mpg-ref-query_class2309924
+Node: mpg-ref-query_class_hook2311387
+Node: mpg-ref-query_hook2312409
+Node: mpg-ref-query_input2313981
+Node: mpg-ref-query_input_hook2314744
+Node: mpg-ref-query_map2315571
+Node: mpg-ref-query_map_hook2316459
+Node: mpg-ref-raise_exception2317427
+Node: mpg-ref-read2318366
+Node: mpg-ref-read_line2320098
+Node: mpg-ref-read_term2320845
+Node: mpg-ref-reconsult2325263
+Node: mpg-ref-recorda2325757
+Node: mpg-ref-recorded2326702
+Node: mpg-ref-recordz2327700
+Node: mpg-ref-remove_breakpoints2328653
+Node: mpg-ref-repeat2329231
+Node: mpg-ref-restore2331967
+Node: mpg-ref-retract2333390
+Node: mpg-ref-retractall2335390
+Node: mpg-ref-save_files2337059
+Node: mpg-ref-save_modules2338617
+Node: mpg-ref-save_predicates2340090
+Node: mpg-ref-save_program2341872
+Node: mpg-ref-see2343903
+Node: mpg-ref-seeing2345539
+Node: mpg-ref-seek2347511
+Node: mpg-ref-seen2350519
+Node: mpg-ref-set_input2350981
+Node: mpg-ref-set_module2351443
+Node: mpg-ref-set_output2352365
+Node: mpg-ref-set_prolog_flag2352845
+Node: mpg-ref-set_stream_position2353664
+Node: mpg-ref-setof2354981
+Node: mpg-ref-simple2357212
+Node: mpg-ref-skip_byte2357684
+Node: mpg-ref-skip_char2358459
+Node: mpg-ref-skip_code2359148
+Node: mpg-ref-skip_line2359885
+Node: mpg-ref-sort2360513
+Node: mpg-ref-source_file2361554
+Node: mpg-ref-spy2363214
+Node: mpg-ref-statistics2364486
+Node: mpg-ref-stream_code2366185
+Node: mpg-ref-stream_position2367394
+Node: mpg-ref-stream_position_data2368717
+Node: mpg-ref-stream_property2369562
+Node: mpg-ref-sub_atom2374392
+Node: mpg-ref-subsumes_term2375847
+Node: mpg-ref-tell2377203
+Node: mpg-ref-telling2378860
+Node: mpg-ref-term_equal_to2380871
+Node: mpg-ref-term_expansion2381506
+Node: mpg-ref-term_greater_than2384589
+Node: mpg-ref-term_less_than2384996
+Node: mpg-ref-term_not_equal_to2385407
+Node: mpg-ref-term_not_greater_than2385821
+Node: mpg-ref-term_not_less_than2386246
+Node: mpg-ref-term_unify_decided2386673
+Node: mpg-ref-term_variables2387194
+Node: mpg-ref-throw2388114
+Node: mpg-ref-told2388544
+Node: mpg-ref-trace2389008
+Node: mpg-ref-trimcore2389753
+Node: mpg-ref-true2390878
+Node: mpg-ref-unify2391146
+Node: mpg-ref-unify_with_occurs_check2391673
+Node: mpg-ref-univ2392175
+Node: mpg-ref-unknown2393612
+Node: mpg-ref-unknown_predicate_handler2394667
+Node: mpg-ref-unload_foreign_resource2396486
+Node: mpg-ref-update_mutable2397393
+Node: mpg-ref-use_module2397983
+Node: mpg-ref-var2403158
+Node: mpg-ref-volatile2403670
+Node: mpg-ref-when2404660
+Node: mpg-ref-write2405553
+Node: mpg-ref-write_canonical2406200
+Node: mpg-ref-write_term2407404
+Node: mpg-ref-writeq2413034
+Node: mpg-ref-zip2413686
+Node: C Reference Pages2414476
+Node: cpg-rve2414835
+Node: cpg-top2416011
+Node: cpg-top-err2416713
+Node: cpg-top-cio2416937
+Node: cpg-top-exc2417599
+Node: cpg-top-fst2418043
+Node: cpg-top-fin2418619
+Node: cpg-top-main2422329
+Node: cpg-top-mem2423034
+Node: cpg-top-sig2423979
+Node: cpg-top-tic2424289
+Node: cpg-top-typ2424641
+Node: cpg-bif2425467
+Node: cpg-ref-SP_atom_from_string2430380
+Node: cpg-ref-SP_atom_length2430964
+Node: cpg-ref-SP_calloc2431608
+Node: cpg-ref-SP_close_query2432228
+Node: cpg-ref-SP_compare2433124
+Node: cpg-ref-SP_cons_functor2433695
+Node: cpg-ref-SP_cons_functor_array2434716
+Node: cpg-ref-SP_cons_list2435729
+Node: cpg-ref-SP_create_stream2436506
+Node: cpg-ref-SP_cut_query2440055
+Node: cpg-ref-SP_define_c_predicate2441007
+Node: cpg-ref-SP_deinitialize2444087
+Node: cpg-ref-SP_error_message2444842
+Node: cpg-ref-SP_event2445381
+Node: cpg-ref-SP_exception_term2449604
+Node: cpg-ref-SP_expand_file_name2450199
+Node: cpg-ref-SP_fail2452929
+Node: cpg-ref-SP_fclose2453614
+Node: cpg-ref-SP_flush_output2457198
+Node: cpg-ref-SP_fopen2459004
+Node: cpg-ref-SP_foreign_stash2462071
+Node: cpg-ref-SP_fprintf2464039
+Node: cpg-ref-SP_free2465469
+Node: cpg-ref-SP_get_address2466020
+Node: cpg-ref-SP_get_arg2466669
+Node: cpg-ref-SP_get_atom2467423
+Node: cpg-ref-SP_get_byte2468060
+Node: cpg-ref-SP_get_code2468964
+Node: cpg-ref-SP_get_current_dir2469886
+Node: cpg-ref-SP_get_dispatch2470532
+Node: cpg-ref-SP_get_float2471549
+Node: cpg-ref-SP_get_functor2472287
+Node: cpg-ref-SP_get_integer2473368
+Node: cpg-ref-SP_get_integer_bytes2474097
+Node: cpg-ref-SP_get_list2476667
+Node: cpg-ref-SP_get_list_codes2477434
+Node: cpg-ref-SP_get_list_n_bytes2478328
+Node: cpg-ref-SP_get_list_n_codes2479578
+Node: cpg-ref-SP_get_number_codes2480979
+Node: cpg-ref-SP_get_stream_counts2481903
+Node: cpg-ref-SP_get_stream_user_data2485825
+Node: cpg-ref-SP_get_string2488690
+Node: cpg-ref-SP_getenv2489439
+Node: cpg-ref-SP_initialize2490300
+Node: cpg-ref-SP_is_atom2493175
+Node: cpg-ref-SP_is_atomic2493681
+Node: cpg-ref-SP_is_compound2494209
+Node: cpg-ref-SP_is_float2494747
+Node: cpg-ref-SP_is_integer2495261
+Node: cpg-ref-SP_is_list2495989
+Node: cpg-ref-SP_is_number2496556
+Node: cpg-ref-SP_is_variable2497073
+Node: cpg-ref-SP_load2497597
+Node: cpg-ref-SP_load_sicstus_run_time2498087
+Node: cpg-ref-SP_malloc2500174
+Node: cpg-ref-SP_mutex_lock2500675
+Node: cpg-ref-SP_mutex_unlock2501764
+Node: cpg-ref-SP_new_term_ref2502443
+Node: cpg-ref-SP_next_solution2502917
+Node: cpg-ref-SP_next_stream2503987
+Node: cpg-ref-SP_open_query2505172
+Node: cpg-ref-SP_pred2506063
+Node: cpg-ref-SP_predicate2506760
+Node: cpg-ref-SP_printf2507645
+Node: cpg-ref-SP_put_address2508040
+Node: cpg-ref-SP_put_atom2508697
+Node: cpg-ref-SP_put_byte2509311
+Node: cpg-ref-SP_put_bytes2510294
+Node: cpg-ref-SP_put_code2511496
+Node: cpg-ref-SP_put_codes2512491
+Node: cpg-ref-SP_put_encoded_string2513789
+Node: cpg-ref-SP_put_float2514999
+Node: cpg-ref-SP_put_functor2515633
+Node: cpg-ref-SP_put_integer2516627
+Node: cpg-ref-SP_put_integer_bytes2517262
+Node: cpg-ref-SP_put_list2518436
+Node: cpg-ref-SP_put_list_codes2519058
+Node: cpg-ref-SP_put_list_n_bytes2519858
+Node: cpg-ref-SP_put_list_n_codes2520787
+Node: cpg-ref-SP_put_number_codes2521848
+Node: cpg-ref-SP_put_string2522570
+Node: cpg-ref-SP_put_term2523235
+Node: cpg-ref-SP_put_variable2523872
+Node: cpg-ref-SP_query2524455
+Node: cpg-ref-SP_query_cut_fail2525474
+Node: cpg-ref-SP_raise_exception2526485
+Node: cpg-ref-SP_read_from_string2527378
+Node: cpg-ref-SP_realloc2529601
+Node: cpg-ref-SP_register_atom2530504
+Node: cpg-ref-SP_restore2531075
+Node: cpg-ref-SP_set_argv2531563
+Node: cpg-ref-SP_set_current_dir2533728
+Node: cpg-ref-SP_set_user_stream_hook2534502
+Node: cpg-ref-SP_set_user_stream_post_hook2535712
+Node: cpg-ref-SP_signal2537129
+Node: cpg-ref-SP_strdup2539814
+Node: cpg-ref-SP_string_from_atom2540391
+Node: cpg-ref-SP_term_type2541033
+Node: cpg-ref-SP_unget_byte2541726
+Node: cpg-ref-SP_unget_code2542755
+Node: cpg-ref-SP_unify2543800
+Node: cpg-ref-SP_unregister_atom2544514
+Node: cpg-ref-SU_initialize2545100
+Node: cpg-ref-user_close2546019
+Node: cpg-ref-user_flush_output2549147
+Node: cpg-ref-user_read2550988
+Node: cpg-ref-user_write2553832
+Node: Command Reference Pages2556704
+Node: too-sicstus2557972
+Node: too-mzn-sicstus2562510
+Node: too-spfz2563062
+Node: too-spdet2564146
+Node: too-spld2564959
+Node: too-splfr2582689
+Node: too-splm2590558
+Node: too-spxref2591534
+Node: References2593126
+Node: Predicate Index2600366
+Node: Keystroke Index2724198
+Node: Book Index2731774
+
+End Tag Table

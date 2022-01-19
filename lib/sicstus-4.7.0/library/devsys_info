@@ -1,0 +1,1217 @@
+/* -*- Mode:Prolog; buffer-read-only:t -*-
+  DO NOT EDIT! THIS CODE IS GENERATED FROM
+  ../Bips/sys_mod.pl ../Bips/sys_mod_det.pl ../Bips/spider_c_initial_bips.pl ../Bips/common_meta_predicates.pl ../Bips/common_hook_predicates.pl ../Bips/spider_c_initial_bips.devsys_info ../Bips/spider_c_ds_bips.devsys_info
+*/
+NOTE: This is a data file, not Prolog code. It is read by SPIDER and interpreted in special ways.
+
+/* Copyright (C) 1989-2011 Swedish Institute of Computer Science. */
+
+% SICStus Prolog: Module and meta predicate declaration for
+% the development system. No entries for call/[1..255].
+
+% [PM] 4.2 NOTE: This file is copied into library/devsys_info and so must any file that it includes.
+
+:- module(prolog,
+  [
+      (=)/2, (<)/2, (=<)/2, (>)/2, (>=)/2, (=:=)/2, (=\=)/2,
+      (==)/2, (\==)/2, (@<)/2, (@>=)/2, (@>)/2, (@=<)/2, (=..)/2,
+      arg/3, atom/1, atomic/1, false/0, (is)/2, nonvar/1, number/1,
+      integer/1, float/1, halt/0, halt/1, abort/0,
+      otherwise/0, var/1, compare/3, functor/3, mutable/1, db_reference/1,
+      append/3, member/2, memberchk/2, nonmember/2, length/2,
+      numbervars/3, unify_with_occurs_check/2, (\=) /2,
+      skip_line/0, skip_line/1, read_line/1, read_line/2,
+      nl/0, nl/1, flush_output/0, flush_output/1, 
+      get_char/1, get_char/2, peek_char/1, peek_char/2, put_char/1, put_char/2, skip_char/1, skip_char/2, 
+      get_code/1, get_code/2, peek_code/1, peek_code/2, put_code/1, put_code/2, skip_code/1, skip_code/2, 
+      get_byte/1, get_byte/2, peek_byte/1, peek_byte/2, put_byte/1, put_byte/2, skip_byte/1, skip_byte/2, 
+      char_conversion/2, current_char_conversion/2,
+      at_end_of_stream/0, at_end_of_stream/1, 
+      at_end_of_line/0, at_end_of_line/1,
+      stream_code/2, (:)/2, 
+      callable/1, compound/1, simple/1,
+      statistics/2, prolog_flag/2, prolog_flag/3, prompt/2,
+      set_prolog_flag/2, current_prolog_flag/2,
+      predicate_property/2, 
+      save_program/1, save_program/2, restore/1,
+      call_cleanup/2, call_residue_vars/2, freeze/2, frozen/2,
+      ?= /2, ground/1, dif/2, when/2,
+      current_predicate/2, current_predicate/1, 
+      recorda/3, recordz/3, recorded/3, instance/2, current_key/2,
+      assert/1, assert/2, asserta/1, asserta/2, assertz/1, assertz/2,
+      erase/1, retract/1, retractall/1, abolish/1, abolish/2,
+      clause/2, clause/3, 
+      bb_put/2, bb_get/2, bb_delete/2, bb_update/3,
+      op/3, current_op/3, 
+      open/3, open/4, close/1, see/1, seeing/1, seen/0, tell/1, telling/1, told/0,
+      absolute_file_name/2, absolute_file_name/3,
+      close/2, stream_property/2,
+      character_count/2, byte_count/2, line_count/2, line_position/2,
+      stream_position/2, set_stream_position/2, seek/4,
+      stream_position_data/3,
+      set_input/1, set_output/1, current_input/1, current_output/1,
+      open_null_stream/1, 
+      (',')/2, (;)/2, (->)/2, (^)/2, (\+)/1, if/3, !/0,
+      (:-)/1, (:-)/2, (-->)/2, (?-)/1,
+      (dynamic)/1, (mode)/1, (multifile)/1, (volatile)/1, (public)/1, (discontiguous)/1,
+      (block)/1, (meta_predicate)/1, module/2, module/3, include/1, (initialization)/1,
+      read/1, read/2, read_term/2, read_term/3,
+      ask_query/4,
+      write_term/2, write_term/3, write_canonical/1, write_canonical/2,
+      display/1,
+      print/1, print/2,
+      goal_source_info/3, print_message/2, print_message_lines/3,
+      write/1, write/2,
+      writeq/1, writeq/2,
+      listing/0,
+      listing/1,
+      portray_clause/1, portray_clause/2,
+      phrase/2, phrase/3, expand_term/2,
+      current_module/2, set_module/1,
+      consult/1, reconsult/1, compile/1, 
+      []/0, (.)/2, source_file/1, source_file/2, prolog_load_context/2,
+      ensure_loaded/1, use_module/1, use_module/2, use_module/3,
+      load_files/1, load_files/2,
+      save_modules/2, save_predicates/2, save_files/2,
+      on_exception/3, raise_exception/1, catch/3, throw/1,
+      findall/3, findall/4, bagof/3, setof/3, sort/2, keysort/2,
+      format/2, format/3,
+      load_foreign_resource/1, unload_foreign_resource/1,
+      name/2, atom_chars/2, number_chars/2, char_code/2,
+      atom_codes/2, number_codes/2, atom_length/2, atom_concat/3, sub_atom/5,
+      copy_term/2, copy_term/3, statistics/0, trimcore/0,
+      create_mutable/2, get_mutable/2, update_mutable/2,
+      garbage_collect/0, garbage_collect_atoms/0, 
+      repeat/0, current_atom/1, current_stream/3, once/1, (do)/2,
+      current_module/1,
+      true/0, fail/0,
+      
+      % Cor. 2
+      subsumes_term/2,
+      acyclic_term/1,
+      term_variables/2,
+
+      % development system only
+      unknown/2,
+      trace/0, notrace/0, debug/0, nodebug/0, zip/0, nozip/0,
+      (spy)/1, (spy)/2, (nospy)/1, nospyall/0,
+      execution_state/1, execution_state/2,
+      add_breakpoint/2, current_breakpoint/5,
+      remove_breakpoints/1, disable_breakpoints/1, enable_breakpoints/1, 
+      debugging/0, leash/1, break/0, 
+      profile_reset/0,
+      profile_data/1, print_profile/0, print_profile/1,
+      coverage_data/1, print_coverage/0, print_coverage/1
+          ],
+          [hidden(true)]
+         ).
+
+%% development system only
+:- meta_predicate
+        spy(:), spy(:,:), nospy(:),
+        execution_state(:), execution_state(?,:),
+        add_breakpoint(:,?), current_breakpoint(:,?,?,?,?).
+
+
+has_compiler(yes).
+
+:- version(4,7,0).
+
+% common_hook_predicates.pl START
+
+% Builtin hooks
+
+% library/SU_messages.pl (called from Bips/msgs.pl)
+
+% Documented
+:- 'SU_messages':query_class/5 is hook.
+:- 'SU_messages':query_abbreviation/3 is hook.
+:- 'SU_messages':query_input/3 is hook.
+:- 'SU_messages':query_map/4 is hook.
+:- 'SU_messages':generate_message/3 is hook.
+
+
+% Undocumented
+:- 'SU_messages':typename/3 is hook.
+:- 'SU_messages':domainname/3 is hook.
+:- 'SU_messages':operation/3 is hook.
+:- 'SU_messages':commandtype/3 is hook.
+:- 'SU_messages':contexttype/3 is hook.
+:- 'SU_messages':message/3 is hook.
+:- 'SU_messages':resource/3 is hook.
+:- 'SU_messages':errortype/3 is hook.
+
+
+% user module hooks
+
+:- user:term_expansion/6 is hook.
+:- user:unknown_predicate_handler/3 is hook.
+:- user:error_exception/1 is hook.
+:- user:breakpoint_expansion/2 is hook.
+
+:- user:file_search_path/2 is hook.
+:- user:file_search_path/2 is nondet.
+
+:- user:library_directory/1 is hook.
+:- user:library_directory/1 is nondet.
+
+:- user:runtime_entry/1 is hook.
+
+:- user:portray_message/2 is hook.
+:- user:message_hook/3 is hook.
+:- user:generate_message_hook/3 is hook.
+:- user:message_hook/4 is hook.
+
+% Wildcard hooks
+
+
+:- Module:foreign_resource/2 is hook.
+:- Module:foreign/2 is hook.
+:- Module:foreign/3 is hook.
+
+:- Module:goal_expansion/5 is hook.
+% common_hook_predicates.pl END
+
+% common_meta_predicates.pl START
+% This file must not use any is/2 directives.
+
+:- meta_predicate
+        ((0),(0)), ((0);(0)), ((0) -> (0)), ((?) ^ (0)), \+ (0), if(0,0,0), once(0), do(?,0),
+        predicate_property(:,?), current_predicate(?,:),
+        current_predicate(:), 
+        save_program(?,0),
+        call_cleanup(0,0), call_residue_vars(0,?), freeze(?,0),
+        when(?,0),
+        assert(:), assert(:,-), asserta(:), asserta(:,-), assertz(:),
+        assertz(:,-), retract(:), retractall(:), abolish(:), abolish(:,+),
+        clause(:,?), clause(:,?,?),
+        bb_put(:,?), bb_get(:,?), bb_delete(:,?), bb_update(:,?,?),
+        consult(:), reconsult(:), compile(:),
+        %% fcompile(:),
+        % [PM] 4.3 SPRM 11918 Was [:|+],
+        [:|:],
+        %% load(:),
+        ensure_loaded(:),
+        use_module(:), use_module(:,+), use_module(+,:,+),
+        load_files(:), load_files(:,+),
+        source_file(:,?),
+        save_predicates(:,?),
+        on_exception(?,0,0), catch(0,?,0),
+        load_foreign_resource(:), unload_foreign_resource(:), 
+        findall(?,0,?), findall(?,0,?,?), bagof(?,0,?), setof(?,0,?),
+        format(?,:), format(?,?,:),
+        listing(:), 
+        initialization(0).
+
+:- meta_predicate must_be_pred_spec_tree(:,+,+).
+
+:- meta_predicate print_message_with_fallback(+, +, +, 2).
+:- meta_predicate print_exception_with_fallback(?, 2).
+
+
+:- if(current_prolog_flag(dialect, spider)).
+:- meta_predicate phrase(//,?), phrase(//,?,?).
+:- else.
+:- meta_predicate phrase(2,?), phrase(2,?,?).
+:- endif.
+
+% [PM] 4.2.3+ These (directives) are not declared as meta predicate in
+% <= 4.2.3 but ought to be. If you need to remove the meta declaration
+% you should wrap it in a conditional so that SPIDER still sees the
+% meta declaration (for clickable module detection in IDE etc).
+% Consider adding module/[2,3] to this list.
+
+:- meta_predicate
+        dynamic(:),
+        mode(:),
+        multifile(:),
+        volatile(:),
+        discontiguous(:),
+        public(:),
+        block(:),
+        meta_predicate(:).
+
+% common_meta_predicates.pl END
+
+% sys_mod_det.pl START
+/* Copyright (C) 1989-2011 Swedish Institute of Computer Science. */
+% [PM] 4.2.1 det/nondet declarations for bips.
+
+% [PM] 4.2.1 NOTE: This file is copied into library/devsys_info
+%% Extension of PlDoc notation.
+
+%% M:F/A is DET.
+%% M:P(Argspec,...) is DET.
+%% M://(P(Argspec,...)) is DET.
+%% Argspec is similar to plDoc with similar meaning. I disagree with
+%% PlDoc on what +, - and : should mean...
+%% // wrapper means DCG, i.e. the predicate arity is two more than the
+%% number of arguments. (this would look better, and more like PlDoc,
+%% if // were a postfix operator but it is not)
+
+%% DET is one of
+%% det -- succeeds exactly once (unless output unification fails)
+%% semidet -- fails or succeeds exactly once
+%% nondet -- no restriction on the number of solutions.
+%% multi -- succeeds at least once.
+%% failing -- always fails. (not in PlDoc).
+%% throwing -- always throws. (not in PlDoc).
+%% xxx -- marks a predicate that is not yet declared (only used in comments).
+%% There must be at least two blank lines after this line (so it is not treated as predicate documentation).
+
+
+
+:- (=)/2 is semidet.
+:- <(+(E1):expression, +(E2):expression) is semidet.
+:- =<(+(E1):expression, +(E2):expression) is semidet.
+:- >(+(E1):expression, +(E2):expression) is semidet.
+:- >=(+(E1):expression, +(E2):expression) is semidet.
+:- =:=(+(E1):expression, +(E2):expression) is semidet.
+:- =\=(+(E1):expression, +(E2):expression) is semidet.
+:- (==)/2 is semidet.
+:- (\==)/2 is semidet.
+:- (@<)/2 is semidet.
+:- (@>=)/2 is semidet.
+:- (@>)/2 is semidet.
+:- (@=<)/2 is semidet.
+:- (=..)/2 is semidet.
+:- arg/3 is semidet.
+:- atom/1 is semidet.
+:- atomic/1 is semidet.
+:- false/0 is failing.
+:- is(?,+(E):expression) is det.
+:- nonvar/1 is semidet.
+:- number/1 is semidet.
+:- integer/1 is semidet.
+:- float/1 is semidet.
+:- halt/0 is throwing.
+:- halt/1 is throwing.
+:- abort/0 is throwing.
+:- otherwise/0 is det.
+:- var/1 is semidet.
+:- compare/3 is semidet.
+:- functor/3 is semidet.
+:- mutable/1 is semidet.
+:- db_reference/1 is semidet.
+
+% :- append/3 is nondet.
+%% There must be at least two blank lines after this line (so it is not treated as predicate documentation).
+
+
+:- append(?(Prefix):list,?(Suffix),?(List)) is nondet.
+:- append(+(Prefix):list,-(Suffix):list,-(List):list) is det.
+
+:- member/2 is nondet.
+:- memberchk/2 is semidet.
+:- nonmember/2 is semidet.
+
+% :- length/2 is nondet.
+%% There must be at least two blank lines after this line (so it is not treated as predicate documentation).
+
+
+:- length(-List:list,+Length:integer) is det.
+:- length(?(List):list,-(Length):integer) is multi.
+:- length(+List:list,-Length:integer) is det.
+
+:- numbervars/3 is semidet.
+:- unify_with_occurs_check/2 is semidet.
+:- (\=) /2 is semidet.
+:- skip_line/0 is det.
+:- skip_line/1 is det.
+:- read_line/1 is det.
+:- read_line/2 is det.
+:- nl/0 is det.
+:- nl/1 is det.
+:- flush_output/0 is det.
+:- flush_output/1 is det.
+:- get_char/1 is det.
+:- get_char/2 is det.
+:- peek_char/1 is det.
+:- peek_char/2 is det.
+:- put_char/1 is det.
+:- put_char/2 is det.
+:- skip_char/1 is det.
+:- skip_char/2 is det.
+:- get_code/1 is det.
+:- get_code/2 is det.
+:- peek_code/1 is det.
+:- peek_code/2 is det.
+:- put_code/1 is det.
+:- put_code/2 is det.
+:- skip_code/1 is det.
+:- skip_code/2 is det.
+:- get_byte/1 is det.
+:- get_byte/2 is det.
+:- peek_byte/1 is det.
+:- peek_byte/2 is det.
+:- put_byte/1 is det.
+:- put_byte/2 is det.
+:- skip_byte/1 is det.
+:- skip_byte/2 is det.
+:- char_conversion/2 is det.
+:- current_char_conversion/2 is nondet.
+:- at_end_of_stream/0 is semidet.
+:- at_end_of_stream/1 is semidet.
+:- at_end_of_line/0 is semidet.
+:- at_end_of_line/1 is semidet.
+:- stream_code/2 is det.
+
+%% :- (:)/2 is xxx.
+%% There must be at least two blank lines after this line (so it is not treated as predicate documentation).
+
+
+:- callable/1 is semidet.
+:- compound/1 is semidet.
+:- simple/1 is semidet.
+:- statistics/2 is det.
+
+%% :- prolog_flag/2 is nondet.
+%% There must be at least two blank lines after this line (so it is not treated as predicate documentation).
+
+
+:- prolog_flag(+Flag:atom, -Value) is semidet.
+:- prolog_flag(?(Flag):atom, -Value) is nondet.
+
+:- prolog_flag(+Flag:atom, ?(Value),?(NewValue)) is semidet.
+:- prolog_flag(?(Flag):atom, ?(Value),?(NewValue)) is nondet.
+
+:- prompt/2 is det.
+:- set_prolog_flag/2 is det.
+:- current_prolog_flag(+Flag:atom, -Value) is det.
+:- current_prolog_flag(?(Flag):atom, -Value) is multi.
+
+:- predicate_property/2 is nondet.
+:- save_program/1 is det.
+:- save_program/2 is det.
+:- restore/1 is det.
+
+%% :- call_cleanup/2 is xxx.
+%% :- call_residue_vars/2 is xxx.
+%% There must be at least two blank lines after this line (so it is not treated as predicate documentation).
+
+
+:- freeze/2 is det. % What to do? freeze/1 is really 'det' since Goal may wake up at any time.
+:- frozen/2 is det.
+:- ?= /2 is semidet.
+:- ground/1 is semidet.
+:- dif/2 is semidet.
+:- when/2 is det.
+:- current_predicate/2 is nondet.
+:- current_predicate/1 is nondet.
+:- recorda/3 is det.
+:- recordz/3 is det.
+:- recorded/3 is nondet.
+:- instance/2 is det.
+:- current_key/2 is nondet.
+:- assert/1 is det.
+:- assert/2 is det.
+:- asserta/1 is det.
+:- asserta/2 is det.
+:- assertz/1 is det.
+:- assertz/2 is det.
+:- erase/1 is det.
+:- retract/1 is nondet.
+:- retractall/1 is det.
+:- abolish/1 is det.
+:- abolish/2 is det.
+:- clause/2 is nondet.
+:- clause/3 is nondet.
+:- bb_put/2 is det.
+:- bb_get/2 is semidet.
+:- bb_delete/2 is semidet.
+:- bb_update/3 is semidet.
+:- op(+,+,+) is det.
+:- current_op(?,?,?) is nondet.
+:- open/3 is det.
+:- open/4 is det.
+:- close/1 is det.
+:- see/1 is det.
+:- seeing(-FileOrStream) is semidet.
+:- seen/0 is det.
+:- tell/1 is det.
+:- telling(-FileOrStream) is semidet.
+:- told/0 is det.
+:- absolute_file_name/2 is det.
+
+:- absolute_file_name(+Path, -AbsolutePath, +Options:list) is nondet. % Handled specially by SPIDER detcheck
+
+:- close/2 is det.
+:- stream_property/2 is nondet.
+:- character_count(+Stream,-Count:integer) is det.
+:- byte_count(+Stream,-Count:integer) is det.
+:- line_count(+Stream,-Count:integer) is det.
+:- line_position(+Stream,-Count:integer) is det.
+:- stream_position(+Stream,-Count:integer) is det.
+:- set_stream_position(+Stream,+Position) is det.
+:- seek/4 is det.
+:- stream_position_data(?,+,?) is nondet.
+:- set_input/1 is det.
+:- set_output/1 is det.
+:- current_input/1 is det.
+:- current_output/1 is det.
+:- open_null_stream/1 is det.
+
+%% :- (',')/2 is xxx.
+%% :- (;)/2 is xxx.
+%% :- (->)/2 is xxx.
+%% :- (^)/2 is xxx.
+%% There must be at least two blank lines after this line (so it is not treated as predicate documentation).
+
+
+:- (\+)/1 is semidet.
+
+%% :- if/3 is xxx.
+%% There must be at least two blank lines after this line (so it is not treated as predicate documentation).
+
+
+:- !/0 is det.
+
+%% :- (:-)/1 is xxx.
+%% :- (:-)/2 is xxx.
+%% :- (-->)/2 is xxx.
+%% :- (?-)/1 is xxx.
+%% :- (dynamic)/1 is xxx.
+%% :- (mode)/1 is xxx.
+%% :- (multifile)/1 is xxx.
+%% :- (volatile)/1 is xxx.
+%% :- (public)/1 is xxx.
+%% :- (discontiguous)/1 is xxx.
+%% :- (block)/1 is xxx.
+%% :- (meta_predicate)/1 is xxx.
+%% :- module/2 is xxx.
+%% :- module/3 is xxx.
+%% :- include/1 is xxx.
+%% :- (initialization)/1 is xxx.
+%% There must be at least two blank lines after this line (so it is not treated as predicate documentation).
+
+
+:- read/1 is det.
+:- read/2 is det.
+:- read_term/2 is det.
+:- read_term/3 is det.
+%% :- ask_query/4 is xxx.
+%% There must be at least two blank lines after this line (so it is not treated as predicate documentation).
+
+
+:- write_term/2 is det.
+:- write_term/3 is det.
+:- write_canonical/1 is det.
+:- write_canonical/2 is det.
+:- display/1 is det.
+:- print/1 is det.
+:- print/2 is det.
+:- goal_source_info/3 is det.
+:- print_message/2 is det.
+:- print_message_lines/3 is det.
+:- write/1 is det.
+:- write/2 is det.
+:- writeq/1 is det.
+:- writeq/2 is det.
+:- listing/0 is det.
+:- listing/1 is det.
+:- portray_clause/1 is det.
+:- portray_clause/2 is det.
+:- phrase(?,?) is nondet.
+:- phrase(?,?,?) is nondet.
+:- expand_term/2 is det.
+:- current_module(?,?) is nondet.
+:- set_module/1 is det.
+:- consult/1 is det.
+:- reconsult/1 is det.
+:- compile/1 is det.
+:- []/0 is det.
+:- (.)/2 is det.
+
+%% :- source_file/1 is xxx.
+%% :- source_file/2 is xxx.
+%% There must be at least two blank lines after this line (so it is not treated as predicate documentation).
+
+
+:- prolog_load_context(+Key:atom, -Value) is semidet.
+:- prolog_load_context(?(Key):atom, -Value) is nondet.
+
+:- ensure_loaded/1 is det.
+:- use_module/1 is det.
+:- use_module/2 is det.
+:- use_module/3 is det.
+:- load_files/1 is det.
+:- load_files/2 is det.
+:- save_modules/2 is det.
+:- save_predicates/2 is det.
+:- save_files/2 is det.
+
+%% :- on_exception/3 is xxx.
+%% There must be at least two blank lines after this line (so it is not treated as predicate documentation).
+
+
+:- raise_exception/1 is throwing.
+
+%% :- catch/3 is xxx.
+%% There must be at least two blank lines after this line (so it is not treated as predicate documentation).
+
+
+:- throw/1 is throwing.
+:- findall/3 is det.
+:- findall/4 is det.
+:- bagof/3 is nondet.
+:- setof/3 is nondet.
+:- sort/2 is det.
+:- keysort/2 is det.
+:- format/2 is det.
+:- format/3 is det.
+:- load_foreign_resource/1 is det.
+:- unload_foreign_resource/1 is det.
+
+:- name/2 is det.
+:- name/2 is deprecated. % [PM] 4.3.2.
+
+:- atom_chars/2 is det.
+:- number_chars/2 is det.
+:- char_code/2 is det.
+:- atom_codes/2 is det.
+:- number_codes/2 is det.
+:- atom_length/2 is det.
+
+:- atom_concat(+(Prefix):atom, +(Suffix):atom, -(Atom):atom) is det.
+:- atom_concat(+(Prefix):atom, -(Suffix):atom, +(Atom):atom) is semidet.
+:- atom_concat(-(Prefix):atom, +(Suffix):atom, +(Atom):atom) is semidet.
+:- atom_concat(-(Prefix):atom, -(Suffix):atom, +(Atom):atom) is nondet.
+
+%% :- sub_atom/5 is xxx.
+%% There must be at least two blank lines after this line (so it is not treated as predicate documentation).
+
+
+:- copy_term/2 is det.
+:- copy_term/3 is det.
+:- statistics/0 is det.
+:- trimcore/0 is det.
+:- create_mutable/2 is det.
+:- get_mutable/2 is det.
+:- update_mutable/2 is det.
+:- garbage_collect/0 is det.
+:- garbage_collect_atoms/0 is det.
+:- repeat/0 is nondet.
+:- current_atom/1 is nondet.
+:- current_stream/3 is nondet.
+:- once/1 is semidet.
+%% :- (do)/2 is xxx.
+%% There must be at least two blank lines after this line (so it is not treated as predicate documentation).
+
+
+:- current_module/1 is nondet.
+:- true/0 is det.
+:- fail/0 is failing.
+
+
+:- subsumes_term/2 is semidet.
+:- acyclic_term/1 is semidet.
+:- term_variables/2 is det.
+
+:- unknown/2 is det.
+:- trace/0 is det.
+:- notrace/0 is det.
+:- debug/0 is det.
+:- nodebug/0 is det.
+:- zip/0 is det.
+:- nozip/0 is det.
+:- (spy)/1 is det.
+:- (spy)/2 is det.
+:- (nospy)/1 is det.
+:- nospyall/0 is det.
+%% :- execution_state/1 is xxx.
+%% :- execution_state/2 is xxx.
+%% There must be at least two blank lines after this line (so it is not treated as predicate documentation).
+
+
+:- add_breakpoint/2 is det.
+:- current_breakpoint/5 is nondet.
+:- remove_breakpoints/1 is det.
+:- disable_breakpoints/1 is det.
+:- enable_breakpoints/1 is det.
+:- debugging/0 is det.
+:- leash/1 is det.
+:- break/0 is det.
+:- profile_reset/0 is det.
+:- profile_data/1 is det.
+:- print_profile/0 is det.
+:- print_profile/1 is det.
+:- coverage_data/1 is det.
+:- print_coverage/0 is det.
+:- print_coverage/1 is det.
+
+/** Some non-exported bips used from library etc. */
+
+%% Keep sorted
+%% There must be at least two blank lines after this line (so it is not treated as predicate documentation).
+
+
+:- alignments:primitive_type_size/3 is det.
+:- alignments:pointer_alignment/2 is det.
+:- alignments:endianness/1 is det.
+
+:- prolog:illarg/3 is det.
+:- prolog:illarg/4 is det.
+:- prolog:must_be/4 is det.
+:- prolog:add_stream_alias/2 is det.
+:- prolog:create_directory/4 is det.
+:- prolog:current_directory/4 is det.
+:- prolog:current_time/1 is det.
+:- prolog:datime/1 is det.
+:- prolog:datime/2 is det.
+:- prolog:delete_file/4 is det.
+:- prolog:disassemble_clause/3 is det.
+:- prolog:disassemble_clause/4 is det.
+:- prolog:disassemble_predicate/2 is det.
+:- prolog:environ/3 is nondet.
+:- prolog:file_property/3 is nondet.
+:- prolog:is_process/2 is semidet.
+:- prolog:keyclumped/2 is det.
+:- prolog:mktime/2 is det.
+:- prolog:module_qualified_goal/3 is det.
+:- prolog:parse_functor_spec/4 is det.
+:- prolog:pc_location/4 is det.
+:- prolog:pc_location/5 is det.
+:- prolog:pc_location/6 is det.
+:- prolog:process_create/5 is det.
+:- prolog:process_id/3 is det.
+:- prolog:process_kill/3 is det.
+:- prolog:process_release/2 is det.
+:- prolog:process_self_id/1 is det.
+:- prolog:process_wait/5 is det.
+:- prolog:remove_stream_alias/2 is det.
+:- prolog:rename_file/5 is det.
+:- prolog:set_system_property/2 is det.
+:- prolog:sleep/2 is det.
+:- prolog:socket_select/7 is det.
+:- prolog:term_expansion_loop_internal/5 is det.
+:- prolog:term_variables_dfs/2 is det.
+:- prolog:term_variables_set/2 is det.
+:- prolog:term_variables_unordered/2 is det.
+:- prolog:what_blocked_goals/1 is det.
+
+:- prolog:choice/0 is nondet.
+
+%% Special case for C bips where we want to be more specific than what
+%% can be specified in the C code. They should be marked PRED_DET_ANY
+%% (or PRED_DET_UNKNOWN) in C, so they do not get any determinacy
+%% entry in spider_c_*_bips.pl
+
+%% There must be at least two blank lines after this line (so it is not treated as predicate documentation).
+
+
+:- prolog:'$predicate_property'(+,?,?,?,?) is semidet.
+:- prolog:'$predicate_property'(-,?,?,?,?) is nondet.
+% sys_mod_det.pl END
+
+% Meta predicate bips. START
+:-meta_predicate prolog:disassemble_clause(:,+,+,-) .
+:-meta_predicate prolog:predicate_can_break_at_line(:,+,+) .
+:-meta_predicate prolog:invariant(0,+) .
+:-meta_predicate prolog:time_out(0,+,-) .
+:-meta_predicate prolog:get_module_meta_arg(:,-,-) .
+:-meta_predicate prolog:add_breakpoint1(:,?,-,+,+) .
+:-meta_predicate prolog:invariant(0,?,?) .
+:-meta_predicate prolog:jit_pred(+,:,?,?,?,-,?) .
+:-meta_predicate prolog:findall_iso(?,0,?,?,+) .
+:-meta_predicate prolog:install_spypoint0(+,:,+,+,-) .
+:-meta_predicate prolog:parse_functor_spec(:,+,+,-) .
+:-meta_predicate prolog:findall(?,0,-,?,+) .
+:-meta_predicate prolog:decompile_predicate(:,-) .
+:-meta_predicate prolog:format_command_reply(+,:) .
+:-meta_predicate prolog:print_exception_carefully(?,2) .
+:-meta_predicate prolog:listing_internal(:) .
+:-meta_predicate prolog:predicate_property_builtin(:,-) .
+:-meta_predicate prolog:jit_pp(:) .
+:-meta_predicate prolog:jit_pp_native(:) .
+:-meta_predicate prolog:jit_core(:,+) .
+:-meta_predicate prolog:log_do(+,+,:) .
+:-meta_predicate prolog:bagof_sp(?,0,?,+) .
+:-meta_predicate prolog:predicate_can_break_at_line_compiled(:,+,+) .
+:-meta_predicate prolog:spider_add_breakpoint_raw(:,-,-,-) .
+:-meta_predicate prolog:invariant_test1(0,+) .
+:-meta_predicate prolog:spider_log(+,:) .
+:-meta_predicate prolog:expect(0) .
+:-meta_predicate prolog:install_spypoint(+,+,:,-) .
+:-meta_predicate prolog:process_create(+,+,:,+,+) .
+:-meta_predicate prolog:setof_sp(?,0,?,+) .
+:-meta_predicate prolog:undo(0) .
+:-meta_predicate prolog:must_be_callable_phrase_arg(2,-,-,+,+) .
+:-meta_predicate prolog:expect(0,+) .
+:-meta_predicate prolog:spider_format_to_codes(?,:,?,?) .
+:-meta_predicate prolog:get_module_phrase_arg(2,-,-) .
+:-meta_predicate prolog:must_be_pred_spec_tree(:,+,+) .
+:-meta_predicate prolog:source_file(:,-,-,-) .
+:-meta_predicate prolog:must_be_callable_closure_arg(0,-,-,+,+) .
+:-meta_predicate prolog:setof_iso(?,0,?,+) .
+:-meta_predicate prolog:log_goal(0) .
+:-meta_predicate prolog:dynamic_clauses(:,-,+,+) .
+:-meta_predicate prolog:add_original_breakpoint_condition(+,:) .
+:-meta_predicate prolog:process_wait(+,-,:,+,+) .
+:-meta_predicate prolog:must_be_callable_meta_arg(:,-,-,+,+) .
+:-meta_predicate prolog:jit_predicate(:,-) .
+:-meta_predicate prolog:when(+,+,0) .
+:-meta_predicate prolog:consult_internal(:,+) .
+:-meta_predicate prolog:print_message_with_fallback(+,+,+,2) .
+:-meta_predicate prolog:install_spypoints(+,:,+) .
+:-meta_predicate prolog:bagof_iso(?,0,?,+) .
+:-meta_predicate prolog:invariant_test(0,+) .
+:-meta_predicate prolog:jit(:) .
+:-meta_predicate prolog:save_instances(?,0,+,+) .
+:-meta_predicate prolog:disassemble_clause(:,+,-) .
+:-meta_predicate prolog:spy(:,:,+) .
+:-meta_predicate prolog:parse_functor_spec(:,+,+,-,-) .
+:-meta_predicate prolog:gather_key_instances(+,?,0,-,+,+) .
+:-meta_predicate prolog:transform_conditions(:,-,-,-,-,+,+) .
+:-meta_predicate prolog:save_program(+,0,+,+) .
+:-meta_predicate prolog:listing_internal(:,+,+,+,+) .
+:-meta_predicate prolog:get_module_closure_arg(0,-,-) .
+:-meta_predicate prolog:print_message_1(?,?,?,?,2) .
+:-meta_predicate prolog:spider_call(0) .
+:-meta_predicate prolog:spider_once(0) .
+:-meta_predicate prolog:nodebug_call(0) .
+:-meta_predicate prolog:predicate_can_break_at_line_interpreted(:,+,+) .
+:-meta_predicate prolog:invariant(0) .
+:-meta_predicate prolog:'$is_directive'(?,-,-,-,-,-) .
+:-meta_predicate prolog:format_event_do(+,+,:) .
+:-meta_predicate prolog:spider_format_to_codes(?,:,?) .
+:-meta_predicate prolog:add_breakpoint2(+,+,+,:,+,-,-) .
+:-meta_predicate prolog:abolish(:,+,+,+) .
+:-meta_predicate prolog:decompile(:,-,-) .
+:-meta_predicate prolog:add_breakpoint(:,?,-) .
+:-meta_predicate prolog:gather_instances(?,0,-,?,+,+) .
+:-meta_predicate prolog:use_module_3(?,:,+,+) .
+:-meta_predicate prolog:print_message_0(?,?,?,?,2) .
+:-meta_predicate prolog:message_lines_with_fallback(+,+,+,-,2) .
+:-meta_predicate prolog:disassemble_predicate(:,-) .
+:-meta_predicate prolog:decompile(:) .
+:-meta_predicate prolog:invariant_not_failing(0) .
+:-meta_predicate prolog:format_event(+,:) .
+:-meta_predicate prolog:call_user_def(0) .
+:-meta_predicate prolog:format_toplevel_event(+,:) .
+:-meta_predicate prolog:print_exception_with_fallback(?,2) .
+:-meta_predicate prolog:add_breakpoint_raw(:,-,-,-,+,+) .
+:-meta_predicate prolog:spider_with_output_to_codes(0,?,?,?) .
+:-meta_predicate prolog:invariant(0,+,?,?) .
+:-meta_predicate prolog:shell_create(+,:,+,+) .
+:-meta_predicate prolog:invariant_test(0) .
+:-meta_predicate prolog:print_error_with_fallback(?,2) .
+% Meta predicate bips. END
+
+
+%% These are inlined and should not be counted when computing call-number from source code.
+:-(inlined_bip('.'(/(!,0),'.'(/(false,0),'.'(/(otherwise,0),'.'(/(true,0),'.'(/(fail,0),'.'(/('CHOICE IDIOM',1),'.'(/('CUT IDIOM',1),'.'(/(is,2),'.'(/(=,2),'.'(/(atom,1),'.'(/(atomic,1),'.'(/(float,1),'.'(/(integer,1),'.'(/(number,1),'.'(/(var,1),'.'(/(nonvar,1),'.'(/(simple,1),'.'(/(compound,1),'.'(/(callable,1),'.'(/(ground,1),'.'(/(mutable,1),'.'(/(db_reference,1),'.'(/(==,2),'.'(/(\==,2),'.'(/(@<,2),'.'(/(@>=,2),'.'(/(@>,2),'.'(/(@=<,2),'.'(/(=:=,2),'.'(/(=\=,2),'.'(/(<,2),'.'(/(>=,2),'.'(/(>,2),'.'(/(=<,2),'.'(/(=..,2),'.'(/(length,2),'.'(/(create_mutable,2),'.'(/(get_mutable,2),'.'(/(update_mutable,2),'.'(/(functor,3),'.'(/(append,3),'.'(/(arg,3),'.'(/(compare,3),[]))))))))))))))))))))))))))))))))))))))))))))).
+
+% Other pre-defined predicates. Not auto-imported. START
+:-(module(alignments,'.'(/(endianness,1),'.'(/(pointer_alignment,2),'.'(/(primitive_type_size,3),[]))))).
+:-(module(clpfd,'.'(/('$fd_labeling',7),[]))).
+:-(module(structs,'.'(/(calloc,3),'.'(/(free,1),'.'(/(get_atom,3),'.'(/(get_float,3),'.'(/(get_float_32,3),'.'(/(get_functor,2),'.'(/(get_integer,3),'.'(/(get_integer_16,3),'.'(/(get_integer_32,3),'.'(/(get_integer_64,3),'.'(/(get_integer_8,3),'.'(/(get_string,3),'.'(/(get_unsigned,3),'.'(/(get_unsigned_16,3),'.'(/(get_unsigned_32,3),'.'(/(get_unsigned_64,3),'.'(/(get_unsigned_8,3),'.'(/(put_atom,3),'.'(/(put_float,3),'.'(/(put_float_32,3),'.'(/(put_integer,3),'.'(/(put_integer_16,3),'.'(/(put_integer_32,3),'.'(/(put_integer_64,3),'.'(/(put_integer_8,3),'.'(/(put_string,3),'.'(/(put_unsigned,3),'.'(/(put_unsigned_16,3),'.'(/(put_unsigned_32,3),'.'(/(put_unsigned_64,3),'.'(/(put_unsigned_8,3),[]))))))))))))))))))))))))))))))))).
+% Other pre-defined predicates. Not auto-imported. END
+
+% Initial C bips determinacy info. START
+
+% Determinacy information for C bips
+:- alignments:'endianness'/1 is det. % one
+:- alignments:'pointer_alignment'/2 is det. % one
+:- alignments:'primitive_type_size'/3 is semidet. % zero or one
+:- clpfd:'$fd_labeling'/7 is nondet. % zero or more
+:- prolog:'$SP_MAINFUN_PARAMS_VERSION'/1 is det. % one
+:- prolog:'$SP_free'/1 is semidet. % zero or one
+:- prolog:'$SP_malloc'/2 is semidet. % zero or one
+:- prolog:'$SP_realloc'/3 is semidet. % zero or one
+:- prolog:'$abolish'/2 is semidet. % zero or one
+:- prolog:'$absolute_path'/4 is semidet. % zero or one
+:- prolog:'$acyclic'/1 is semidet. % zero or one
+:- prolog:'$add_char_conversion'/2 is semidet. % zero or one
+:- prolog:'$add_setof_root'/1 is det. % one
+:- prolog:'$add_stream_listener'/2 is semidet. % zero or one
+:- prolog:'$agc_margin'/2 is semidet. % zero or one
+:- prolog:'$alloc_stream_position'/5 is semidet. % zero or one
+:- prolog:'$ancestors'/3 is semidet. % zero or one
+:- prolog:'$apply'/3 is nondet. % zero or more
+:- prolog:'$argv'/1 is semidet. % zero or one
+:- prolog:'$array1d_dict_clear'/2 is semidet. % zero or one
+:- prolog:'$array1d_dict_delete'/3 is semidet. % zero or one
+:- prolog:'$array1d_dict_get'/3 is semidet. % zero or one
+:- prolog:'$array1d_dict_items'/2 is semidet. % zero or one
+:- prolog:'$array1d_dict_new'/1 is semidet. % zero or one
+:- prolog:'$array1d_dict_put'/4 is semidet. % zero or one
+:- prolog:'$array1d_new'/2 is semidet. % zero or one
+:- prolog:'$array1d_nth'/3 is semidet. % zero or one
+:- prolog:'$array1d_set_length'/3 is semidet. % zero or one
+:- prolog:'$array1d_set_nth'/4 is semidet. % zero or one
+:- prolog:'$atom_codes'/2 is semidet. % zero or one
+:- prolog:'$atom_concat'/3 is semidet. % zero or one
+:- prolog:'$atom_elems'/3 is semidet. % zero or one
+:- prolog:'$atom_length'/2 is semidet. % zero or one
+:- prolog:'$atomic_mode'/3 is semidet. % zero or one
+:- prolog:'$backtrace'/0 is semidet. % zero or one
+:- prolog:'$bb_delete'/3 is det. % one
+:- prolog:'$bb_get'/3 is det. % one
+:- prolog:'$bb_put'/3 is det. % one
+:- prolog:'$bb_update'/5 is semidet. % zero or one
+:- prolog:'$bdd_antiv'/2 is semidet. % zero or one
+:- prolog:'$bdd_build'/4 is det. % one
+:- prolog:'$bdd_equiv'/2 is semidet. % zero or one
+:- prolog:'$bdd_negate'/2 is det. % one
+:- prolog:'$bdd_parts'/4 is det. % one
+:- prolog:'$bdd_store'/4 is det. % one
+:- prolog:'$bdd_subst_case'/8 is det. % one
+:- prolog:'$bdd_subst_reset'/0 is det. % one
+:- prolog:'$bdd_subst_store'/2 is det. % one
+:- prolog:'$bdd_transv'/3 is det. % one
+:- prolog:'$bdd_type'/3 is det. % one
+:- prolog:'$bdd_univ_case'/7 is det. % one
+:- prolog:'$bdd_vector_size'/2 is det. % one
+:- prolog:'$block'/2 is semidet. % zero or one
+:- prolog:'$block_declaration'/3 is semidet. % zero or one
+:- prolog:'$bump_counter'/1 is semidet. % zero or one
+:- prolog:'$callback'/2 is semidet. % zero or one
+:- prolog:'$case_normalize_path'/2 is semidet. % zero or one
+:- prolog:'$cerror_data'/2 is semidet. % zero or one
+:- prolog:'$char_code'/2 is semidet. % zero or one
+:- prolog:'$char_conversion'/2 is semidet. % zero or one
+:- prolog:'$checkalloc'/2 is semidet. % zero or one
+:- prolog:'$checkdealloc'/2 is semidet. % zero or one
+:- prolog:'$checkrealloc'/4 is semidet. % zero or one
+:- prolog:'$clean_up'/2 is semidet. % zero or one
+:- prolog:'$close_fail_on_interrupt'/2 is semidet. % zero or one
+:- prolog:'$compare_compound_term_age'/3 is semidet. % zero or one
+:- prolog:'$compare_term_identity'/3 is semidet. % zero or one
+:- prolog:'$compiling'/2 is semidet. % zero or one
+:- prolog:'$constraint_list'/2 is semidet. % zero or one
+:- prolog:'$copy_term'/2 is semidet. % zero or one
+:- prolog:'$create_directory'/3 is semidet. % zero or one
+:- prolog:'$curmod'/3 is det. % one
+:- prolog:'$current_clauses'/3 is semidet. % zero or one
+:- prolog:'$current_instance'/4 is nondet. % zero or more
+:- prolog:'$current_key'/4 is semidet. % zero or one
+:- prolog:'$current_module'/1 is nondet. % one or more
+:- prolog:'$current_version'/1 is det. % one
+:- prolog:'$datime'/6 is semidet. % zero or one
+:- prolog:'$datime'/7 is semidet. % zero or one
+:- prolog:'$decompile_tokens'/2 is semidet. % zero or one
+:- prolog:'$define_predicate'/2 is semidet. % zero or one
+:- prolog:'$delete_file'/3 is semidet. % zero or one
+:- prolog:'$directory_path'/2 is semidet. % zero or one
+:- prolog:'$disassemble'/1 is semidet. % zero or one
+:- prolog:'$disassemble_predicate'/3 is semidet. % zero or one
+:- prolog:'$discontiguous_flag'/2 is semidet. % zero or one
+:- prolog:'$disjunctive_geler'/2 is semidet. % zero or one
+:- prolog:'$display_nonvar'/2 is semidet. % zero or one
+:- prolog:'$double_quotes'/2 is semidet. % zero or one
+:- prolog:'$dump_counters'/0 is semidet. % zero or one
+:- prolog:'$dump_embedded_resources'/0 is semidet. % zero or one
+:- prolog:'$dump_pred_table'/0 is det. % one
+:- prolog:'$end_of_stream'/2 is semidet. % zero or one
+:- prolog:'$eq'/2 is semidet. % zero or one
+:- prolog:'$erase'/1 is det. % one
+:- prolog:'$erase_clause'/1 is semidet. % zero or one
+:- prolog:'$erase_exception'/0 is det. % one
+:- prolog:'$error_message'/2 is semidet. % zero or one
+:- prolog:'$fast_callable_closure_arg'/1 is semidet. % zero or one
+:- prolog:'$fast_goal'/2 is semidet. % zero or one
+:- prolog:'$ferror_flag'/2 is semidet. % zero or one
+:- prolog:'$file_property'/4 is semidet. % zero or one
+:- prolog:'$file_type'/3 is semidet. % zero or one
+:- prolog:'$flush_output_fail_on_interrupt'/2 is semidet. % zero or one
+:- prolog:'$foreign_resource_suffix'/1 is det. % one
+:- prolog:'$foreign_resource_symbols'/3 is det. % one
+:- prolog:'$format_print_float'/4 is semidet. % zero or one
+:- prolog:'$format_print_integer_or_fail'/4 is semidet. % zero or one
+:- prolog:'$free'/1 is semidet. % zero or one
+:- prolog:'$free_stream_position'/1 is semidet. % zero or one
+:- prolog:'$garbage_collect'/1 is semidet. % zero or one
+:- prolog:'$gc_margin'/2 is semidet. % zero or one
+:- prolog:'$gc_mode'/2 is semidet. % zero or one
+:- prolog:'$gc_trace'/2 is semidet. % zero or one
+:- prolog:'$generate_names_legacy_flag'/2 is semidet. % zero or one
+:- prolog:'$get_all_attribute_modules'/1 is det. % one
+:- prolog:'$get_attribute_modules'/2 is det. % one
+:- prolog:'$get_buffered_bytes'/4 is semidet. % zero or one
+:- prolog:'$get_buffered_chars'/4 is semidet. % zero or one
+:- prolog:'$get_buffered_codes'/4 is semidet. % zero or one
+:- prolog:'$get_byte_fail_on_interrupt'/3 is semidet. % zero or one
+:- prolog:'$get_byte_fast'/3 is semidet. % zero or one
+:- prolog:'$get_char_fast'/3 is semidet. % zero or one
+:- prolog:'$get_code_fail_on_interrupt'/3 is semidet. % zero or one
+:- prolog:'$get_code_fast'/3 is semidet. % zero or one
+:- prolog:'$get_cva'/3 is semidet. % zero or one
+:- prolog:'$get_system_properties'/2 is semidet. % zero or one
+:- prolog:'$get_system_property'/3 is semidet. % zero or one
+:- prolog:'$getenv'/2 is semidet. % zero or one
+:- prolog:'$hostname'/2 is semidet. % zero or one
+:- prolog:'$import_preds'/3 is semidet. % zero or one
+:- prolog:'$imported'/3 is semidet. % zero or one
+:- prolog:'$inferences'/4 is semidet. % zero or one
+:- prolog:'$informational_flag'/2 is semidet. % zero or one
+:- prolog:'$input'/2 is semidet. % zero or one
+:- prolog:'$inserta'/3 is det. % one
+:- prolog:'$insertz'/3 is det. % one
+:- prolog:'$instance'/3 is semidet. % zero or one
+:- prolog:'$instance_defmap'/3 is det. % one
+:- prolog:'$instance_file'/3 is det. % one
+:- prolog:'$instance_module'/2 is semidet. % zero or one
+:- prolog:'$instance_source'/3 is det. % one
+:- prolog:'$invariant_checking_enabled'/0 is semidet. % zero or one
+:- prolog:'$is_process'/1 is semidet. % zero or one
+:- prolog:'$iso_clause_body_guard'/0 is failing. % zero
+:- prolog:'$jit_abi'/1 is det. % one
+:- prolog:'$jit_above_threshold'/1 is semidet. % zero or one
+:- prolog:'$jit_da'/4 is semidet. % zero or one
+:- prolog:'$jit_disassemble_native'/1 is semidet. % zero or one
+:- prolog:'$jit_key_raw'/2 is semidet. % zero or one
+:- prolog:'$jit_pred_profile'/3 is semidet. % zero or one
+:- prolog:'$jit_preload_fail'/1 is det. % one
+:- prolog:'$jit_print_stats'/0 is semidet. % zero or one
+:- prolog:'$jit_spti_begin'/2 is semidet. % zero or one
+:- prolog:'$jit_spti_end'/2 is semidet. % zero or one
+:- prolog:'$jit_stats'/1 is semidet. % zero or one
+:- prolog:'$jit_store'/6 is semidet. % zero or one
+:- prolog:'$jit_use_lq_stq'/1 is det. % one
+:- prolog:'$keyclumped'/2 is semidet. % zero or one
+:- prolog:'$keysort'/2 is semidet. % zero or one
+:- prolog:'$large_data'/3 is semidet. % zero or one
+:- prolog:'$legacy_char_classification_flag'/2 is semidet. % zero or one
+:- prolog:'$list_directory'/4 is semidet. % zero or one
+:- prolog:'$list_info'/3 is semidet. % zero or one
+:- prolog:'$load_exception'/1 is semidet. % zero or one
+:- prolog:'$load_foreign_resource'/3 is semidet. % zero or one
+:- prolog:'$load_stream_position'/5 is semidet. % zero or one
+:- prolog:'$local_stack_avail'/1 is semidet. % zero or one
+:- prolog:'$lowdbg'/2 is semidet. % zero or one
+:- prolog:'$make_bytecode_object'/5 is semidet. % zero or one
+:- prolog:'$memory_fault'/0 is throwing. % throw
+:- prolog:'$message_digest'/3 is semidet. % zero or one
+:- prolog:'$meta_declaration'/3 is semidet. % zero or one
+:- prolog:'$meta_predicate'/2 is semidet. % zero or one
+:- prolog:'$mgu_variables'/3 is semidet. % zero or one
+:- prolog:'$minfo'/0 is semidet. % zero or one
+:- prolog:'$mktime'/7 is semidet. % zero or one
+:- prolog:'$module'/3 is det. % one
+:- prolog:'$module'/4 is det. % one
+:- prolog:'$module_hiding'/3 is semidet. % zero or one
+:- prolog:'$multifile_retractall'/3 is det. % one
+:- prolog:'$multiple_flag'/2 is semidet. % zero or one
+:- prolog:'$next_stream'/5 is semidet. % zero or one
+:- prolog:'$nodebug_call'/3 is nondet. % zero or more
+:- prolog:'$nth_choicepoint'/2 is semidet. % zero or one
+:- prolog:'$nth_instance'/2 is semidet. % zero or one
+:- prolog:'$number_elems'/3 is semidet. % zero or one
+:- prolog:'$number_from_elems'/4 is semidet. % zero or one
+:- prolog:'$open'/5 is semidet. % zero or one
+:- prolog:'$open_null'/1 is semidet. % zero or one
+:- prolog:'$open_tunnel_stream'/4 is semidet. % zero or one
+:- prolog:'$os_abort'/0 is throwing. % throw
+:- prolog:'$os_data'/4 is semidet. % zero or one
+:- prolog:'$os_segfault'/0 is throwing. % throw
+:- prolog:'$output'/2 is semidet. % zero or one
+:- prolog:'$pc_hidden_call'/1 is semidet. % zero or one
+:- prolog:'$pc_info'/8 is semidet. % zero or one
+:- prolog:'$peek_byte_fast'/3 is semidet. % zero or one
+:- prolog:'$peek_code_fast'/3 is semidet. % zero or one
+:- prolog:'$platform_name'/1 is semidet. % zero or one
+:- prolog:'$pop_qlinfo'/0 is semidet. % zero or one
+:- prolog:'$pred_table_entry'/5 is semidet. % zero or one
+:- prolog:'$pred_table_search'/4 is semidet. % zero or one
+:- prolog:'$predicate_arities'/4 is semidet. % zero or one
+:- prolog:'$predicate_file'/3 is semidet. % zero or one
+:- prolog:'$predicate_property'/5 is nondet. % zero or more
+:- prolog:'$predinfo'/2 is semidet. % zero or one
+:- prolog:'$prelinked_foreign_resource'/1 is semidet. % zero or one
+:- prolog:'$print_compare_atom_name_statistics'/0 is semidet. % zero or one
+:- prolog:'$print_dbrefs'/0 is semidet. % zero or one
+:- prolog:'$print_hashtable_statistics'/0 is semidet. % zero or one
+:- prolog:'$process_create'/13 is semidet. % zero or one
+:- prolog:'$process_id'/3 is semidet. % zero or one
+:- prolog:'$process_kill'/3 is semidet. % zero or one
+:- prolog:'$process_release'/3 is semidet. % zero or one
+:- prolog:'$process_self_id'/1 is semidet. % zero or one
+:- prolog:'$process_wait'/6 is semidet. % zero or one
+:- prolog:'$profiling_flag'/2 is semidet. % zero or one
+:- prolog:'$prompt'/2 is semidet. % zero or one
+:- prolog:'$purge'/1 is det. % one
+:- prolog:'$push_qlinfo'/0 is semidet. % zero or one
+:- prolog:'$put_byte_fail_on_interrupt'/3 is semidet. % zero or one
+:- prolog:'$put_byte_fast'/2 is semidet. % zero or one
+:- prolog:'$put_code_fail_on_interrupt'/3 is semidet. % zero or one
+:- prolog:'$put_code_fast'/2 is semidet. % zero or one
+:- prolog:'$put_cva'/3 is semidet. % zero or one
+:- prolog:'$qread'/3 is semidet. % zero or one
+:- prolog:'$quoted_charset_flag'/2 is semidet. % zero or one
+:- prolog:'$read_token'/6 is semidet. % zero or one
+:- prolog:'$record_is_directives'/0 is semidet. % zero or one
+:- prolog:'$ref_term'/2 is semidet. % zero or one
+:- prolog:'$rename_file'/4 is semidet. % zero or one
+:- prolog:'$replace_suffix'/4 is semidet. % zero or one
+:- prolog:'$restore'/2 is semidet. % zero or one
+:- prolog:'$restore_increment'/3 is semidet. % zero or one
+:- prolog:'$retractall'/2 is semidet. % zero or one
+:- prolog:'$running_on_valgrind'/1 is semidet. % zero or one
+:- prolog:'$save'/3 is semidet. % zero or one
+:- prolog:'$save_attribute_info'/1 is det. % one
+:- prolog:'$save_increment'/5 is semidet. % zero or one
+:- prolog:'$seek'/4 is semidet. % zero or one
+:- prolog:'$select'/10 is semidet. % zero or one
+:- prolog:'$set_argv'/1 is semidet. % zero or one
+:- prolog:'$set_clock_remaining'/1 is semidet. % zero or one
+:- prolog:'$set_current_dir_options'/2 is semidet. % zero or one
+:- prolog:'$set_property'/3 is semidet. % zero or one
+:- prolog:'$set_stream_flags'/2 is semidet. % zero or one
+:- prolog:'$set_stream_position'/5 is semidet. % zero or one
+:- prolog:'$set_stream_zlib'/2 is semidet. % zero or one
+:- prolog:'$set_system_property'/2 is semidet. % zero or one
+:- prolog:'$setof_inserta'/3 is det. % one
+:- prolog:'$setof_list_instances'/3 is det. % one
+:- prolog:'$sicstus_path'/2 is semidet. % zero or one
+:- prolog:'$single_var_flag'/2 is semidet. % zero or one
+:- prolog:'$socket_accept_fail_on_interrupt'/6 is semidet. % zero or one
+:- prolog:'$socket_close'/1 is semidet. % zero or one
+:- prolog:'$socket_listen_fail_on_interrupt'/5 is semidet. % zero or one
+:- prolog:'$socket_open_fail_on_interrupt'/5 is semidet. % zero or one
+:- prolog:'$sort'/2 is semidet. % zero or one
+:- prolog:'$source_info'/2 is semidet. % zero or one
+:- prolog:'$sp_DBG'/1 is semidet. % zero or one
+:- prolog:'$sp_assert_failure'/0 is semidet. % zero or one
+:- prolog:'$sp_soft_assert_failure'/0 is semidet. % zero or one
+:- prolog:'$spio_error_name'/2 is semidet. % zero or one
+:- prolog:'$split_env_path'/3 is semidet. % zero or one
+:- prolog:'$statistics'/2 is semidet. % zero or one
+:- prolog:'$stderror'/2 is semidet. % zero or one
+:- prolog:'$stdinput'/2 is semidet. % zero or one
+:- prolog:'$stdoutput'/2 is semidet. % zero or one
+:- prolog:'$store_exception'/1 is det. % one
+:- prolog:'$store_stream_position'/5 is semidet. % zero or one
+:- prolog:'$stream_code'/2 is semidet. % zero or one
+:- prolog:'$stream_count'/5 is semidet. % zero or one
+:- prolog:'$stream_flags'/2 is semidet. % zero or one
+:- prolog:'$stream_from_codes'/3 is semidet. % zero or one
+:- prolog:'$stream_id'/2 is semidet. % zero or one
+:- prolog:'$stream_offset'/2 is semidet. % zero or one
+:- prolog:'$stream_properties'/4 is semidet. % zero or one
+:- prolog:'$stream_set_line_count'/2 is semidet. % zero or one
+:- prolog:'$sub_atom'/5 is semidet. % zero or one
+:- prolog:'$subsumes_chk'/2 is semidet. % zero or one
+:- prolog:'$syntax'/2 is semidet. % zero or one
+:- prolog:'$system_type_flag'/1 is semidet. % zero or one
+:- prolog:'$tagged_integer_range'/2 is semidet. % zero or one
+:- prolog:'$term_attributed_variables_dfs'/2 is semidet. % zero or one
+:- prolog:'$term_hash_4_0_5'/5 is semidet. % zero or one
+:- prolog:'$term_heap_offset'/2 is semidet. % zero or one
+:- prolog:'$term_ref'/2 is semidet. % zero or one
+:- prolog:'$term_variables_dfs'/2 is semidet. % zero or one
+:- prolog:'$termination_date'/1 is semidet. % zero or one
+:- prolog:'$test_file_access'/4 is semidet. % zero or one
+:- prolog:'$time'/1 is semidet. % zero or one
+:- prolog:'$timer_now'/1 is semidet. % zero or one
+:- prolog:'$timer_resolution_ms'/1 is semidet. % zero or one
+:- prolog:'$timer_resource'/1 is semidet. % zero or one
+:- prolog:'$timer_start'/3 is semidet. % zero or one
+:- prolog:'$timer_stop'/1 is semidet. % zero or one
+:- prolog:'$trail_cleanup'/1 is semidet. % zero or one
+:- prolog:'$trail_undo'/1 is semidet. % zero or one
+:- prolog:'$trimcore'/1 is semidet. % zero or one
+:- prolog:'$typein_module'/2 is semidet. % zero or one
+:- prolog:'$undefine_all'/1 is semidet. % zero or one
+:- prolog:'$undo_cleanup'/1 is semidet. % zero or one
+:- prolog:'$unget_byte'/3 is semidet. % zero or one
+:- prolog:'$unget_code'/3 is semidet. % zero or one
+:- prolog:'$unify_with_occurs_check'/2 is semidet. % zero or one
+:- prolog:'$unix_cd'/2 is semidet. % zero or one
+:- prolog:'$unix_exit'/1 is semidet. % zero or one
+:- prolog:'$unknown'/2 is semidet. % zero or one
+:- prolog:'$unload_foreign_resource'/3 is semidet. % zero or one
+:- prolog:'$unwind_stack'/0 is semidet. % zero or one
+:- prolog:'$use_heap'/2 is det. % one
+:- prolog:'$user_event'/0 is semidet. % zero or one
+:- prolog:'$version'/1 is det. % one
+:- prolog:'$version_data'/4 is semidet. % zero or one
+:- prolog:'$version_flag'/1 is semidet. % zero or one
+:- prolog:'$w32_get_registry_value'/4 is semidet. % zero or one
+:- prolog:'$warn_ndexit'/3 is semidet. % zero or one
+:- prolog:'$window_title'/2 is semidet. % zero or one
+:- prolog:'$wr_tagged'/1 is det. % one
+:- prolog:'$write'/3 is semidet. % zero or one
+:- prolog:'$zap_chpt'/1 is semidet. % zero or one
+:- prolog:':'/2 is nondet. % zero or more
+:- prolog:'call_cleanup'/1 is nondet. % zero or more
+:- prolog:'call_module'/3 is nondet. % zero or more
+:- prolog:'current_atom'/1 is nondet. % one or more
+:- prolog:'fail'/0 is failing. % zero
+:- prolog:'garbage_collect_atoms'/0 is semidet. % zero or one
+:- prolog:'true'/0 is det. % one
+:- structs:'calloc'/3 is semidet. % zero or one
+:- structs:'free'/1 is semidet. % zero or one
+:- structs:'get_atom'/3 is det. % one
+:- structs:'get_float'/3 is det. % one
+:- structs:'get_float_32'/3 is det. % one
+:- structs:'get_functor'/2 is det. % one
+:- structs:'get_integer'/3 is det. % one
+:- structs:'get_integer_16'/3 is det. % one
+:- structs:'get_integer_32'/3 is det. % one
+:- structs:'get_integer_64'/3 is det. % one
+:- structs:'get_integer_8'/3 is det. % one
+:- structs:'get_string'/3 is det. % one
+:- structs:'get_unsigned'/3 is det. % one
+:- structs:'get_unsigned_16'/3 is det. % one
+:- structs:'get_unsigned_32'/3 is det. % one
+:- structs:'get_unsigned_64'/3 is det. % one
+:- structs:'get_unsigned_8'/3 is det. % one
+:- structs:'put_atom'/3 is det. % one
+:- structs:'put_float'/3 is det. % one
+:- structs:'put_float_32'/3 is det. % one
+:- structs:'put_integer'/3 is det. % one
+:- structs:'put_integer_16'/3 is det. % one
+:- structs:'put_integer_32'/3 is det. % one
+:- structs:'put_integer_64'/3 is det. % one
+:- structs:'put_integer_8'/3 is det. % one
+:- structs:'put_string'/3 is det. % one
+:- structs:'put_unsigned'/3 is det. % one
+:- structs:'put_unsigned_16'/3 is det. % one
+:- structs:'put_unsigned_32'/3 is det. % one
+:- structs:'put_unsigned_64'/3 is det. % one
+:- structs:'put_unsigned_8'/3 is det. % one
+% Initial C bips determinacy info. END
+
+% DS C bips determinacy info. START
+
+% Determinacy information for C bips
+:- prolog:'$SP_MAIN_PREFIX'/1 is semidet. % zero or one
+:- prolog:'$ancestor_at'/1 is semidet. % zero or one
+:- prolog:'$blocked_goal'/2 is semidet. % zero or one
+:- prolog:'$box_setup'/5 is semidet. % zero or one
+:- prolog:'$breaklevel'/2 is semidet. % zero or one
+:- prolog:'$call_port_conclusion'/3 is semidet. % zero or one
+:- prolog:'$choicepoint_arg'/3 is semidet. % zero or one
+:- prolog:'$command_option'/1 is semidet. % zero or one
+:- prolog:'$comp_has_line'/5 is semidet. % zero or one
+:- prolog:'$debugger_global'/2 is semidet. % zero or one
+:- prolog:'$dump_ds_pred_table'/0 is semidet. % zero or one
+:- prolog:'$exit_port_conclusion'/2 is semidet. % zero or one
+:- prolog:'$exit_setup'/3 is semidet. % zero or one
+:- prolog:'$flag_file'/1 is semidet. % zero or one
+:- prolog:'$flag_goal'/1 is semidet. % zero or one
+:- prolog:'$flag_spider'/1 is semidet. % zero or one
+:- prolog:'$get_aux'/2 is semidet. % zero or one
+:- prolog:'$get_counters'/1 is semidet. % zero or one
+:- prolog:'$get_coverage'/1 is semidet. % zero or one
+:- prolog:'$get_slot'/4 is semidet. % zero or one
+:- prolog:'$init_file'/1 is semidet. % zero or one
+:- prolog:'$instance_has_line'/3 is semidet. % zero or one
+:- prolog:'$invalid_choicepoint'/1 is semidet. % zero or one
+:- prolog:'$leash_mode'/2 is semidet. % zero or one
+:- prolog:'$new_table_interp'/2 is semidet. % zero or one
+:- prolog:'$patch_file'/1 is semidet. % zero or one
+:- prolog:'$port_debugger_setup'/3 is semidet. % zero or one
+:- prolog:'$port_interaction_setup'/1 is semidet. % zero or one
+:- prolog:'$port_setup'/5 is semidet. % zero or one
+:- prolog:'$prev_mutable'/2 is semidet. % zero or one
+:- prolog:'$put_aux'/2 is semidet. % zero or one
+:- prolog:'$reset_counters'/0 is semidet. % zero or one
+:- prolog:'$reset_ctrlc_pending'/0 is semidet. % zero or one
+:- prolog:'$restore_file'/1 is semidet. % zero or one
+:- prolog:'$search_table_comp'/3 is semidet. % zero or one
+:- prolog:'$search_table_interp'/3 is semidet. % zero or one
+:- prolog:'$spypoint'/4 is semidet. % zero or one
+:- prolog:'$sync_debugger'/0 is semidet. % zero or one
+% DS C bips determinacy info. END
+

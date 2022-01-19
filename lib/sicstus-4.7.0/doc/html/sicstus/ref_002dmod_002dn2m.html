@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>ref-mod-n2m (SICStus Prolog)</title>
+
+<meta name="description" content="ref-mod-n2m (SICStus Prolog)">
+<meta name="keywords" content="ref-mod-n2m (SICStus Prolog)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Predicate-Index.html#Predicate-Index" rel="index" title="Predicate Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="ref_002dmod.html#ref_002dmod" rel="up" title="ref-mod">
+<link href="ref_002dmod_002dlod.html#ref_002dmod_002dlod" rel="next" title="ref-mod-lod">
+<link href="ref_002dmod_002ddef.html#ref_002dmod_002ddef" rel="prev" title="ref-mod-def">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+<link href="texinfo.css" rel="stylesheet" type="text/css">
+</head>
+
+<body lang="en">
+<a name="ref_002dmod_002dn2m"></a>
+<hr>
+<a name="Converting-Non_002dmodule-Files-into-Module-Files"></a>
+<h4 class="subsection">4.11.4 Converting Non-module Files into Module Files</h4>
+
+<a name="index-module-files_002c-converting-into"></a>
+<a name="index-converting-into-module-files"></a>
+
+
+<p>The Prolog cross-referencer can automatically generate <code>module/2</code>
+declarations from its cross-reference information.  This is useful if
+you want to take a set of files making up a program and make each of
+those files into a module file.  For more information, see <a href="The-Cross_002dReferencer.html#The-Cross_002dReferencer">The Cross-Referencer</a>
+</p>
+<p>Alternatively, if you have a complete Prolog program consisting of a set of 
+source files <code>{file1, file2, &hellip;}</code>, and you wish to encapsulate it in a 
+single module <var>mod</var>, then this can be done by creating a &ldquo;driver&rdquo;
+file of the following form: 
+</p><div class="example">
+<pre class="example"> 
+
+:- module(<var>mod</var>, [ &hellip; ]).
+
+:- ensure_loaded(file1).
+:- ensure_loaded(file2).
+   .
+   .
+   .
+</pre></div>
+
+<p>When a module is created in this way, none of the files in the program 
+<code>{file1, file2, &hellip;}</code> have to
+be changed.
+</p>
+
+
+
+<div class="logo">
+<a href="https://sicstus.sics.se/">
+<table><tr><td>&nbsp;</td></tr></table>
+</a>
+</div>
+<div class="node">
+<ul class="node">
+<li><a href="index.html#Top">User's Manual</a>
+<hr>
+<li><a href="index.html#TOC">Table of Contents</a>
+<li><a href="ref_002dmod_002dlod.html#ref_002dmod_002dlod" accesskey="n" rel="next">Next</a>
+<li><a href="ref_002dmod_002ddef.html#ref_002dmod_002ddef" accesskey="p" rel="prev">Previous</a>
+<li><a href="ref_002dmod.html#ref_002dmod" accesskey="u" rel="up">Up</a>
+</ul>
+</div>
+<hr>
+<a HREF="mailto:sicstus-support@ri.se?subject=Documentation%20feedback%20on%20html/sicstus/ref_002dmod_002dn2m.html&amp;body=Feedback%20on%20documentation%20node%20html/sicstus/ref_002dmod_002dn2m.html%20in%20User's%20Manual.">Send feedback on this subject.</a>
+</body>
+</html>

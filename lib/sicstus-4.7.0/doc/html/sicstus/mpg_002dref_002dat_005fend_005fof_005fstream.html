@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>mpg-ref-at_end_of_stream (SICStus Prolog)</title>
+
+<meta name="description" content="mpg-ref-at_end_of_stream (SICStus Prolog)">
+<meta name="keywords" content="mpg-ref-at_end_of_stream (SICStus Prolog)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Predicate-Index.html#Predicate-Index" rel="index" title="Predicate Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="mpg_002dbpr.html#mpg_002dbpr" rel="up" title="mpg-bpr">
+<link href="mpg_002dref_002datom.html#mpg_002dref_002datom" rel="next" title="mpg-ref-atom">
+<link href="mpg_002dref_002dat_005fend_005fof_005fline.html#mpg_002dref_002dat_005fend_005fof_005fline" rel="prev" title="mpg-ref-at_end_of_line">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+<link href="texinfo.css" rel="stylesheet" type="text/css">
+</head>
+
+<body lang="en">
+<a name="mpg_002dref_002dat_005fend_005fof_005fstream"></a>
+<hr>
+<a name="at_005fend_005fof_005fstream_002f_005b0_002c1_005d---ISO"></a>
+<h4 class="subsection">11.3.14 <code>at_end_of_stream/[0,1]</code> &nbsp;<!-- /@w --> <i>ISO</i></h4>
+<a name="index-at_005fend_005fof_005fstream_002f_005b0_002c1_005d-_0028built_002din_002c-ref-page_0029-1"></a>
+<a name="index-at_005fend_005fof_005fstream_002f_005b0_002c1_005d-_0028built_002din_002c-ref-page_0029"></a>
+
+<a name="Synopsis-39"></a>
+<h4 class="subheading">Synopsis</h4>
+
+<p><code>at_end_of_stream</code>
+</p>
+<p><code>at_end_of_stream(<var>+Stream</var>)</code>
+</p>
+<p>Tests whether the end has been reached for
+the current input stream or for the input stream <var>Stream</var>.
+<a name="index-end-of-stream"></a>
+<a name="index-stream_002c-end-of"></a>
+</p>
+<a name="Arguments-36"></a>
+<h4 class="subheading">Arguments</h4>
+<dl compact="compact">
+<dt><var>Stream</var></dt>
+<dd><p><em>stream_object</em>, must be ground
+</p>
+<p>A valid Prolog input stream, defaults to the current input stream.
+</p></dd>
+</dl>
+
+<a name="Description-37"></a>
+<h4 class="subheading">Description</h4>
+
+<p>Checks whether the end
+has been reached for the specified input stream.
+An input stream reaches the end when all items (characters or bytes)
+except &lsquo;<samp>EOF</samp>&rsquo; (-1) of the stream have been read.
+It remains at the end after &lsquo;<samp>EOF</samp>&rsquo; has been read.
+</p>
+<a name="Exceptions-30"></a>
+<h4 class="subheading">Exceptions</h4>
+
+<p>Stream errors (see <a href="ref_002diou_002dsfh_002dest.html#ref_002diou_002dsfh_002dest">ref-iou-sfh-est</a>).
+</p>
+<a name="Comments-2"></a>
+<h4 class="subheading">Comments</h4>
+
+<p>Note that <code>at_end_of_stream/[0,1]</code> never blocks. If reading ahead
+would block, then <code>at_end_of_stream/[0,1]</code> will fail, even if the
+stream is actually at its end. If you want to ensure that the end-of-stream
+condition is always properly detected, even if that entails blocking
+until further input is possible, then you can use <code>peek_code/[1,2]</code> or
+<code>peek_byte/[1,2]</code>, e.g. something like the following:
+</p>
+<div class="example">
+<pre class="example">blocking_at_end_of_stream(Alias) :-
+        atom(Alias),
+        stream_property(S, alias(Alias)),
+        !,
+        blocking_at_end_of_stream(S).
+blocking_at_end_of_stream(S) :-
+        at_end_of_stream(S), !.
+blocking_at_end_of_stream(S) :-
+        stream_property(S, type(text)), !,
+        peek_code(S, -1).
+blocking_at_end_of_stream(S) :-
+        stream_property(S, type(binary)), !,
+        peek_byte(S, -1).
+</pre></div>
+<p>This is similar to what SICStus 3 and some other Prolog implementations do.
+</p>
+<blockquote>
+<p><strong>Please note</strong>: The design of <code>at_end_of_stream/[0,1]</code>
+makes it inherently unreliable. It is present only for ISO standards
+compliance. It is better to read or peek until one of the end of file
+indications is returned.
+</p></blockquote>
+
+<a name="See-Also-36"></a>
+<h4 class="subheading">See Also</h4>
+
+<p><code>at_end_of_line/[0,1]</code>.
+</p><hr>
+
+
+
+<div class="logo">
+<a href="https://sicstus.sics.se/">
+<table><tr><td>&nbsp;</td></tr></table>
+</a>
+</div>
+<div class="node">
+<ul class="node">
+<li><a href="index.html#Top">User's Manual</a>
+<hr>
+<li><a href="index.html#TOC">Table of Contents</a>
+<li><a href="mpg_002dref_002datom.html#mpg_002dref_002datom" accesskey="n" rel="next">Next</a>
+<li><a href="mpg_002dref_002dat_005fend_005fof_005fline.html#mpg_002dref_002dat_005fend_005fof_005fline" accesskey="p" rel="prev">Previous</a>
+<li><a href="mpg_002dbpr.html#mpg_002dbpr" accesskey="u" rel="up">Up</a>
+</ul>
+</div>
+<hr>
+<a HREF="mailto:sicstus-support@ri.se?subject=Documentation%20feedback%20on%20html/sicstus/mpg_002dref_002dat_005fend_005fof_005fstream.html&amp;body=Feedback%20on%20documentation%20node%20html/sicstus/mpg_002dref_002dat_005fend_005fof_005fstream.html%20in%20User's%20Manual.">Send feedback on this subject.</a>
+</body>
+</html>
