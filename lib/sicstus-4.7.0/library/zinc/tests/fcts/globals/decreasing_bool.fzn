@@ -1,5 +1,0 @@
-array[1 .. 4] of var bool: a :: output_array([1..4]);
-
-constraint pairwise_relation_bool_sicstus(a, 1);
-
-solve satisfy;

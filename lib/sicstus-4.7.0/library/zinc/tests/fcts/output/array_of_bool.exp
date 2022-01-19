@@ -1,2 +1,0 @@
-xs = array1d(1..2, [false, true]);
-----------

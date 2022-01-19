@@ -1,15 +1,0 @@
-#! /bin/sh
-exec sicstus-4.7.0 -r "$0" -a "$@"
-# META_INFO 1
-# FILE: "/tmp/octopussy-vm-centos-7-2-build-20210707-080530/srcdir/library/alignments.po"
-# META_INFO END
-version=5 archmask=0x2805b
-xœWMhA´ÖÆŠ5UA­—(Òˆˆ¥·Š ‘ö (ØŠ¨xi™–Õt“&i¡µ`nE"XêÁƒâÁ<XÁƒàAzÑ[í¥ö¢¥øw±­İ÷Mvn³Í»|Ììì÷ŞûŞ›™]!”=­W¸–Æµ„ûâÂ°lbò×èE!âï]üxı¨‹»óÉ!)B´*Úø~Ñ™ë6š¿rWa³[¨ñÙÙté/n`<£4/:§:ãù…ñ9År|fÎŒ
-6V£p}•Ù%ÓVŸİ/íB^§ŸXrº±ÊÁSmŠHRÁšˆ÷Yç„»î~NùÇqÀ?¬5¡p“Jt-¸0shtÙYßvoçUQ,•~¼¼°ìç¼$‰˜jûìÆ„ØwQDb”;©ù86årŒÍ(®î»Š;Ìx =bƒÏîƒãFnXÇmã#³Vˆ3¨ŸrìÏ¦Ë¬DSÇ‹P3ñh~?wÙ}^ÈJÑÀB £¡s‹¢³»H
-Ç¼’ã}ƒ a¥“
-Ñ–µæcß$õşïµÒ2šÎ$S2¥u}óà“QrRƒ:½j9æâ<ÛO«„aÆãW—o“/–Vªã	*n;!ÄıJ~óæƒ÷8:n?©s„òı5ÀE…U½0œ•ZìDßó%¯ØŠ¼(*‰QÂŒÇOìÃ¿ƒl¶iŸ%¨§¡òºtXÍK7MYr‹¢tqŠÚ1¯:MŒgQJøá%„êÙ/ÿS]„*©|ÂŒÇ÷èé˜tÄ]‹™qó– ?~×B&5˜–š.Sk¦»ZºVÍt‡”åWpP&i§¬¤mË|^SŞ ÊMURf3–]¹}¬—U$æ-Õ2ç¬~«`Ég‹öä­‘ò	Jíä·Â.Aà˜·ã¶ÓóŒo/yGS§„pX ù$á!µ@ˆğá-¶UÙLóYXwĞ¼ß!K˜~ù!Y©V9™’½–mÙ}º‹ã§>÷¹¨¸iQº0ãñÛ´cWVÜ´ŒçŸ{ÉTF¿—²äÇ1o>ÍŒ¥®x¨­›tóÄ·¡*}QûkiVúDIk¬Ã{à)†MjĞªyêMUòb`ÔóØ
-ø-	ú>ä…¸ğ=b¸Úoù?ëª·5
-# META_INFO_SUFFIX 1
-# size="0x40b"
-# file="/tmp/octopussy-vm-centos-7-2-build-20210707-080530/srcdir/library/alignments.po"
-# META_INFO_SUFFIX END
