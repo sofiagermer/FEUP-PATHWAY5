@@ -1,4 +1,4 @@
-:- dynamic displayBoardOptions/0.
+:- dynamic getBoardValue/4, displayBoardOptions/0.
 displayGameTitle :-
     write('===================================================================================================='), nl,
     write('            ___           ___           ___           ___           ___           ___           ___     '),nl,   
@@ -64,9 +64,6 @@ displayWinningPlayer(2) :-
     write('$$$$$$$\\  $$\\        $$$$$$\\  $$\\     $$\\ $$$$$$$$\\ $$$$$$$\\         $$$$$$\\        $$\\      $$\\ $$$$$$\\ $$\\   $$\\  $$$$$$\\  '), nl,
     write('$$  __$$\\ $$ |      $$  __$$\\ \\$$\\   $$  |$$  _____|$$  __$$\\       $$  __$$\\       $$ | $\\  $$ |\\_$$  _|$$$\\  $$ |$$  __$$\\ '), nl,
     write('$$ |  $$ |$$ |      $$ /  $$ | \\$$\\ $$  / $$ |      $$ |  $$ |      \\__/  $$ |      $$ |$$$\\ $$ |  $$ |  $$$$\\ $$ |$$ /  \\__|'), nl,
-    write('$$ |  $$ |$$ |      $$ /  $$ | \\$$\\ $$  / $$ |      $$ |  $$ |      \\__/  $$ |      $$ |$$$\\ $$ |  $$ |  $$$$\\ $$ |$$ /  \\__|'), nl,
-    write('$$ |  $$ |$$ |      $$ /  $$ | \\$$\\ $$  / $$ |      $$ |  $$ |      \\__/  $$ |      $$ |$$$\\ $$ |  $$ |  $$$$\\ $$ |$$ /  \\__|'), nl,
-    write('$$ |  $$ |$$ |      $$ /  $$ | \\$$\\ $$  / $$ |      $$ |  $$ |      \\__/  $$ |      $$ |$$$\\ $$ |  $$ |  $$$$\\ $$ |$$ /  \\__|'),nl,
     write('$$$$$$$  |$$ |      $$$$$$$$ |  \\$$$$  /  $$$$$\\    $$$$$$$  |       $$$$$$  |      $$ $$ $$\\$$ |  $$ |  $$ $$\\$$ |\\$$$$$$\\  '),nl,
     write('$$  ____/ $$ |      $$  __$$ |   \\$$  /   $$  __|   $$  __$$<       $$  ____/       $$$$  _$$$$ |  $$ |  $$ \\$$$$ | \\____$$\\ '),nl,
     write('$$ |      $$ |      $$ |  $$ |    $$ |    $$ |      $$ |  $$ |      $$ |            $$$  / \\$$$ |  $$ |  $$ |\\$$$ |$$\\   $$ |'),nl,
@@ -79,32 +76,68 @@ displayBoardOptions :-
     write(' '), nl,
     write('                         2. Board 8x8'),nl.
 
-
-displayBoard6 :-
+displayBoard6(Board) :-
     write(' =============================================== '),nl,
     write(' '),nl,
     write('          1      2      3      4      5      6  '),nl,
     write('        _____  _____  _____  _____  _____  _____'),nl,
     write('     |||     ||     ||     ||     ||     ||     |||'     ),nl,
-    write('A    |||     ||     ||     ||     ||     ||     |||'     ),nl,
+    displayLine(Board,0),nl,
     write('     |||_____||_____||_____||_____||_____||_____|||'     ),nl,
     write('     |||     ||     ||     ||     ||     ||     |||'     ),nl,
-    write('B    |||     ||     ||     ||     ||     ||     |||'     ),nl,
+    displayLine(Board,1),nl,
     write('     |||_____||_____||_____||_____||_____||_____|||'     ),nl,
     write('     |||     ||     ||     ||     ||     ||     |||'     ),nl,
-    write('C    |||     ||     ||     ||     ||     ||     |||'     ),nl,
+    displayLine(Board,2),nl,
     write('     |||_____||_____||_____||_____||_____||_____|||'     ),nl,
     write('     |||     ||     ||     ||     ||     ||     |||'     ),nl,
-    write('D    |||     ||     ||     ||     ||     ||     |||'     ),nl,
+    displayLine(Board,3),nl,
     write('     |||_____||_____||_____||_____||_____||_____|||'     ),nl,
     write('     |||     ||     ||     ||     ||     ||     |||'     ),nl,
-    write('E    |||     ||     ||     ||     ||     ||     |||'     ),nl,
+    displayLine(Board,4),nl,
     write('     |||_____||_____||_____||_____||_____||_____|||'     ),nl,
     write('     |||     ||     ||     ||     ||     ||     |||'     ),nl,
-    write('F    |||     ||     ||     ||     ||     ||     |||'     ),nl,
+    displayLine(Board,5),nl,
     write('     |||_____||_____||_____||_____||_____||_____|||'     ),nl,
     write(' '),nl,
-    write(' =============================================== '),nl.
+    write(' =============================================== '),nl.  
+
+displayLine(Board, LineNumber):-
+    displayRowLetter(LineNumber),
+    getBoardValue(Board,LineNumber,0,L1),
+    displayElement(L1),
+    write('  ||  '),
+    getBoardValue(Board,LineNumber,1,L2),
+    displayElement(L2),
+    write('  ||  '),
+    getBoardValue(Board,LineNumber,2,L3),
+    displayElement(L3),
+    write('  ||  '),
+    getBoardValue(Board,LineNumber,3,L4),
+    displayElement(L4),
+    write('  ||  '),
+    getBoardValue(Board,LineNumber,4,L5),
+    displayElement(L5),
+    write('  ||  '),
+    getBoardValue(Board,LineNumber,5,L6),
+    displayElement(L6),
+    write('  |||').
+
+displayRowLetter(0) :-  write('A    |||  ').
+displayRowLetter(1) :-  write('B    |||  ').
+displayRowLetter(2) :-  write('C    |||  ').
+displayRowLetter(3) :-  write('D    |||  ').
+displayRowLetter(4) :-  write('E    |||  ').
+displayRowLetter(5) :-  write('F    |||  ').
+
+displayElement(0) :- write(' ').
+displayElement(1) :- write('X').
+displayElement(2) :- write('O').
+displayElement(_) :- write('Something is very wrong and i dont know wtf is happening').
+/* getBoardValue(Board,LineNumber,ColumnNumber,Value) */
+/*displayNumber(Board,Row,Column,Value) :-*/
+
+
 
 displayBoard8 :-
     write(' ============================================================ '),nl,

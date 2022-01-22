@@ -11,8 +11,7 @@ play :- game.
 
 game :-
     displayGameTitle, 
-    menu,
-    chooseRow.
+    menu.
 
 initial([
     [0,0,0,0,0,0],
@@ -48,13 +47,13 @@ I1 is I-1,
 replace(T,I1,X,R).
 
 replaceBoardElement(Board,LineNumber,ColumnNumber,NewValue,NewBoard):-
-getLine(LineNumber,Board,Line),
-replace(Line,ColumnNumber,NewValue,NewLine),
-replace(Board,LineNumber,NewLine,NewBoard).
+    getLine(LineNumber,Board,Line),
+    replace(Line,ColumnNumber,NewValue,NewLine),
+    replace(Board,LineNumber,NewLine,NewBoard).
 
 getBoardValue(Board,LineNumber,ColumnNumber,Value):-
-getLine(LineNumber,Board,Line),
-getLineElement(ColumnNumber,Line,Value).
+    getLine(LineNumber,Board,Line),
+    getLineElement(ColumnNumber,Line,Value).
 
 noConnectionsMove(Board,LineNumber,ColumnNumber):-
 length(Board,Length),
@@ -286,4 +285,6 @@ getBoardValue(Board,LineNumber,ColumnNumber,V),
 V==0,
 connectionMove(Board,Player,LineNumber,ColumnNumber),
 noConnectionsMove(Board,Player,LineNumber,ColumnNumber).
+
+
 
