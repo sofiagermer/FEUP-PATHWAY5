@@ -1,8 +1,5 @@
 %:- dynamic handleMenuChoice/1, displayMenuTitle/0, readNumber/1, displayGameTitle/0.
 
-game :-
-    displayGameTitle, 
-    menu.
 
 menu :- 
     displayMenuTitle,
