@@ -39,19 +39,13 @@ chooseValidColumn :-
     readNumber(HoleColumn),
     handleHoleColumnChoice(HoleColumn).
 
-handleHoleRowChoice(41) :- chooseColumn.
-handleHoleRowChoice(42) :- chooseColumn.
-handleHoleRowChoice(43) :- chooseColumn.
-handleHoleRowChoice(44) :- chooseColumn.
-handleHoleRowChoice(45) :- chooseColumn.
-handleHoleRowChoice(46) :- chooseColumn.
-handleHoleRowChoice(97) :- chooseColumn.
-handleHoleRowChoice(98) :- chooseColumn.
-handleHoleRowChoice(99) :- chooseColumn.
-handleHoleRowChoice(100) :- chooseColumn.
-handleHoleRowChoice(101) :- chooseColumn.
-handleHoleRowChoice(102) :- chooseColumn.
-handleHoleRowChoice(_) :- chooseValidRow.
+handleHoleRowChoice(0) :- chooseColumn.
+handleHoleRowChoice(1) :- chooseColumn.
+handleHoleRowChoice(2) :- chooseColumn.
+handleHoleRowChoice(3) :- chooseColumn.
+handleHoleRowChoice(4) :- chooseColumn.
+handleHoleRowChoice(5) :- chooseColumn.
+handleHoleRowChoice(_) :- chooseValidRow. 
 
 handleHoleColumnChoice(1) :- displayBoard6.
 handleHoleColumnChoice(2) :- displayBoard6.
