@@ -29,7 +29,7 @@ test([
     [2,0,0,0,2,0],
     [0,1,1,0,0,1],
     [0,2,0,1,1,0],
-    [2,2,0,0,0,0]
+    [2,2,0,0,0,1]
     ]).
 
 getLine(0,[H|T],H).
@@ -284,6 +284,18 @@ V3==Player)).
 validMove(Board,Player,LineNumber,ColumnNumber):-
 getBoardValue(Board,LineNumber,ColumnNumber,V),
 V==0,
-connectionMove(Board,Player,LineNumber,ColumnNumber),
-noConnectionsMove(Board,Player,LineNumber,ColumnNumber).
+(connectionMove(Board,Player,LineNumber,ColumnNumber);
+noConnectionsMove(Board,LineNumber,ColumnNumber)).
+
+
+
+smartMove(Board,N,[Line,Column]):-
+    length(Board,D),
+    NM1 is N-1,
+    L is NM1//D,
+    C is mod(NM1,D),
+    (
+        ((validMove(Board,1,L,C),validMove(Board,2,L,C))->[Line,Column]=[L,C]);
+        smartMove(Board,NM1,[Line,Column])
+    ).
 
