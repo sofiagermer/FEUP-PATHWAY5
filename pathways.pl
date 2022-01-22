@@ -7,4 +7,4 @@
 :- include('input.pl').       /* Game displaying functions */
 :- include('menu.pl').         /* Helper functions */
 
-play :- menu.
+play :- game.
