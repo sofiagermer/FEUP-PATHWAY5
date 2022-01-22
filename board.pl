@@ -136,3 +136,48 @@ displayBoard8 :-
     write('     |||____||____||____||____||____||____||____||____|||'),nl,
     write(' '),nl,
     write(' ============================================================ '),nl.
+
+
+ /* Normal Pergunta Row*/
+ displayOptionsChoice(0) :-
+    write(' =============================================== '),nl,
+    write('         WHERE DO YOU WANT TO PLAY?'),nl,
+    write(' =============================================== '),nl,
+    write(' '), nl,
+    write('              ->  1. Row (A-F) '),nl,
+    write(' '), nl,
+    write('                  2. Column (1-6) '),nl,
+    write(' '), nl,
+    write(' =============================================== '),nl.
+
+ /* Normal Pergunta Column*/
+displayOptionsChoice(1) :-
+    write(' =============================================== '),nl,
+    write('         WHERE DO YOU WANT TO PLAY?'),nl,
+    write(' =============================================== '),nl,
+    write(' '), nl,
+    write('                  1. Row'),nl,
+    write(' '), nl,
+    write('              ->  2. Column (1-6)'),nl,
+    write(' '), nl,
+    write(' =============================================== '),nl.
+
+/* Depois de utilizador por Row Errada */
+displayOptionsChoice(2) :-
+    write(' =============================================== '),nl,
+    write('                 Invalid Row!'),nl,
+    write(' =============================================== '),nl,
+    write(' '), nl,
+    write('               Choose Row A-F'),nl,
+    write(' '), nl,
+    write(' =============================================== '),nl.
+
+/* Depois de utilizador por Column Errada  */
+displayOptionsChoice(3) :-
+    write(' =============================================== '),nl,
+    write('                 Invalid Column!'),nl,
+    write(' =============================================== '),nl,
+    write(' '), nl,
+    write('               Choose Column 1-6'),nl,
+    write(' '), nl,
+    write(' =============================================== '),nl.

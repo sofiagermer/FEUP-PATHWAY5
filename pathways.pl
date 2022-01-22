@@ -9,10 +9,10 @@
 
 play :- game.
 
-
 game :-
     displayGameTitle, 
-    menu.
+    menu,
+    chooseRow.
 
 initial([
     [0,0,0,0,0,0],
