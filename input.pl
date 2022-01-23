@@ -4,6 +4,6 @@ readNumber(Number) :-
     Number is Code - 48.
 
 readChar(Char) :-
-    get0(Code), skip_line,
+    get_code(Code), skip_line,
     ((Code >= 65, Code < 90 ,Char is Code-65); 
     (Code >= 97, Code < 122,Char is Code-97)).

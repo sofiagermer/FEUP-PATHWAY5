@@ -85,9 +85,9 @@ displayRowLetter(4) :-  write('E    |||  ').
 displayRowLetter(5) :-  write('F    |||  ').
 
 displayElement(0) :- write(' ').
-displayElement(1) :- write('X').
-displayElement(2) :- write('O').
-displayElement(_) :- write('P').
+displayElement(1) :- write('1').
+displayElement(2) :- write('2').
+
 
 /* getBoardValue(Board,LineNumber,ColumnNumber,Value) */
 /*displayNumber(Board,Row,Column,Value) :-*/
@@ -112,7 +112,7 @@ displayLine(Board,LineNumber) :-
     displayElement(L5),
     write('  ||  '),
     getBoardValue(Board,LineNumber,5,L6),
-    displayElement(L6).
+    displayElement(L6),
     write('  |||').
 
  displayBoard6(Board) :-
@@ -174,25 +174,14 @@ displayBoard8 :-
 
 
  /* Normal Pergunta Row*/
- displayOptionsChoice(0) :-
+displayChooseRow :-
     write(' =============================================== '),nl,
-    write('         WHERE DO YOU WANT TO PLAY?'),nl,
+    write('     IN WHICH ROW DO YOU WANT TO PLAY (A-F)?'),nl,
     write(' =============================================== '),nl,
-    write(' '), nl,
-    write('              ->  1. Row (A-F) '),nl,
-    write(' '), nl,
-    write('                  2. Column (1-6) '),nl,
-    write(' '), nl,
-    write(' =============================================== '),nl.
-
+    write(' '), nl.
  /* Normal Pergunta Column*/
-displayOptionsChoice(1) :-
+displayChooseColumn :-
     write(' =============================================== '),nl,
-    write('         WHERE DO YOU WANT TO PLAY?'),nl,
+    write('   IN WHICH COLUMN DO YOU WANT TO PLAY (1-6)?'),nl,
     write(' =============================================== '),nl,
-    write(' '), nl,
-    write('                  1. Row'),nl,
-    write(' '), nl,
-    write('              ->  2. Column (1-6)'),nl,
-    write(' '), nl,
-    write(' =============================================== '),nl.
+    write(' '), nl.

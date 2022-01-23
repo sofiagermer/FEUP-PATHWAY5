@@ -1,34 +1,27 @@
 %:- dynamic handleMenuChoice/1, displayMenuTitle/0, readNumber/1, displayGameTitle/0.
 
-menu(NewBoard) :- 
+menu(Board) :- 
     displayMenuTitle,
     displayBoardOptions,
-    menuChoice(NewBoard).
+    menuChoice(Board).
 
-menuChoice(NewBoard):-
+menuChoice(Board):-
     repeat,
     readNumber(BoardSize),
-    handleMenuChoice(BoardSize,NewBoard).
+    handleMenuChoice(BoardSize,Board).
 
-handleMenuChoice(1,NewBoard) :-  
-    displayOptionsChoice(0),
-    nextMove([
-    [0,0,0,0,0,0],
-    [0,0,0,0,0,0],
-    [0,0,0,0,0,0],
-    [0,0,0,0,0,0],
-    [0,0,0,0,0,0],
-    [0,0,0,0,0,0]
-    ],NewBoard).
-handleMenuChoice(2) :- displayBoard8.
-handleMenuChoice(_) :- write('Invalid Option!'), nl, !, fail.
 
-nextMove(Board,NewBoard) :-
+handleMenuChoice(1,Board) :-  
+    initial(Board).
+handleMenuChoice(2,Board) :- displayBoard8.
+% handleMenuChoice(_,Board) :- write('Invalid Option!'), nl, !, fail.
+
+nextMove(Board,Player,NewBoard) :-
+    displayChooseRow,
     chooseRow(Row),
-    displayOptionsChoice(1),
+    displayChooseColumn,
     chooseColumn(Column),
-    replaceBoardElement(Board,Row,Column,1,NewBoard),
-    displayBoard6(NewBoard).
+    replaceBoardElement(Board,Row,Column,Player,NewBoard).
 
 chooseRow(X):-
     repeat,
@@ -38,6 +31,7 @@ chooseRow(X):-
 
 chooseColumn(X):-
     repeat,
-    readNumber(HoleColumn),
+    readNumber(Number),
+    HoleColumn is Number-1,
     between(0, 5, HoleColumn).
     % between(0, 5, HoleColumn),!.

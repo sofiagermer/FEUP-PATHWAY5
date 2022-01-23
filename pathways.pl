@@ -9,21 +9,20 @@
 
 play :- game.
 
+nextPlayer(1,2).
+nextPlayer(2,1).
+
 game:-
     displayGameTitle, 
-    menu(newBoard),
-    gameLoop(newBoard).
+    menu(Board),
+    gameLoop(Board,1).
 
-gameLoop(Board) :-
-    write('estou aqui'),nl,
-    repeat(),
-    displayOptionsChoice(0),
-    write('before'),nl,
-    write(NewBoard),nl,
-    nextMove(Board,NewBoard),
-    write('after'),nl,
-    write(NewBoard),nl,
-    Board is NewBoard.
+gameLoop(Board,Player) :-
+    displayBoard6(Board),
+    nextMove(Board,Player,NewBoard),
+    nextPlayer(Player,NewPlayer),
+    gameLoop(NewBoard,NewPlayer).
+    
 
 initial([
     [0,0,0,0,0,0],
