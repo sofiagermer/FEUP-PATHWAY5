@@ -18,11 +18,13 @@ game:-
     gameLoop(Board,1).
 
 gameLoop(Board,Player) :-
+    \+ gameOver(Board,Player),
     displayBoard6(Board),
     nextMove(Board,Player,NewBoard),
     nextPlayer(Player,NewPlayer),
     gameLoop(NewBoard,NewPlayer).
     
+
 
 initial([
     [0,0,0,0,0,0],
@@ -40,6 +42,15 @@ test([
     [0,1,1,0,0,1],
     [0,2,0,1,1,0],
     [2,2,0,0,0,0]
+    ]).
+
+full([
+    [1,1,1,2,1,1],
+    [1,1,1,2,2,2],
+    [2,1,1,1,2,1],
+    [1,1,1,1,1,1],
+    [1,2,1,1,1,1],
+    [2,2,1,1,1,1]
     ]).
 
 getLine(0,[H|T],H).
@@ -351,7 +362,10 @@ smartMove(Board,Player,Move):-
     getLine(RValue,SmartMovesList,Move).
 
 
-testAnother:-
-    test(P),
-    smartMove(P,2,F),
-    write(F).
+emptyList([]).
+
+gameOver(Board,Player):-
+    length(Board,N),
+    M is N*N,
+    validMoves(Board,Player,M,LL,F),!,
+    emptyList(F).
