@@ -1,4 +1,4 @@
-noConnectionsMove(Board,LineNumber,ColumnNumber):-
+no_connections_move(Board,LineNumber,ColumnNumber):-
     length(Board,Length),
     MaxIndex is Length-1,
     CP1 is ColumnNumber+1,
@@ -9,68 +9,68 @@ noConnectionsMove(Board,LineNumber,ColumnNumber):-
     LineNumber\==0,
     ColumnNumber\==MaxIndex,
     LineNumber\==MaxIndex,
-    getBoardValue(Board,LineNumber,CP1,V1),
+    get_board_value(Board,LineNumber,CP1,V1),
     V1==0,
-    getBoardValue(Board,LineNumber,CM1,V2),
+    get_board_value(Board,LineNumber,CM1,V2),
     V2==0,
-    getBoardValue(Board,LP1,ColumnNumber,V3),
+    get_board_value(Board,LP1,ColumnNumber,V3),
     V3==0,
-    getBoardValue(Board,LM1,ColumnNumber,V4),
+    get_board_value(Board,LM1,ColumnNumber,V4),
     V4==0);
     (ColumnNumber==0,
     LineNumber==0,
-    getBoardValue(Board,LineNumber,CP1,V1),
+    get_board_value(Board,LineNumber,CP1,V1),
     V1==0,
-    getBoardValue(Board,LP1,ColumnNumber,V2),
+    get_board_value(Board,LP1,ColumnNumber,V2),
     V2==0);
     (ColumnNumber==MaxIndex,
     LineNumber==MaxIndex,
-    getBoardValue(Board,LineNumber,CM1,V1),
+    get_board_value(Board,LineNumber,CM1,V1),
     V1==0,
-    getBoardValue(Board,LM1,ColumnNumber,V2),
+    get_board_value(Board,LM1,ColumnNumber,V2),
     V2==0);
     (ColumnNumber==MaxIndex,
     LineNumber==0,
-    getBoardValue(Board,LineNumber,CM1,V1),
+    get_board_value(Board,LineNumber,CM1,V1),
     V1==0,
-    getBoardValue(Board,LP1,ColumnNumber,V2),
+    get_board_value(Board,LP1,ColumnNumber,V2),
     V2==0);
     (ColumnNumber==0,
     LineNumber==MaxIndex,
-    getBoardValue(Board,LineNumber,CP1,V1),
+    get_board_value(Board,LineNumber,CP1,V1),
     V1==0,
-    getBoardValue(Board,LM1,ColumnNumber,V2),
+    get_board_value(Board,LM1,ColumnNumber,V2),
     V2==0);
     (ColumnNumber==0,
-    getBoardValue(Board,LineNumber,CP1,V1),
+    get_board_value(Board,LineNumber,CP1,V1),
     V1==0,
-    getBoardValue(Board,LP1,ColumnNumber,V2),
+    get_board_value(Board,LP1,ColumnNumber,V2),
     V2==0,
-    getBoardValue(Board,LM1,ColumnNumber,V3),
+    get_board_value(Board,LM1,ColumnNumber,V3),
     V3==0);
     (ColumnNumber==MaxIndex,
-    getBoardValue(Board,LineNumber,CM1,V1),
+    get_board_value(Board,LineNumber,CM1,V1),
     V1==0,
-    getBoardValue(Board,LP1,ColumnNumber,V2),
+    get_board_value(Board,LP1,ColumnNumber,V2),
     V2==0,
-    getBoardValue(Board,LM1,ColumnNumber,V3),
+    get_board_value(Board,LM1,ColumnNumber,V3),
     V3==0);
     (LineNumber==0,
-    getBoardValue(Board,LineNumber,CP1,V1),
+    get_board_value(Board,LineNumber,CP1,V1),
     V1==0,
-    getBoardValue(Board,LineNumber,CM1,V2),
+    get_board_value(Board,LineNumber,CM1,V2),
     V2==0,
-    getBoardValue(Board,LP1,ColumnNumber,V3),
+    get_board_value(Board,LP1,ColumnNumber,V3),
     V3==0);
     (LineNumber==MaxIndex,
-    getBoardValue(Board,LineNumber,CP1,V1),
+    get_board_value(Board,LineNumber,CP1,V1),
     V1==0,
-    getBoardValue(Board,LineNumber,CM1,V2),
+    get_board_value(Board,LineNumber,CM1,V2),
     V2==0,
-    getBoardValue(Board,LM1,ColumnNumber,V3),
+    get_board_value(Board,LM1,ColumnNumber,V3),
     V3==0)).
 
-connectionMove(Board,Player,LineNumber,ColumnNumber):-
+connection_move(Board,Player,LineNumber,ColumnNumber):-
     length(Board,Length),
     MaxIndex is Length-1,
     CP1 is ColumnNumber+1,
@@ -81,203 +81,216 @@ connectionMove(Board,Player,LineNumber,ColumnNumber):-
     LineNumber\==0,
     ColumnNumber\==MaxIndex,
     LineNumber\==MaxIndex,
-    getBoardValue(Board,LineNumber,CP1,V1),
+    get_board_value(Board,LineNumber,CP1,V1),
     V1==Player,
-    getBoardValue(Board,LineNumber,CM1,V2),
+    get_board_value(Board,LineNumber,CM1,V2),
     V2\==Player,
-    getBoardValue(Board,LP1,ColumnNumber,V3),
+    get_board_value(Board,LP1,ColumnNumber,V3),
     V3\==Player,
-    getBoardValue(Board,LM1,ColumnNumber,V4),
+    get_board_value(Board,LM1,ColumnNumber,V4),
     V4\==Player);
     (ColumnNumber\==0,
     LineNumber\==0,
     ColumnNumber\==MaxIndex,
     LineNumber\==MaxIndex,
-    getBoardValue(Board,LineNumber,CP1,V1),
+    get_board_value(Board,LineNumber,CP1,V1),
     V1\==Player,
-    getBoardValue(Board,LineNumber,CM1,V2),
+    get_board_value(Board,LineNumber,CM1,V2),
     V2==Player,
-    getBoardValue(Board,LP1,ColumnNumber,V3),
+    get_board_value(Board,LP1,ColumnNumber,V3),
     V3\==Player,
-    getBoardValue(Board,LM1,ColumnNumber,V4),
+    get_board_value(Board,LM1,ColumnNumber,V4),
     V4\==Player);
     (ColumnNumber\==0,
     LineNumber\==0,
     ColumnNumber\==MaxIndex,
     LineNumber\==MaxIndex,
-    getBoardValue(Board,LineNumber,CP1,V1),
+    get_board_value(Board,LineNumber,CP1,V1),
     V1\==Player,
-    getBoardValue(Board,LineNumber,CM1,V2),
+    get_board_value(Board,LineNumber,CM1,V2),
     V2\==Player,
-    getBoardValue(Board,LP1,ColumnNumber,V3),
+    get_board_value(Board,LP1,ColumnNumber,V3),
     V3==Player,
-    getBoardValue(Board,LM1,ColumnNumber,V4),
+    get_board_value(Board,LM1,ColumnNumber,V4),
     V4\==Player);
     (ColumnNumber\==0,
     LineNumber\==0,
     ColumnNumber\==MaxIndex,
     LineNumber\==MaxIndex,
-    getBoardValue(Board,LineNumber,CP1,V1),
+    get_board_value(Board,LineNumber,CP1,V1),
     V1\==Player,
-    getBoardValue(Board,LineNumber,CM1,V2),
+    get_board_value(Board,LineNumber,CM1,V2),
     V2\==Player,
-    getBoardValue(Board,LP1,ColumnNumber,V3),
+    get_board_value(Board,LP1,ColumnNumber,V3),
     V3\==Player,
-    getBoardValue(Board,LM1,ColumnNumber,V4),
+    get_board_value(Board,LM1,ColumnNumber,V4),
     V4==Player);
     (ColumnNumber==0,
     LineNumber==0,
-    getBoardValue(Board,LineNumber,CP1,V1),
+    get_board_value(Board,LineNumber,CP1,V1),
     V1==Player,
-    getBoardValue(Board,LP1,ColumnNumber,V2),
+    get_board_value(Board,LP1,ColumnNumber,V2),
     V2\==Player);
     (ColumnNumber==0,
     LineNumber==0,
-    getBoardValue(Board,LineNumber,CP1,V1),
+    get_board_value(Board,LineNumber,CP1,V1),
     V1\==Player,
-    getBoardValue(Board,LP1,ColumnNumber,V2),
+    get_board_value(Board,LP1,ColumnNumber,V2),
     V2==Player);
     (ColumnNumber==MaxIndex,
     LineNumber==MaxIndex,
-    getBoardValue(Board,LineNumber,CM1,V1),
+    get_board_value(Board,LineNumber,CM1,V1),
     V1==Player,
-    getBoardValue(Board,LM1,ColumnNumber,V2),
+    get_board_value(Board,LM1,ColumnNumber,V2),
     V2\==Player);
     (ColumnNumber==MaxIndex,
     LineNumber==MaxIndex,
-    getBoardValue(Board,LineNumber,CM1,V1),
+    get_board_value(Board,LineNumber,CM1,V1),
     V1\==Player,
-    getBoardValue(Board,LM1,ColumnNumber,V2),
+    get_board_value(Board,LM1,ColumnNumber,V2),
+    V2==Player);
+    (ColumnNumber==MaxIndex,
+    LineNumber==0,
+    get_board_value(Board,LineNumber,CM1,V1),
+    V1\==Player,
+    get_board_value(Board,LP1,ColumnNumber,V2),
     V2==Player);
     (ColumnNumber==0,
-    getBoardValue(Board,LineNumber,CP1,V1),
+    LineNumber==MaxIndex,
+    get_board_value(Board,LineNumber,CP1,V1),
+    V1\==Player,
+    get_board_value(Board,LM1,ColumnNumber,V2),
+    V2==Player);
+    (ColumnNumber==0,
+    get_board_value(Board,LineNumber,CP1,V1),
     V1==Player,
-    getBoardValue(Board,LP1,ColumnNumber,V2),
+    get_board_value(Board,LP1,ColumnNumber,V2),
     V2\==Player,
-    getBoardValue(Board,LM1,ColumnNumber,V3),
+    get_board_value(Board,LM1,ColumnNumber,V3),
     V3\==Player);
     (ColumnNumber==0,
-    getBoardValue(Board,LineNumber,CP1,V1),
+    get_board_value(Board,LineNumber,CP1,V1),
     V1\==Player,
-    getBoardValue(Board,LP1,ColumnNumber,V2),
+    get_board_value(Board,LP1,ColumnNumber,V2),
     V2==Player,
-    getBoardValue(Board,LM1,ColumnNumber,V3),
+    get_board_value(Board,LM1,ColumnNumber,V3),
     V3\==Player);
     (ColumnNumber==0,
-    getBoardValue(Board,LineNumber,CP1,V1),
+    get_board_value(Board,LineNumber,CP1,V1),
     V1\==Player,
-    getBoardValue(Board,LP1,ColumnNumber,V2),
+    get_board_value(Board,LP1,ColumnNumber,V2),
     V2\==Player,
-    getBoardValue(Board,LM1,ColumnNumber,V3),
+    get_board_value(Board,LM1,ColumnNumber,V3),
     V3==Player);
     (ColumnNumber==MaxIndex,
-    getBoardValue(Board,LineNumber,CM1,V1),
+    get_board_value(Board,LineNumber,CM1,V1),
     V1==Player,
-    getBoardValue(Board,LP1,ColumnNumber,V2),
+    get_board_value(Board,LP1,ColumnNumber,V2),
     V2\==Player,
-    getBoardValue(Board,LM1,ColumnNumber,V3),
+    get_board_value(Board,LM1,ColumnNumber,V3),
     V3\==Player);
     (ColumnNumber==MaxIndex,
-    getBoardValue(Board,LineNumber,CM1,V1),
+    get_board_value(Board,LineNumber,CM1,V1),
     V1\==Player,
-    getBoardValue(Board,LP1,ColumnNumber,V2),
+    get_board_value(Board,LP1,ColumnNumber,V2),
     V2==Player,
-    getBoardValue(Board,LM1,ColumnNumber,V3),
+    get_board_value(Board,LM1,ColumnNumber,V3),
     V3\==Player);
     (ColumnNumber==MaxIndex,
-    getBoardValue(Board,LineNumber,CM1,V1),
+    get_board_value(Board,LineNumber,CM1,V1),
     V1\==Player,
-    getBoardValue(Board,LP1,ColumnNumber,V2),
+    get_board_value(Board,LP1,ColumnNumber,V2),
     V2\==Player,
-    getBoardValue(Board,LM1,ColumnNumber,V3),
+    get_board_value(Board,LM1,ColumnNumber,V3),
     V3==Player);
     (LineNumber==0,
-    getBoardValue(Board,LineNumber,CP1,V1),
+    get_board_value(Board,LineNumber,CP1,V1),
     V1==Player,
-    getBoardValue(Board,LineNumber,CM1,V2),
+    get_board_value(Board,LineNumber,CM1,V2),
     V2\==Player,
-    getBoardValue(Board,LP1,ColumnNumber,V3),
+    get_board_value(Board,LP1,ColumnNumber,V3),
     V3\==Player);
     (LineNumber==0,
-    getBoardValue(Board,LineNumber,CP1,V1),
+    get_board_value(Board,LineNumber,CP1,V1),
     V1\==Player,
-    getBoardValue(Board,LineNumber,CM1,V2),
+    get_board_value(Board,LineNumber,CM1,V2),
     V2==Player,
-    getBoardValue(Board,LP1,ColumnNumber,V3),
+    get_board_value(Board,LP1,ColumnNumber,V3),
     V3\==Player);
     (LineNumber==0,
-    getBoardValue(Board,LineNumber,CP1,V1),
+    get_board_value(Board,LineNumber,CP1,V1),
     V1\==Player,
-    getBoardValue(Board,LineNumber,CM1,V2),
+    get_board_value(Board,LineNumber,CM1,V2),
     V2\==Player,
-    getBoardValue(Board,LP1,ColumnNumber,V3),
+    get_board_value(Board,LP1,ColumnNumber,V3),
     V3==Player);
     (LineNumber==MaxIndex,
-    getBoardValue(Board,LineNumber,CP1,V1),
+    get_board_value(Board,LineNumber,CP1,V1),
     V1==Player,
-    getBoardValue(Board,LineNumber,CM1,V2),
+    get_board_value(Board,LineNumber,CM1,V2),
     V2\==Player,
-    getBoardValue(Board,LM1,ColumnNumber,V3),
+    get_board_value(Board,LM1,ColumnNumber,V3),
     V3\==Player);
     (LineNumber==MaxIndex,
-    getBoardValue(Board,LineNumber,CP1,V1),
+    get_board_value(Board,LineNumber,CP1,V1),
     V1\==Player,
-    getBoardValue(Board,LineNumber,CM1,V2),
+    get_board_value(Board,LineNumber,CM1,V2),
     V2==Player,
-    getBoardValue(Board,LM1,ColumnNumber,V3),
+    get_board_value(Board,LM1,ColumnNumber,V3),
     V3\==Player);
     (LineNumber==MaxIndex,
-    getBoardValue(Board,LineNumber,CP1,V1),
+    get_board_value(Board,LineNumber,CP1,V1),
     V1\==Player,
-    getBoardValue(Board,LineNumber,CM1,V2),
+    get_board_value(Board,LineNumber,CM1,V2),
     V2\==Player,
-    getBoardValue(Board,LM1,ColumnNumber,V3),
+    get_board_value(Board,LM1,ColumnNumber,V3),
     V3==Player)).
 
 
-validMove(Board,Player,LineNumber,ColumnNumber):-
-    getBoardValue(Board,LineNumber,ColumnNumber,V),
+valid_move(Board,Player,LineNumber,ColumnNumber):-
+    get_board_value(Board,LineNumber,ColumnNumber,V),
     V==0,
-    (noConnectionsMove(Board,LineNumber,ColumnNumber);
-    connectionMove(Board,Player,LineNumber,ColumnNumber)).
+    (no_connections_move(Board,LineNumber,ColumnNumber);
+    connection_move(Board,Player,LineNumber,ColumnNumber)).
 
-validMoves(Board,Player,0,LL,F):-
+valid_moves(Board,Player,0,LL,F):-
     F=LL.
 
-validMoves(Board,Player,N,LL,F):-
+valid_moves(Board,Player,N,LL,F):-
     length(Board,D),
     NM1 is N-1,
     L is NM1//D,
     C is mod(NM1,D),
-    ((validMove(Board,Player,L,C)->append([[L,C]],LL,NLL));
+    ((valid_move(Board,Player,L,C)->append([[L,C]],LL,NLL));
     NLL=LL),
-    validMoves(Board,Player,NM1,NLL,F).
+    valid_moves(Board,Player,NM1,NLL,F).
 
 
-randomMove(Board,Player,Move):-
+random_move(Board,Player,Move):-
     length(Board,N),
     M is N*N,
-    validMoves(Board,Player,M,LL,MovesList),
+    valid_moves(Board,Player,M,LL,MovesList),
     length(MovesList,UpperLimit),
     random(0,UpperLimit,RValue),
-    getLine(RValue,MovesList,Move).
+    get_line(RValue,MovesList,Move).
    
 
-smartMoves(Board,[],LL,F):-
+smart_moves(Board,[],LL,F):-
     F=LL.
 
-smartMoves(Board,[H|T],LL,F):-
-    getLineElement(0,H,L),
-    getLineElement(1,H,C),
-    (((validMove(Board,1,L,C),validMove(Board,2,L,C))->append([H],LL,NLL));
+smart_moves(Board,[H|T],LL,F):-
+    get_line_element(0,H,L),
+    get_line_element(1,H,C),
+    (((valid_move(Board,1,L,C),valid_move(Board,2,L,C))->append([H],LL,NLL));
     NLL=LL),
-    smartMoves(Board,T,NLL,F).
+    smart_moves(Board,T,NLL,F).
 
-smartMove(Board,Player,Move):-
+smart_move(Board,Player,Move):-
     length(Board,N),
     M is N*N,
-    validMoves(Board,Player,M,L1,MovesList),
-    smartMoves(Board,MovesList,L2,SmartMovesList),
+    valid_moves(Board,Player,M,L1,MovesList),
+    smart_moves(Board,MovesList,L2,SmartMovesList),
+    (empty_list(SmartMovesList)->random_move(Board,Player,Move);
     length(SmartMovesList,UpperLimit),
     random(0,UpperLimit,RValue),
-    getLine(RValue,SmartMovesList,Move).
+    get_line(RValue,SmartMovesList,Move)).

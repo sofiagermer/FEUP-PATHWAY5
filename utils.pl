@@ -1,25 +1,33 @@
-getLine(0,[H|T],H).
-getLine(X,[H|T],[N|Nt]):-
+get_line(0,[H|T],H).
+get_line(X,[H|T],[N|Nt]):-
     Y is X-1,
-    getLine(Y,T,[N|Nt]).
+    get_line(Y,T,[N|Nt]).
 
-getLineElement(0,[H|T],H).
-getLineElement(I,[H|T],V):-
+get_line_element(0,[H|T],H).
+get_line_element(I,[H|T],V):-
     Y is I-1,
-    getLineElement(Y,T,V).
+    get_line_element(Y,T,V).
 
 replace([_|T],0,X,[X|T]).
 replace([H|T],I,X,[H|R]):-
     I1 is I-1,
     replace(T,I1,X,R).
 
-replaceBoardElement(Board,LineNumber,ColumnNumber,NewValue,NewBoard):-
-    getLine(LineNumber,Board,Line),
+replace_board_element(Board,LineNumber,ColumnNumber,NewValue,NewBoard):-
+    get_line(LineNumber,Board,Line),
     replace(Line,ColumnNumber,NewValue,NewLine),
     replace(Board,LineNumber,NewLine,NewBoard).
 
-getBoardValue(Board,LineNumber,ColumnNumber,Value):-
-    getLine(LineNumber,Board,Line),
-    getLineElement(ColumnNumber,Line,Value).
+get_board_value(Board,LineNumber,ColumnNumber,Value):-
+    get_line(LineNumber,Board,Line),
+    get_line_element(ColumnNumber,Line,Value).
 
-emptyList([]).
+empty_list([]).
+
+read_number(Number) :-
+    get_code(Code),
+    Code >= 48, Code < 58,
+    Number is Code - 48.
+
+read_char(Char) :-
+    get_code(Char).

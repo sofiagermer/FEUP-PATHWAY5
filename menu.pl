@@ -1,58 +1,59 @@
-%:- dynamic handleMenuChoice/1, displayMenuTitle/0, readNumber/1, displayGameTitle/0.
 
 menu(Board,GameMode) :- 
-    displayMenuTitle,
-    %displayBoardOptions,
-    displayPlayingModeOptions,
+    display_menu_title,
     initial(Board),
-    menuPlayingModeChoice(GameMode).
-    %menuBoardChoice(Board).
+    display_playing_mode_options,
+    menu_playing_mode_choice(GameMode).
 
-% BOARD OPTIONS
-menuBoardChoice(Board):-
-    repeat,
-    readNumber(BoardSize),
-    handleMenuBoardChoice(BoardSize,Board).
-
-handleMenuBoardChoice(1,Board) :-  
-    full(Board).
-    handleMenuChoice(2,Board) :- displayBoard8.
 
 %PLAYING MODE OPTIONS
-menuPlayingModeChoice(GameMode):-
+menu_playing_mode_choice(GameMode):-
     repeat,
-    readNumber(PlayingMode),
-    handleMenuPlayingModeChoice(PlayingMode,GameMode).
+    read_number(PlayingMode),
+    handle_menu_playing_mode_choice(PlayingMode,GameMode).
+
+
+handle_difficulty_choice(1,1,1).
+handle_difficulty_choice(2,1,2).
+handle_difficulty_choice(1,2,4).
+handle_difficulty_choice(2,2,5).
 
 % single player
-handleMenuPlayingModeChoice(1,1).
-handleMenuPlayingModeChoice(2,2).
-handleMenuPlayingModeChoice(3,3).
-handleMenuPlayingModeChoice(_,GameMode):- nl,write('Not a valid mode. Try again: '),fail.
+handle_menu_playing_mode_choice(1,GameMode):-
+    display_difficulty_options,
+    repeat,
+    read_number(DifficultyLevel),
+    handle_difficulty_choice(DifficultyLevel,1,GameMode).
+handle_menu_playing_mode_choice(2,3).
+handle_menu_playing_mode_choice(3,GameMode):-
+    display_difficulty_options,
+    repeat,
+    read_number(DifficultyLevel),
+    handle_difficulty_choice(DifficultyLevel,2,GameMode).
+handle_menu_playing_mode_choice(_,GameMode):- nl,write('Not a valid mode. Try again: '),fail.
     
 
 %GET NEXT MOVE
-nextMove(Board,Player,NewBoard) :-
+next_move(Board,Player,NewBoard) :- 
     repeat,
-    chooseRow(Row),
-    chooseColumn(Column),
-    (validMove(Board,Player,Row,Column)->replaceBoardElement(Board,Row,Column,Player,NewBoard);
-    nl,write('Not a valid move, try again.')),nl.
+    choose_row(Row),
+    choose_column(Column),
+    ((\+ valid_move(Board,Player,Row,Column))->write('Not a valid move, try again.'),nl,fail;
+    replace_board_element(Board,Row,Column,Player,NewBoard),!).
 
 
-chooseRow(HoleRow):-
-    displayChooseRow,
+choose_row(HoleRow):-
+    display_choose_row,
     repeat,
-    readChar(Char),
+    read_char(Char),
     ((Char >= 65 , Char < 90, HoleRow is Char-65); (Char >= 97 , Char < 122, HoleRow is Char-97)),
     between(0, 5, HoleRow),!.
-    % between(0, 5, HoleRow),!.
 
 
-chooseColumn(HoleColumn):-
-    displayChooseColumn,
+
+choose_column(HoleColumn):-
+    display_choose_column,
     repeat,
-    readNumber(Number),
+    read_number(Number),
     HoleColumn is Number-1,
     between(0, 5, HoleColumn),!.
-    % between(0, 5, HoleColumn),!.

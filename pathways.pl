@@ -4,78 +4,119 @@
 :- use_module(library(between)).
 :- use_module(library(system)).
 
-:- include('board.pl').       /* Game displaying functions */
-:- include('input.pl').       /* Game displaying functions */
-:- include('menu.pl').         /* Helper functions */
-:- include('utils.pl').         /* Helper functions */
-:- include('logic.pl').         /* Helper functions */
+:- include('views.pl').       /* Game displaying functions */
+:- include('menu.pl').         /* Menu functions */
+:- include('utils.pl').         /* Generic auxiliar functions */
+:- include('logic.pl').         /* Game logic and validation functions */
 
 play :- game.
 
-nextPlayer(1,2).
-nextPlayer(2,1).
-
 game:-
-    displayGameTitle,
+    display_game_title,
     sleep(1),
     menu(Board,GameMode),
-    gameLoop(GameMode,Board,1).
+    game_loop(GameMode,Board,1).
 
-gameLoop(1,Board,Player) :-
-    gameOver(Board,Player),
-    displayGameOver,
-    nextPlayer(Player,NewPlayer),
-    displayWinningPlayer(NewPlayer).
+game_loop(_,Board,Player) :-
+    game_over(Board,Player),
+    display_game_over,
+    next_player(Player,NewPlayer),
+    display_winning_player(NewPlayer).
 
-gameLoop(1,Board,Player) :-
-    \+ gameOver(Board,Player)->(
-    displayBoard6(Board,Player),
-    nextMove(Board,Player,TempBoard),
-    nextPlayer(Player,NewPlayer),
+game_loop(1,Board,Player) :-
+    \+ game_over(Board,Player)->(
+    display_game(Board,Player),
+    next_move(Board,Player,TempBoard),
+    next_player(Player,NewPlayer),
+    display_game(TempBoard,NewPlayer),
     sleep(1),
-    randomMove(TempBoard,NewPlayer,Move),
-    (emptyList(Move)->gameLoop(1,NewBoard,NewPlayer);
-    getLineElement(0,Move,Line),
-    getLineElement(1,Move,Column),
-    replaceBoardElement(TempBoard,Line,Column,NewPlayer,NewBoard),
-    gameLoop(1,NewBoard,Player))).
+    random_move(TempBoard,NewPlayer,Move),
+    (empty_list(Move)->game_loop(1,NewBoard,NewPlayer);
+    get_line_element(0,Move,Line),
+    get_line_element(1,Move,Column),
+    replace_board_element(TempBoard,Line,Column,NewPlayer,NewBoard),
+    game_loop(1,NewBoard,Player))).
 
-gameLoop(2,Board,Player) :-
-    gameOver(Board,Player),
-    displayGameOver,
-    nextPlayer(Player,NewPlayer),
-    displayWinningPlayer(NewPlayer).
+% game_loop(2,Board,Player) :-
+%     game_over(Board,Player),
+%     display_game_over,
+%     next_player(Player,NewPlayer),
+%     display_winning_player(NewPlayer).
 
-gameLoop(2,Board,Player) :-
-    \+ gameOver(Board,Player)->(
-    displayBoard6(Board,Player),
-    nextMove(Board,Player,NewBoard),
-    nextPlayer(Player,NewPlayer),
-    gameLoop(2,NewBoard,NewPlayer)).
+game_loop(2,Board,Player) :-
+    \+ game_over(Board,Player)->(
+    display_game(Board,Player),
+    next_move(Board,Player,TempBoard),
+    next_player(Player,NewPlayer),
+    display_game(TempBoard,NewPlayer),
+    sleep(1),
+    smart_move(TempBoard,NewPlayer,Move),
+    (empty_list(Move)->game_loop(2,NewBoard,NewPlayer);
+    get_line_element(0,Move,Line),
+    get_line_element(1,Move,Column),
+    replace_board_element(TempBoard,Line,Column,NewPlayer,NewBoard),
+    game_loop(2,NewBoard,Player))).
+
+% game_loop(3,Board,Player) :-
+%     game_over(Board,Player),
+%     display_game_over,
+%     next_player(Player,NewPlayer),
+%     display_winning_player(NewPlayer).
+
+game_loop(3,Board,Player) :-
+    \+ game_over(Board,Player)->(
+    display_game(Board,Player),
+    next_move(Board,Player,NewBoard),
+    next_player(Player,NewPlayer),
+    game_loop(3,NewBoard,NewPlayer)).
     
-gameLoop(3,Board,Player) :-
-    gameOver(Board,Player),
-    displayGameOver,
-    nextPlayer(Player,NewPlayer),
-    displayWinningPlayer(NewPlayer).
+% game_loop(4,Board,Player) :-
+%     game_over(Board,Player),
+%     display_game_over,
+%     next_player(Player,NewPlayer),
+%     display_winning_player(NewPlayer).
 
-gameLoop(3,Board,Player) :-
-    \+ gameOver(Board,Player)->(
-    displayBoard6(Board,Player),
+game_loop(4,Board,Player) :-
+    \+ game_over(Board,Player)->(
+    display_game(Board,Player),
     sleep(1),
-    randomMove(Board,Player,Move1),
-    getLineElement(0,Move1,Line1),
-    getLineElement(1,Move1,Column1),
-    replaceBoardElement(Board,Line1,Column1,Player,TempBoard),
-    displayBoard6(TempBoard,Player),
-    nextPlayer(Player,NewPlayer),
+    random_move(Board,Player,Move1),
+    get_line_element(0,Move1,Line1),
+    get_line_element(1,Move1,Column1),
+    replace_board_element(Board,Line1,Column1,Player,TempBoard),
+    next_player(Player,NewPlayer),
+    display_game(TempBoard,NewPlayer),
     sleep(1),
-    randomMove(TempBoard,NewPlayer,Move2),
-    (emptyList(Move2)->gameLoop(3,NewBoard,NewPlayer);
-    getLineElement(0,Move2,Line2),
-    getLineElement(1,Move2,Column2),
-    replaceBoardElement(TempBoard,Line2,Column2,NewPlayer,NewBoard),
-    gameLoop(3,NewBoard,Player))).
+    random_move(TempBoard,NewPlayer,Move2),
+    (empty_list(Move2)->game_loop(4,NewBoard,NewPlayer);
+    get_line_element(0,Move2,Line2),
+    get_line_element(1,Move2,Column2),
+    replace_board_element(TempBoard,Line2,Column2,NewPlayer,NewBoard),
+    game_loop(4,NewBoard,Player))).
+
+% game_loop(5,Board,Player) :-
+%     game_over(Board,Player),
+%     display_game_over,
+%     next_player(Player,NewPlayer),
+%     display_winning_player(NewPlayer).
+
+game_loop(5,Board,Player) :-
+    \+ game_over(Board,Player)->(
+    display_game(Board,Player),
+    sleep(1),
+    smart_move(Board,Player,Move1),
+    get_line_element(0,Move1,Line1),
+    get_line_element(1,Move1,Column1),
+    replace_board_element(Board,Line1,Column1,Player,TempBoard),
+    next_player(Player,NewPlayer),
+    display_game(TempBoard,NewPlayer),
+    sleep(1),
+    smart_move(TempBoard,NewPlayer,Move2),
+    (empty_list(Move2)->game_loop(5,NewBoard,NewPlayer);
+    get_line_element(0,Move2,Line2),
+    get_line_element(1,Move2,Column2),
+    replace_board_element(TempBoard,Line2,Column2,NewPlayer,NewBoard),
+    game_loop(5,NewBoard,Player))).
 
 
 
@@ -88,27 +129,13 @@ initial([
     [0,0,0,0,0,0]
     ]).
 
-test([
-    [1,0,1,2,0,1],
-    [1,0,0,2,2,2],
-    [2,0,0,0,2,0],
-    [0,1,1,0,0,1],
-    [0,2,0,1,1,0],
-    [2,2,0,0,0,0]
-    ]).
 
-full([
-    [1,1,1,2,1,1],
-    [1,1,1,2,2,2],
-    [2,1,1,1,2,1],
-    [1,1,1,1,1,1],
-    [1,2,1,1,2,1],
-    [2,2,1,2,0,1]
-    ]).
-
-
-gameOver(Board,Player):-
+game_over(Board,Player):-
     length(Board,N),
     M is N*N,
-    validMoves(Board,Player,M,LL,F),!,
-    emptyList(F).
+    valid_moves(Board,Player,M,LL,F),!,
+    empty_list(F).
+
+
+next_player(1,2).
+next_player(2,1).
