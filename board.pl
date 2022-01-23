@@ -99,7 +99,7 @@ displayLine(Board,LineNumber) :-
     getBoardValue(Board,LineNumber,0,L1),
     displayElement(L1),
     write('  ||  '),
-    getBoardValue(Board,LineNumber,1,L1),
+    getBoardValue(Board,LineNumber,1,L2),
     displayElement(L2),
     write('  ||  '),
     getBoardValue(Board,LineNumber,2,L3),
