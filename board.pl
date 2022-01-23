@@ -83,6 +83,7 @@ displayBoardOptions :-
     write(' =============================================== '),nl,
     write('              1. Single Player '),nl,
     write('              2. Multi Player '),nl,
+    write('              3. Bot vs Bot '),nl,
     write(' =============================================== '),nl,
     write(' '), nl.
 

@@ -1,10 +1,11 @@
 %:- dynamic handleMenuChoice/1, displayMenuTitle/0, readNumber/1, displayGameTitle/0.
 
-menu(Board) :- 
+menu(Board,GameMode) :- 
     displayMenuTitle,
     %displayBoardOptions,
     displayPlayingModeOptions,
-    menuPlayingModeChoice(Board).
+    initial(Board),
+    menuPlayingModeChoice(GameMode).
     %menuBoardChoice(Board).
 
 % BOARD OPTIONS
@@ -18,14 +19,17 @@ handleMenuBoardChoice(1,Board) :-
     handleMenuChoice(2,Board) :- displayBoard8.
 
 %PLAYING MODE OPTIONS
-menuPlayingModeChoice(Board):-
+menuPlayingModeChoice(GameMode):-
     repeat,
     readNumber(PlayingMode),
-    handleMenuPlayingModeChoice(PlayingMode,Board).
+    handleMenuPlayingModeChoice(PlayingMode,GameMode).
 
 % single player
-handleMenuPlayingModeChoice(1,Board) :-
-    full(Board).
+handleMenuPlayingModeChoice(1,1).
+handleMenuPlayingModeChoice(2,2).
+handleMenuPlayingModeChoice(3,3).
+handleMenuPlayingModeChoice(_,GameMode):- nl,write('Not a valid mode. Try again: '),fail.
+    
 
 %GET NEXT MOVE
 nextMove(Board,Player,NewBoard) :-

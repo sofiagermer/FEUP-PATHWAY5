@@ -7,6 +7,8 @@
 :- include('board.pl').       /* Game displaying functions */
 :- include('input.pl').       /* Game displaying functions */
 :- include('menu.pl').         /* Helper functions */
+:- include('utils.pl').         /* Helper functions */
+:- include('logic.pl').         /* Helper functions */
 
 play :- game.
 
@@ -16,22 +18,66 @@ nextPlayer(2,1).
 game:-
     displayGameTitle,
     sleep(1),
-    menu(Board),
-    gameLoop(Board,1).
+    menu(Board,GameMode),
+    gameLoop(GameMode,Board,1).
 
-gameLoop(Board,Player) :-
+gameLoop(1,Board,Player) :-
     gameOver(Board,Player),
     displayGameOver,
     nextPlayer(Player,NewPlayer),
     displayWinningPlayer(NewPlayer).
 
-gameLoop(Board,Player) :-
+gameLoop(1,Board,Player) :-
+    \+ gameOver(Board,Player)->(
+    displayBoard6(Board,Player),
+    nextMove(Board,Player,TempBoard),
+    nextPlayer(Player,NewPlayer),
+    sleep(1),
+    randomMove(TempBoard,NewPlayer,Move),
+    (emptyList(Move)->gameLoop(1,NewBoard,NewPlayer);
+    getLineElement(0,Move,Line),
+    getLineElement(1,Move,Column),
+    replaceBoardElement(TempBoard,Line,Column,NewPlayer,NewBoard),
+    gameLoop(1,NewBoard,Player))).
+
+gameLoop(2,Board,Player) :-
+    gameOver(Board,Player),
+    displayGameOver,
+    nextPlayer(Player,NewPlayer),
+    displayWinningPlayer(NewPlayer).
+
+gameLoop(2,Board,Player) :-
     \+ gameOver(Board,Player)->(
     displayBoard6(Board,Player),
     nextMove(Board,Player,NewBoard),
     nextPlayer(Player,NewPlayer),
-    gameLoop(NewBoard,NewPlayer)).
+    gameLoop(2,NewBoard,NewPlayer)).
     
+gameLoop(3,Board,Player) :-
+    gameOver(Board,Player),
+    displayGameOver,
+    nextPlayer(Player,NewPlayer),
+    displayWinningPlayer(NewPlayer).
+
+gameLoop(3,Board,Player) :-
+    \+ gameOver(Board,Player)->(
+    displayBoard6(Board,Player),
+    sleep(1),
+    randomMove(Board,Player,Move1),
+    getLineElement(0,Move1,Line1),
+    getLineElement(1,Move1,Column1),
+    replaceBoardElement(Board,Line1,Column1,Player,TempBoard),
+    displayBoard6(TempBoard,Player),
+    nextPlayer(Player,NewPlayer),
+    sleep(1),
+    randomMove(TempBoard,NewPlayer,Move2),
+    (emptyList(Move2)->gameLoop(3,NewBoard,NewPlayer);
+    getLineElement(0,Move2,Line2),
+    getLineElement(1,Move2,Column2),
+    replaceBoardElement(TempBoard,Line2,Column2,NewPlayer,NewBoard),
+    gameLoop(3,NewBoard,Player))).
+
+
 
 initial([
     [0,0,0,0,0,0],
@@ -60,321 +106,9 @@ full([
     [2,2,1,2,0,1]
     ]).
 
-getLine(0,[H|T],H).
-getLine(X,[H|T],[N|Nt]):-
-    Y is X-1,
-    getLine(Y,T,[N|Nt]).
-
-getLineElement(0,[H|T],H).
-getLineElement(I,[H|T],V):-
-    Y is I-1,
-    getLineElement(Y,T,V).
-
-replace([_|T],0,X,[X|T]).
-replace([H|T],I,X,[H|R]):-
-    I1 is I-1,
-    replace(T,I1,X,R).
-
-replaceBoardElement(Board,LineNumber,ColumnNumber,NewValue,NewBoard):-
-    getLine(LineNumber,Board,Line),
-    replace(Line,ColumnNumber,NewValue,NewLine),
-    replace(Board,LineNumber,NewLine,NewBoard).
-
-getBoardValue(Board,LineNumber,ColumnNumber,Value):-
-    getLine(LineNumber,Board,Line),
-    getLineElement(ColumnNumber,Line,Value).
-
-noConnectionsMove(Board,LineNumber,ColumnNumber):-
-    length(Board,Length),
-    MaxIndex is Length-1,
-    CP1 is ColumnNumber+1,
-    CM1 is ColumnNumber-1,
-    LP1 is LineNumber+1,
-    LM1 is LineNumber-1,
-    ((ColumnNumber\==0,
-    LineNumber\==0,
-    ColumnNumber\==MaxIndex,
-    LineNumber\==MaxIndex,
-    getBoardValue(Board,LineNumber,CP1,V1),
-    V1==0,
-    getBoardValue(Board,LineNumber,CM1,V2),
-    V2==0,
-    getBoardValue(Board,LP1,ColumnNumber,V3),
-    V3==0,
-    getBoardValue(Board,LM1,ColumnNumber,V4),
-    V4==0);
-    (ColumnNumber==0,
-    LineNumber==0,
-    getBoardValue(Board,LineNumber,CP1,V1),
-    V1==0,
-    getBoardValue(Board,LP1,ColumnNumber,V2),
-    V2==0);
-    (ColumnNumber==MaxIndex,
-    LineNumber==MaxIndex,
-    getBoardValue(Board,LineNumber,CM1,V1),
-    V1==0,
-    getBoardValue(Board,LM1,ColumnNumber,V2),
-    V2==0);
-    (ColumnNumber==MaxIndex,
-    LineNumber==0,
-    getBoardValue(Board,LineNumber,CM1,V1),
-    V1==0,
-    getBoardValue(Board,LP1,ColumnNumber,V2),
-    V2==0);
-    (ColumnNumber==0,
-    LineNumber==MaxIndex,
-    getBoardValue(Board,LineNumber,CP1,V1),
-    V1==0,
-    getBoardValue(Board,LM1,ColumnNumber,V2),
-    V2==0);
-    (ColumnNumber==0,
-    getBoardValue(Board,LineNumber,CP1,V1),
-    V1==0,
-    getBoardValue(Board,LP1,ColumnNumber,V2),
-    V2==0,
-    getBoardValue(Board,LM1,ColumnNumber,V3),
-    V3==0);
-    (ColumnNumber==MaxIndex,
-    getBoardValue(Board,LineNumber,CM1,V1),
-    V1==0,
-    getBoardValue(Board,LP1,ColumnNumber,V2),
-    V2==0,
-    getBoardValue(Board,LM1,ColumnNumber,V3),
-    V3==0);
-    (LineNumber==0,
-    getBoardValue(Board,LineNumber,CP1,V1),
-    V1==0,
-    getBoardValue(Board,LineNumber,CM1,V2),
-    V2==0,
-    getBoardValue(Board,LP1,ColumnNumber,V3),
-    V3==0);
-    (LineNumber==MaxIndex,
-    getBoardValue(Board,LineNumber,CP1,V1),
-    V1==0,
-    getBoardValue(Board,LineNumber,CM1,V2),
-    V2==0,
-    getBoardValue(Board,LM1,ColumnNumber,V3),
-    V3==0)).
-
-connectionMove(Board,Player,LineNumber,ColumnNumber):-
-    length(Board,Length),
-    MaxIndex is Length-1,
-    CP1 is ColumnNumber+1,
-    CM1 is ColumnNumber-1,
-    LP1 is LineNumber+1,
-    LM1 is LineNumber-1,
-    ((ColumnNumber\==0,
-    LineNumber\==0,
-    ColumnNumber\==MaxIndex,
-    LineNumber\==MaxIndex,
-    getBoardValue(Board,LineNumber,CP1,V1),
-    V1==Player,
-    getBoardValue(Board,LineNumber,CM1,V2),
-    V2\==Player,
-    getBoardValue(Board,LP1,ColumnNumber,V3),
-    V3\==Player,
-    getBoardValue(Board,LM1,ColumnNumber,V4),
-    V4\==Player);
-    (ColumnNumber\==0,
-    LineNumber\==0,
-    ColumnNumber\==MaxIndex,
-    LineNumber\==MaxIndex,
-    getBoardValue(Board,LineNumber,CP1,V1),
-    V1\==Player,
-    getBoardValue(Board,LineNumber,CM1,V2),
-    V2==Player,
-    getBoardValue(Board,LP1,ColumnNumber,V3),
-    V3\==Player,
-    getBoardValue(Board,LM1,ColumnNumber,V4),
-    V4\==Player);
-    (ColumnNumber\==0,
-    LineNumber\==0,
-    ColumnNumber\==MaxIndex,
-    LineNumber\==MaxIndex,
-    getBoardValue(Board,LineNumber,CP1,V1),
-    V1\==Player,
-    getBoardValue(Board,LineNumber,CM1,V2),
-    V2\==Player,
-    getBoardValue(Board,LP1,ColumnNumber,V3),
-    V3==Player,
-    getBoardValue(Board,LM1,ColumnNumber,V4),
-    V4\==Player);
-    (ColumnNumber\==0,
-    LineNumber\==0,
-    ColumnNumber\==MaxIndex,
-    LineNumber\==MaxIndex,
-    getBoardValue(Board,LineNumber,CP1,V1),
-    V1\==Player,
-    getBoardValue(Board,LineNumber,CM1,V2),
-    V2\==Player,
-    getBoardValue(Board,LP1,ColumnNumber,V3),
-    V3\==Player,
-    getBoardValue(Board,LM1,ColumnNumber,V4),
-    V4==Player);
-    (ColumnNumber==0,
-    LineNumber==0,
-    getBoardValue(Board,LineNumber,CP1,V1),
-    V1==Player,
-    getBoardValue(Board,LP1,ColumnNumber,V2),
-    V2\==Player);
-    (ColumnNumber==0,
-    LineNumber==0,
-    getBoardValue(Board,LineNumber,CP1,V1),
-    V1\==Player,
-    getBoardValue(Board,LP1,ColumnNumber,V2),
-    V2==Player);
-    (ColumnNumber==MaxIndex,
-    LineNumber==MaxIndex,
-    getBoardValue(Board,LineNumber,CM1,V1),
-    V1==Player,
-    getBoardValue(Board,LM1,ColumnNumber,V2),
-    V2\==Player);
-    (ColumnNumber==MaxIndex,
-    LineNumber==MaxIndex,
-    getBoardValue(Board,LineNumber,CM1,V1),
-    V1\==Player,
-    getBoardValue(Board,LM1,ColumnNumber,V2),
-    V2==Player);
-    (ColumnNumber==0,
-    getBoardValue(Board,LineNumber,CP1,V1),
-    V1==Player,
-    getBoardValue(Board,LP1,ColumnNumber,V2),
-    V2\==Player,
-    getBoardValue(Board,LM1,ColumnNumber,V3),
-    V3\==Player);
-    (ColumnNumber==0,
-    getBoardValue(Board,LineNumber,CP1,V1),
-    V1\==Player,
-    getBoardValue(Board,LP1,ColumnNumber,V2),
-    V2==Player,
-    getBoardValue(Board,LM1,ColumnNumber,V3),
-    V3\==Player);
-    (ColumnNumber==0,
-    getBoardValue(Board,LineNumber,CP1,V1),
-    V1\==Player,
-    getBoardValue(Board,LP1,ColumnNumber,V2),
-    V2\==Player,
-    getBoardValue(Board,LM1,ColumnNumber,V3),
-    V3==Player);
-    (ColumnNumber==MaxIndex,
-    getBoardValue(Board,LineNumber,CM1,V1),
-    V1==Player,
-    getBoardValue(Board,LP1,ColumnNumber,V2),
-    V2\==Player,
-    getBoardValue(Board,LM1,ColumnNumber,V3),
-    V3\==Player);
-    (ColumnNumber==MaxIndex,
-    getBoardValue(Board,LineNumber,CM1,V1),
-    V1\==Player,
-    getBoardValue(Board,LP1,ColumnNumber,V2),
-    V2==Player,
-    getBoardValue(Board,LM1,ColumnNumber,V3),
-    V3\==Player);
-    (ColumnNumber==MaxIndex,
-    getBoardValue(Board,LineNumber,CM1,V1),
-    V1\==Player,
-    getBoardValue(Board,LP1,ColumnNumber,V2),
-    V2\==Player,
-    getBoardValue(Board,LM1,ColumnNumber,V3),
-    V3==Player);
-    (LineNumber==0,
-    getBoardValue(Board,LineNumber,CP1,V1),
-    V1==Player,
-    getBoardValue(Board,LineNumber,CM1,V2),
-    V2\==Player,
-    getBoardValue(Board,LP1,ColumnNumber,V3),
-    V3\==Player);
-    (LineNumber==0,
-    getBoardValue(Board,LineNumber,CP1,V1),
-    V1\==Player,
-    getBoardValue(Board,LineNumber,CM1,V2),
-    V2==Player,
-    getBoardValue(Board,LP1,ColumnNumber,V3),
-    V3\==Player);
-    (LineNumber==0,
-    getBoardValue(Board,LineNumber,CP1,V1),
-    V1\==Player,
-    getBoardValue(Board,LineNumber,CM1,V2),
-    V2\==Player,
-    getBoardValue(Board,LP1,ColumnNumber,V3),
-    V3==Player);
-    (LineNumber==MaxIndex,
-    getBoardValue(Board,LineNumber,CP1,V1),
-    V1==Player,
-    getBoardValue(Board,LineNumber,CM1,V2),
-    V2\==Player,
-    getBoardValue(Board,LM1,ColumnNumber,V3),
-    V3\==Player);
-    (LineNumber==MaxIndex,
-    getBoardValue(Board,LineNumber,CP1,V1),
-    V1\==Player,
-    getBoardValue(Board,LineNumber,CM1,V2),
-    V2==Player,
-    getBoardValue(Board,LM1,ColumnNumber,V3),
-    V3\==Player);
-    (LineNumber==MaxIndex,
-    getBoardValue(Board,LineNumber,CP1,V1),
-    V1\==Player,
-    getBoardValue(Board,LineNumber,CM1,V2),
-    V2\==Player,
-    getBoardValue(Board,LM1,ColumnNumber,V3),
-    V3==Player)).
-
-
-validMove(Board,Player,LineNumber,ColumnNumber):-
-    getBoardValue(Board,LineNumber,ColumnNumber,V),
-    V==0,
-    (noConnectionsMove(Board,LineNumber,ColumnNumber);
-    connectionMove(Board,Player,LineNumber,ColumnNumber)).
-
-validMoves(Board,Player,0,LL,F):-
-    F=LL.
-
-validMoves(Board,Player,N,LL,F):-
-    length(Board,D),
-    NM1 is N-1,
-    L is NM1//D,
-    C is mod(NM1,D),
-    ((validMove(Board,Player,L,C)->append([[L,C]],LL,NLL));
-    NLL=LL),
-    validMoves(Board,Player,NM1,NLL,F).
-
-
-chooseRowrandomMove(Board,Player,Move):-
-    length(Board,N),
-    M is N*N,
-    validMoves(Board,Player,M,LL,MovesList),
-    length(MovesList,UpperLimit),
-    random(0,UpperLimit,RValue),
-    getLine(RValue,MovesList,Move).
-   
-
-smartMoves(Board,[],LL,F):-
-    F=LL.
-
-smartMoves(Board,[H|T],LL,F):-
-    getLineElement(0,H,L),
-    getLineElement(1,H,C),
-    (((validMove(Board,1,L,C),validMove(Board,2,L,C))->append([H],LL,NLL));
-    NLL=LL),
-    smartMoves(Board,T,NLL,F).
-
-smartMove(Board,Player,Move):-
-    length(Board,N),
-    M is N*N,
-    validMoves(Board,Player,M,L1,MovesList),
-    smartMoves(Board,MovesList,L2,SmartMovesList),
-    length(SmartMovesList,UpperLimit),
-    random(0,UpperLimit,RValue),
-    getLine(RValue,SmartMovesList,Move).
-
-
-emptyList([]).
 
 gameOver(Board,Player):-
     length(Board,N),
     M is N*N,
     validMoves(Board,Player,M,LL,F),!,
     emptyList(F).
-
-game
