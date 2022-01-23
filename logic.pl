@@ -265,7 +265,8 @@ valid_moves(Board,Player,N,LL,F):-
     NLL=LL),
     valid_moves(Board,Player,NM1,NLL,F).
 
-
+% used for both levels of intelligence
+%  picks a random move from the list of valid moves
 random_move(Board,Player,Move):-
     length(Board,N),
     M is N*N,
@@ -274,7 +275,8 @@ random_move(Board,Player,Move):-
     random(0,UpperLimit,RValue),
     nth0(RValue,MovesList,Move).
    
-
+% used only in the highest level of intelligence
+%  first checks whether there is a smart move to be made, and if there isn't it chooses the random move
 smart_moves(Board,[],LL,F):-
     F=LL.
 
