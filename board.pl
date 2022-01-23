@@ -76,7 +76,46 @@ displayBoardOptions :-
     write(' '), nl,
     write('                         2. Board 8x8'),nl.
 
-displayBoard6(Board) :-
+
+displayRowLetter(0) :-  write('A    |||  ').
+displayRowLetter(1) :-  write('B    |||  ').
+displayRowLetter(2) :-  write('C    |||  ').
+displayRowLetter(3) :-  write('D    |||  ').
+displayRowLetter(4) :-  write('E    |||  ').
+displayRowLetter(5) :-  write('F    |||  ').
+
+displayElement(0) :- write(' ').
+displayElement(1) :- write('X').
+displayElement(2) :- write('O').
+displayElement(_) :- write('P').
+
+/* getBoardValue(Board,LineNumber,ColumnNumber,Value) */
+/*displayNumber(Board,Row,Column,Value) :-*/
+
+
+
+displayLine(Board,LineNumber) :-
+    displayRowLetter(LineNumber),
+    getBoardValue(Board,LineNumber,0,L1),
+    displayElement(L1),
+    write('  ||  '),
+    getBoardValue(Board,LineNumber,1,L1),
+    displayElement(L2),
+    write('  ||  '),
+    getBoardValue(Board,LineNumber,2,L3),
+    displayElement(L3),
+    write('  ||  '),
+    getBoardValue(Board,LineNumber,3,L4),
+    displayElement(L4),
+    write('  ||  '),
+    getBoardValue(Board,LineNumber,4,L5),
+    displayElement(L5),
+    write('  ||  '),
+    getBoardValue(Board,LineNumber,5,L6),
+    displayElement(L6).
+    write('  |||').
+
+ displayBoard6(Board) :-
     write(' =============================================== '),nl,
     write(' '),nl,
     write('          1      2      3      4      5      6  '),nl,
@@ -100,44 +139,7 @@ displayBoard6(Board) :-
     displayLine(Board,5),nl,
     write('     |||_____||_____||_____||_____||_____||_____|||'     ),nl,
     write(' '),nl,
-    write(' =============================================== '),nl.  
-
-displayLine(Board, LineNumber):-
-    displayRowLetter(LineNumber),
-    getBoardValue(Board,LineNumber,0,L1),
-    displayElement(L1),
-    write('  ||  '),
-    getBoardValue(Board,LineNumber,1,L2),
-    displayElement(L2),
-    write('  ||  '),
-    getBoardValue(Board,LineNumber,2,L3),
-    displayElement(L3),
-    write('  ||  '),
-    getBoardValue(Board,LineNumber,3,L4),
-    displayElement(L4),
-    write('  ||  '),
-    getBoardValue(Board,LineNumber,4,L5),
-    displayElement(L5),
-    write('  ||  '),
-    getBoardValue(Board,LineNumber,5,L6),
-    displayElement(L6),
-    write('  |||').
-
-displayRowLetter(0) :-  write('A    |||  ').
-displayRowLetter(1) :-  write('B    |||  ').
-displayRowLetter(2) :-  write('C    |||  ').
-displayRowLetter(3) :-  write('D    |||  ').
-displayRowLetter(4) :-  write('E    |||  ').
-displayRowLetter(5) :-  write('F    |||  ').
-
-displayElement(0) :- write(' ').
-displayElement(1) :- write('X').
-displayElement(2) :- write('O').
-displayElement(_) :- write('Something is very wrong and i dont know wtf is happening').
-/* getBoardValue(Board,LineNumber,ColumnNumber,Value) */
-/*displayNumber(Board,Row,Column,Value) :-*/
-
-
+    write(' =============================================== '),nl. 
 
 displayBoard8 :-
     write(' ============================================================ '),nl,
@@ -192,25 +194,5 @@ displayOptionsChoice(1) :-
     write('                  1. Row'),nl,
     write(' '), nl,
     write('              ->  2. Column (1-6)'),nl,
-    write(' '), nl,
-    write(' =============================================== '),nl.
-
-/* Depois de utilizador por Row Errada */
-displayOptionsChoice(2) :-
-    write(' =============================================== '),nl,
-    write('                 Invalid Row!'),nl,
-    write(' =============================================== '),nl,
-    write(' '), nl,
-    write('               Choose Row A-F'),nl,
-    write(' '), nl,
-    write(' =============================================== '),nl.
-
-/* Depois de utilizador por Column Errada  */
-displayOptionsChoice(3) :-
-    write(' =============================================== '),nl,
-    write('                 Invalid Column!'),nl,
-    write(' =============================================== '),nl,
-    write(' '), nl,
-    write('               Choose Column 1-6'),nl,
     write(' '), nl,
     write(' =============================================== '),nl.

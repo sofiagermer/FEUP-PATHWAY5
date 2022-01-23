@@ -9,9 +9,21 @@
 
 play :- game.
 
-game :-
+game:-
     displayGameTitle, 
-    menu.
+    menu(newBoard),
+    gameLoop(newBoard).
+
+gameLoop(Board) :-
+    write('estou aqui'),nl,
+    repeat(),
+    displayOptionsChoice(0),
+    write('before'),nl,
+    write(NewBoard),nl,
+    nextMove(Board,NewBoard),
+    write('after'),nl,
+    write(NewBoard),nl,
+    Board is NewBoard.
 
 initial([
     [0,0,0,0,0,0],
