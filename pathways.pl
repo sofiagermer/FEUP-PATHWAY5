@@ -19,7 +19,7 @@ game:-
 
 gameLoop(Board,Player) :-
     \+ gameOver(Board,Player),
-    displayBoard6(Board),
+    displayBoard6(Board,Player),
     nextMove(Board,Player,NewBoard),
     nextPlayer(Player,NewPlayer),
     gameLoop(NewBoard,NewPlayer).
@@ -333,7 +333,7 @@ validMoves(Board,Player,N,LL,F):-
     validMoves(Board,Player,NM1,NLL,F).
 
 
-randomMove(Board,Player,Move):-
+chooseRowrandomMove(Board,Player,Move):-
     length(Board,N),
     M is N*N,
     validMoves(Board,Player,M,LL,MovesList),

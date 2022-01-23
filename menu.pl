@@ -13,8 +13,7 @@ menuChoice(Board):-
 
 handleMenuChoice(1,Board) :-  
     initial(Board).
-handleMenuChoice(2,Board) :- displayBoard8.
-% handleMenuChoice(_,Board) :- write('Invalid Option!'), nl, !, fail.
+    handleMenuChoice(2,Board) :- displayBoard8.
 
 nextMove(Board,Player,NewBoard) :-
     displayChooseRow,
@@ -23,13 +22,15 @@ nextMove(Board,Player,NewBoard) :-
     chooseColumn(Column),
     replaceBoardElement(Board,Row,Column,Player,NewBoard).
 
-chooseRow(X):-
+chooseRow(HoleRow):-
     repeat,
-    readChar(HoleRow),
+    readChar(Char),
+    ((Char >= 65 , Char < 90, HoleRow is Char-65); (Char >= 97 , Char < 122, HoleRow is Char-97)),
     between(0, 5, HoleRow).
     % between(0, 5, HoleRow),!.
 
-chooseColumn(X):-
+
+chooseColumn(HoleColumn):-
     repeat,
     readNumber(Number),
     HoleColumn is Number-1,
