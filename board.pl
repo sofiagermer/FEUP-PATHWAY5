@@ -115,8 +115,7 @@ displayLine(Board,LineNumber) :-
     displayElement(L6),
     write('  |||').
 
- displayBoard6(Board) :-
-    write(' =============================================== '),nl,
+displayBoard6Template(Board):-
     write(' '),nl,
     write('          1      2      3      4      5      6  '),nl,
     write('        _____  _____  _____  _____  _____  _____'),nl,
@@ -140,6 +139,18 @@ displayLine(Board,LineNumber) :-
     write('     |||_____||_____||_____||_____||_____||_____|||'     ),nl,
     write(' '),nl,
     write(' =============================================== '),nl. 
+
+ displayBoard6(Board,1) :-
+    write(' ====================================================== '),nl,
+    write('                       Player 1 Turn'),nl,
+    write(' ====================================================== '),nl,
+    displayBoard6Template(Board).
+
+displayBoard6(Board,2) :-
+    write(' ====================================================== '),nl,
+    write('                       Player 2 Turn'),nl,
+    write(' ====================================================== '),nl,
+    displayBoard6Template(Board).
 
 displayBoard8 :-
     write(' ============================================================ '),nl,
