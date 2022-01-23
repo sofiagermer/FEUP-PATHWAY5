@@ -96,6 +96,33 @@ move(Board,Player,NewBoard) :-
     replace_board_element(Board,Row,Column,Player,NewBoard),!).
 ```
 
-As you can see, we use the repeat predicate to validate de user's input and check whether or not the move he wants to make is valid (the definition of what makes a move valid or not is stated in the __Description and Rules section__). If the input is valid, the replace_board_element predicate will create a new board with the position filled with the player's number, and if not, it will prompt the user to input a new position.
+As you can see, we use the repeat predicate to validate de user's input and check whether or not the move he wants to make is valid (the definition of what makes a move valid or not is stated in the __Description and Rules section__). If the input is valid, the **replace_board_element** predicate will create a new board with the position filled with the player's number, and if not, it will prompt the user to input a new position.
 
-It should be noted that the **replace_board_element** predicate, located in the **utils.pl** file uses predicates that we developed and later learned could be replaced with functions from the PROLOG library (such as getLineElement, which could be replaced with )
+#### End of Game
+
+A predicate to obtain a list of valid moves was developed (see next section, for more about this predicate). Since this game's winner is the last person to be able to make a move, at the beginning of each iteration of the **game_loop** predicate, we check if the current player can play - in other words, whether or not the list of valid moves is empty. This is done by the **game_over** predicate.
+
+#### List of Valid Moves
+
+A list of valid moves can be obtained by using the **valid_moves** predicate. This predicate tests every empty position of the current board and checks whether or not the current player can play in that position (using the **valid_move** predicate). If that position is a valid move, a list composed of 2 values [Line,Column] is appended to the list of valid moves. This list is used for detecting the end of game, and by the bots to make their game decisions. The predicates referenced in this section are located in **logic.pl** file, as well as all predicates related to the game's logic.
+
+
+#### Evaluation of the Game State
+
+After much reflection we concluded that in our particular scenario, this function wouldn't actually offer any new information, since our game can't be quantified at a particular stage. Since the winner isn't defined by how many pieces he is able to place, or any quantifiable measure, but by their strategic thinking, it would be very hard for us to define at a given point in time who is in a better state.
+
+#### The Game Bots
+
+As proposed we defined a game mode where bots participated (the **single player mode** or the **bot versus bot mode**). To do this we defined two predicates to decide the next move:
+
+- the **random_move** predicate, used for both levels of intelligence. This predicate simply picks a random move from the list of valid moves mentioned earlier.
+- the **smart_move** predicate, used only in the highest level of intelligence. This predicate first checks whether there is a smart move to be made, and if there isn't it chooses the random move mentioned before. A smart move is a move that occupies a position that is available for both players, hence reducing the opponent's number of possible plays and increasing the likelihood of the bot winning.
+
+### Conclusions
+
+This project was very enriching, since we are typically used to working with imperative programming languages and this forced us to change or thought process and rethink some of our preconceptions on how to approach a problem.
+
+### Bibliography
+
+- Class provided materials
+- [Pathways rules, Mark Steere ](http://www.marksteeregames.com/Pathway_rules.pdf)

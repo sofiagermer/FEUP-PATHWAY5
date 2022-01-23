@@ -1,26 +1,16 @@
-get_line(0,[H|T],H).
-get_line(X,[H|T],[N|Nt]):-
-    Y is X-1,
-    get_line(Y,T,[N|Nt]).
-
-get_line_element(0,[H|T],H).
-get_line_element(I,[H|T],V):-
-    Y is I-1,
-    get_line_element(Y,T,V).
-
 replace([_|T],0,X,[X|T]).
 replace([H|T],I,X,[H|R]):-
     I1 is I-1,
     replace(T,I1,X,R).
 
 replace_board_element(Board,LineNumber,ColumnNumber,NewValue,NewBoard):-
-    get_line(LineNumber,Board,Line),
+    nth0(LineNumber,Board,Line),
     replace(Line,ColumnNumber,NewValue,NewLine),
     replace(Board,LineNumber,NewLine,NewBoard).
 
 get_board_value(Board,LineNumber,ColumnNumber,Value):-
-    get_line(LineNumber,Board,Line),
-    get_line_element(ColumnNumber,Line,Value).
+    nth0(LineNumber,Board,Line),
+    nth0(ColumnNumber,Line,Value).
 
 empty_list([]).
 

@@ -272,15 +272,15 @@ random_move(Board,Player,Move):-
     valid_moves(Board,Player,M,LL,MovesList),
     length(MovesList,UpperLimit),
     random(0,UpperLimit,RValue),
-    get_line(RValue,MovesList,Move).
+    nth0(RValue,MovesList,Move).
    
 
 smart_moves(Board,[],LL,F):-
     F=LL.
 
 smart_moves(Board,[H|T],LL,F):-
-    get_line_element(0,H,L),
-    get_line_element(1,H,C),
+    nth0(0,H,L),
+    nth0(1,H,C),
     (((valid_move(Board,1,L,C),valid_move(Board,2,L,C))->append([H],LL,NLL));
     NLL=LL),
     smart_moves(Board,T,NLL,F).
@@ -293,4 +293,4 @@ smart_move(Board,Player,Move):-
     (empty_list(SmartMovesList)->random_move(Board,Player,Move);
     length(SmartMovesList,UpperLimit),
     random(0,UpperLimit,RValue),
-    get_line(RValue,SmartMovesList,Move)).
+    nth0(RValue,SmartMovesList,Move)).
