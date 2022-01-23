@@ -76,6 +76,15 @@ displayBoardOptions :-
     write(' '), nl,
     write('                         2. Board 8x8'),nl.
 
+ displayPlayingModeOptions :-
+    nl,
+    write(' =============================================== '),nl,
+    write('              Choose Player Mode?'),nl,
+    write(' =============================================== '),nl,
+    write('              1. Single Player '),nl,
+    write('              2. Multi Player '),nl,
+    write(' =============================================== '),nl,
+    write(' '), nl.
 
 displayRowLetter(0) :-  write('A    |||  ').
 displayRowLetter(1) :-  write('B    |||  ').

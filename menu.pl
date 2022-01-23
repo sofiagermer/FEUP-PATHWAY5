@@ -2,18 +2,32 @@
 
 menu(Board) :- 
     displayMenuTitle,
-    displayBoardOptions,
-    menuChoice(Board).
+    %displayBoardOptions,
+    displayPlayingModeOptions,
+    menuPlayingModeChoice(Board).
+    %menuBoardChoice(Board).
 
-menuChoice(Board):-
+% BOARD OPTIONS
+menuBoardChoice(Board):-
     repeat,
     readNumber(BoardSize),
-    handleMenuChoice(BoardSize,Board).
+    handleMenuBoardChoice(BoardSize,Board).
 
-handleMenuChoice(1,Board) :-  
+handleMenuBoardChoice(1,Board) :-  
     full(Board).
     handleMenuChoice(2,Board) :- displayBoard8.
 
+%PLAYING MODE OPTIONS
+menuPlayingModeChoice(Board):-
+    repeat,
+    readNumber(PlayingMode),
+    handleMenuPlayingModeChoice(PlayingMode,Board).
+
+% single player
+handleMenuPlayingModeChoice(1,Board) :-
+    full(Board).
+
+%GET NEXT MOVE
 nextMove(Board,Player,NewBoard) :-
     repeat,
     chooseRow(Row),
