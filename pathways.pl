@@ -2,6 +2,7 @@
 :- use_module(library(lists)).
 :- use_module(library(random)).
 :- use_module(library(between)).
+:- use_module(library(system)).
 
 :- include('board.pl').       /* Game displaying functions */
 :- include('input.pl').       /* Game displaying functions */
@@ -13,13 +14,16 @@ nextPlayer(1,2).
 nextPlayer(2,1).
 
 game:-
-    displayGameTitle, 
+    displayGameTitle,
+    sleep(1),
     menu(Board),
-    gameLoop(Board,1),
-    nl,write('Game Over'),nl.
+    gameLoop(Board,1).
 
 gameLoop(Board,Player) :-
-    gameOver(Board,Player).
+    gameOver(Board,Player),
+    displayGameOver,
+    nextPlayer(Player,NewPlayer),
+    displayWinningPlayer(NewPlayer).
 
 gameLoop(Board,Player) :-
     \+ gameOver(Board,Player)->(
