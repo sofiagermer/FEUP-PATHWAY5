@@ -11,8 +11,7 @@ play :- game.
 
 game :-
     displayGameTitle, 
-    menu,
-    chooseRow.
+    menu.
 
 initial([
     [0,0,0,0,0,0],
