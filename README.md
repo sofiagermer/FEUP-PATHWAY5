@@ -72,7 +72,7 @@ The following screenshots are examples of the board at three different stages of
 
 #### Game State Visualization
 
-The game starts with a sequence of menus which allow the user to setup the game options: the size of the board (we allow for two possible sizes: 6x6 or 8x8), if he wants to play against another person, against a bot or watch 2 bots play each other.
+The game starts with a sequence of menus which allow the user to setup the game options: if he wants to play against another person, against a bot or watch 2 bots play each other.
 
 All display predicates are stored on the [views.pl](views.pl) file.
 
