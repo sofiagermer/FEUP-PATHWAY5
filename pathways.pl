@@ -26,7 +26,7 @@ game_loop(_,Board,Player) :-
 game_loop(1,Board,Player) :-
     \+ game_over(Board,Player)->(
     display_game(Board,Player),
-    next_move(Board,Player,TempBoard),
+    move(Board,Player,TempBoard),
     next_player(Player,NewPlayer),
     display_game(TempBoard,NewPlayer),
     sleep(1),
@@ -46,7 +46,7 @@ game_loop(1,Board,Player) :-
 game_loop(2,Board,Player) :-
     \+ game_over(Board,Player)->(
     display_game(Board,Player),
-    next_move(Board,Player,TempBoard),
+    move(Board,Player,TempBoard),
     next_player(Player,NewPlayer),
     display_game(TempBoard,NewPlayer),
     sleep(1),
@@ -66,7 +66,7 @@ game_loop(2,Board,Player) :-
 game_loop(3,Board,Player) :-
     \+ game_over(Board,Player)->(
     display_game(Board,Player),
-    next_move(Board,Player,NewBoard),
+    move(Board,Player,NewBoard),
     next_player(Player,NewPlayer),
     game_loop(3,NewBoard,NewPlayer)).
     

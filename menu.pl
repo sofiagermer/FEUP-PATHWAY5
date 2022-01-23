@@ -34,7 +34,7 @@ handle_menu_playing_mode_choice(_,GameMode):- nl,write('Not a valid mode. Try ag
     
 
 %GET NEXT MOVE
-next_move(Board,Player,NewBoard) :- 
+move(Board,Player,NewBoard) :- 
     repeat,
     choose_row(Row),
     choose_column(Column),
