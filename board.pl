@@ -186,12 +186,14 @@ displayBoard8 :-
 
  /* Normal Pergunta Row*/
 displayChooseRow :-
+    nl,
     write(' =============================================== '),nl,
     write('     IN WHICH ROW DO YOU WANT TO PLAY (A-F)?'),nl,
     write(' =============================================== '),nl,
     write(' '), nl.
  /* Normal Pergunta Column*/
 displayChooseColumn :-
+    nl,
     write(' =============================================== '),nl,
     write('   IN WHICH COLUMN DO YOU WANT TO PLAY (1-6)?'),nl,
     write(' =============================================== '),nl,

@@ -4,4 +4,4 @@ readNumber(Number) :-
     Number is Code - 48.
 
 readChar(Char) :-
-    get0(Char).
+    get_code(Char).

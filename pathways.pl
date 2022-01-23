@@ -1,7 +1,7 @@
 :- use_module(library(clpfd)).
 :- use_module(library(lists)).
 :- use_module(library(random)).
-
+:- use_module(library(between)).
 
 :- include('board.pl').       /* Game displaying functions */
 :- include('input.pl').       /* Game displaying functions */
@@ -15,16 +15,19 @@ nextPlayer(2,1).
 game:-
     displayGameTitle, 
     menu(Board),
-    gameLoop(Board,1).
+    gameLoop(Board,1),
+    nl,write('Game Over'),nl.
 
 gameLoop(Board,Player) :-
-    \+ gameOver(Board,Player),
+    gameOver(Board,Player).
+
+gameLoop(Board,Player) :-
+    \+ gameOver(Board,Player)->(
     displayBoard6(Board,Player),
     nextMove(Board,Player,NewBoard),
     nextPlayer(Player,NewPlayer),
-    gameLoop(NewBoard,NewPlayer).
+    gameLoop(NewBoard,NewPlayer)).
     
-
 
 initial([
     [0,0,0,0,0,0],
@@ -49,8 +52,8 @@ full([
     [1,1,1,2,2,2],
     [2,1,1,1,2,1],
     [1,1,1,1,1,1],
-    [1,2,1,1,1,1],
-    [2,2,1,1,1,1]
+    [1,2,1,1,2,1],
+    [2,2,1,2,0,1]
     ]).
 
 getLine(0,[H|T],H).
@@ -369,3 +372,5 @@ gameOver(Board,Player):-
     M is N*N,
     validMoves(Board,Player,M,LL,F),!,
     emptyList(F).
+
+game
