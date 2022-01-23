@@ -9,14 +9,19 @@
 :- include('utils.pl').         /* Generic auxiliar functions */
 :- include('logic.pl').         /* Game logic and validation functions */
 
+%function that is called to play the game
 play :- game.
 
+%game title is displayed and a sleep(1) is used to improve the user's experience
+%the menu where the configurations of the game will be chosen is displayed
+%game loop is called
 game:-
     display_game_title,
     sleep(1),
     menu(Board,GameMode),
     game_loop(GameMode,Board,1).
 
+%function that is responsable for the game logic
 game_loop(_,Board,Player) :-
     game_over(Board,Player),
     display_game_over,
@@ -100,7 +105,7 @@ game_loop(5,Board,Player) :-
     game_loop(5,NewBoard,Player))).
 
 
-
+% inicial state of the board -> all positions are ' '
 initial([
     [0,0,0,0,0,0],
     [0,0,0,0,0,0],
@@ -110,7 +115,7 @@ initial([
     [0,0,0,0,0,0]
     ]).
 
-
+% checks if the current player can play (if the list of valid moves is empty)
 game_over(Board,Player):-
     length(Board,N),
     M is N*N,
